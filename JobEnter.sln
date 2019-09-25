@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29020.237
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobEnter", "JobEnter\JobEnter.csproj", "{7C1B79D5-0901-488B-8548-A24F0B59379C}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Job Enter", "Job Enter\Job Enter.vdproj", "{9678AB58-4A17-473D-89FE-B3DFB9320DB7}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Job Installer", "Job Installer\Job Installer.vdproj", "{7468BDFD-29D6-4980-8DEB-AE1FCFC1E251}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7C1B79D5-0901-488B-8548-A24F0B59379C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C1B79D5-0901-488B-8548-A24F0B59379C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C1B79D5-0901-488B-8548-A24F0B59379C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C1B79D5-0901-488B-8548-A24F0B59379C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9678AB58-4A17-473D-89FE-B3DFB9320DB7}.Debug|Any CPU.ActiveCfg = Debug
+		{9678AB58-4A17-473D-89FE-B3DFB9320DB7}.Release|Any CPU.ActiveCfg = Release
+		{7468BDFD-29D6-4980-8DEB-AE1FCFC1E251}.Debug|Any CPU.ActiveCfg = Debug
+		{7468BDFD-29D6-4980-8DEB-AE1FCFC1E251}.Release|Any CPU.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {642667D5-3DD8-4D95-8157-DD85A8365BA1}
+	EndGlobalSection
+EndGlobal
