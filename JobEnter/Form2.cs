@@ -41,7 +41,7 @@ namespace JobEnter
         }
 
         Microsoft.Office.Interop.Word.Document wordDoc { get; set; }
-
+        #region Text variables
         //■
         //Building and Improvements
         string visibleImprovements = "Show significant and visible improvements deemed necessary by the surveyor on site, unless otherwise specified by the client beforehand.";
@@ -92,6 +92,8 @@ namespace JobEnter
 
         //Winter Hardcover Note
         string snowClearing = "Client is responsible for clearing snow and ice off of all impervious surfaces prior to survey.  Snow and ice must be removed entirely so that the edge of the surface is clearly identifiable.  If the surveyor determines the snow and ice have not been properly removed from all surfaces at the time of the survey, impervious surface calculations will be shown as an approximate value (+/-).  Approximate values may or may not be sufficient for design or city approval.";
+
+        #endregion
 
         System.Windows.Forms.CheckBox[] checkBoxBuilding = new System.Windows.Forms.CheckBox[9];
         System.Windows.Forms.CheckBox[] checkBoxEnviornmental = new System.Windows.Forms.CheckBox[11];

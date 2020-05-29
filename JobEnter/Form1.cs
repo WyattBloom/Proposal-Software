@@ -3,7 +3,9 @@ using System.Deployment.Application;
 using System.Windows.Forms;
 using System.IO;
 using Word = Microsoft.Office.Interop.Word;
-
+using System.Security.Cryptography;
+using Microsoft.Office.Interop.Outlook;
+using Exception = System.Exception;
 
 namespace JobEnter
 {
@@ -12,6 +14,8 @@ namespace JobEnter
         public Form1()
         {
             InitializeComponent();
+            // Initialize client
+
         }
 
         Microsoft.Office.Interop.Word.Document wordDoc { get; set; }
@@ -200,7 +204,7 @@ namespace JobEnter
                     ap.Visible = true;
                 }
             }
-            catch(Exception ex)
+            catch(System.Exception ex)
             {
                 MessageBox.Show("Opening File was did not work: " + ex.Message);
             }
@@ -600,6 +604,20 @@ namespace JobEnter
         {
             Form6 frm6 = new Form6(boxName.Text, boxAddress.Text, boxPhone.Text, boxEmail.Text, boxInstructions.Text, txtDays.Text, boxStakePrice.Text, cmbBoxExisting.Text, boxPrice.Text, null);
             frm6.Show();
+        }
+
+        private void updateAPI_Click(object sender, EventArgs e)
+        {
+            APIRequests apiInstance = new APIRequests("TestSheet1", "4235468226226052");
+            long columnName = apiInstance.getColumnID("Name");
+
+            apiInstance.setName(boxName.Text);
+            apiInstance.setAddress(boxAddress.Text);
+            apiInstance.setNumber(Convert.ToInt32(boxPhone.Text));
+            apiInstance.setDate(new DateTime(2020, 05, 28));
+
+            apiInstance.addRow();
+
         }
     }
 }
