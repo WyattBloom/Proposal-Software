@@ -90,7 +90,7 @@ namespace JobEnter
         //
         string woodedEdge = "Show significant or isolated bushes and or shrubs.";
         //
-        string isolatedBushes = "Show significant or isolated bushes and or shrubs. ";
+        string isolatedBushes = "Show significant or isolated bushes and or shrubs.";
         //
         string showTopography = "Show topography over the entire lot and up to the edge of the adjacent roadway at a contour interval of 1 or 2 feet, whichever is more appropriate.  In addition to contours, show critical spot elevations across the property, as needed, to depict vertical relief.";
         //300

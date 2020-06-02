@@ -108,7 +108,6 @@ C:\Users\Wyatt\Desktop\Git\Job Proposal Software\JobEnter\JobEnter\bin\Debug\Job
 C:\Users\Wyatt\Desktop\Git\Job Proposal Software\JobEnter\JobEnter\bin\Debug\JobEnter.application
 C:\Users\Wyatt\Desktop\Git\Job Proposal Software\JobEnter\JobEnter\bin\Debug\JobEnter.exe
 C:\Users\Wyatt\Desktop\Git\Job Proposal Software\JobEnter\JobEnter\bin\Debug\JobEnter.pdb
-C:\Users\Wyatt\Desktop\Git\Job Proposal Software\JobEnter\JobEnter\obj\Debug\JobEnter.csprojAssemblyReference.cache
 C:\Users\Wyatt\Desktop\Git\Job Proposal Software\JobEnter\JobEnter\obj\Debug\Interop.VSTOEE100.dll
 C:\Users\Wyatt\Desktop\Git\Job Proposal Software\JobEnter\JobEnter\obj\Debug\JobEnter.csproj.ResolveComReference.cache
 C:\Users\Wyatt\Desktop\Git\Job Proposal Software\JobEnter\JobEnter\obj\Debug\JobEnter.Form1.resources
@@ -134,3 +133,7 @@ C:\Users\Wyatt\Desktop\Git\Job Proposal Software\JobEnter\JobEnter\bin\Debug\Res
 C:\Users\Wyatt\Desktop\Git\Job Proposal Software\JobEnter\JobEnter\bin\Debug\smartsheet-csharp-sdk.xml
 C:\Users\Wyatt\Desktop\Git\Job Proposal Software\JobEnter\JobEnter\obj\Debug\JobEnter.csproj.CopyComplete
 C:\Users\Wyatt\Desktop\Git\Job Proposal Software\JobEnter\JobEnter\obj\Debug\JobEnter.PanelForm.resources
+C:\Users\Wyatt\Desktop\Git\Job Proposal Software\JobEnter\JobEnter\obj\Debug\JobEnter.ClientInfo.resources
+C:\Users\Wyatt\Desktop\Git\Job Proposal Software\JobEnter\JobEnter\obj\Debug\JobEnter.VerifyConditions.resources
+C:\Users\Wyatt\Desktop\Git\Job Proposal Software\JobEnter\JobEnter\obj\Debug\JobEnter.SelectServices.resources
+C:\Users\Wyatt\Desktop\Git\Job Proposal Software\JobEnter\JobEnter\obj\Debug\JobEnter.csprojAssemblyReference.cache

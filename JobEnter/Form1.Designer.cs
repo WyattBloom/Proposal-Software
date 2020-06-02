@@ -436,7 +436,7 @@
             this.panel1.Controls.Add(this.rbtnTwo);
             this.panel1.Controls.Add(this.rbtnAll);
             this.panel1.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel1.Location = new System.Drawing.Point(39, 73);
+            this.panel1.Location = new System.Drawing.Point(38, 72);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(219, 261);
