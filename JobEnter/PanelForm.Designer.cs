@@ -28,131 +28,135 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnNext = new System.Windows.Forms.Button();
-            this.btnPrev = new System.Windows.Forms.Button();
+            this.btnClientInfo = new System.Windows.Forms.Button();
+            this.btnSelectServices = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.selectServices1 = new JobEnter.SelectServices();
+            this.btnPricingPage = new System.Windows.Forms.Button();
             this.verifyConditions1 = new JobEnter.VerifyConditions();
             this.clientInfo1 = new JobEnter.ClientInfo();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnPrev = new System.Windows.Forms.Button();
+            this.btnNext = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // btnNext
+            // btnClientInfo
             // 
-            this.btnNext.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.btnClientInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNext.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.btnNext.FlatAppearance.BorderSize = 0;
-            this.btnNext.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNext.Location = new System.Drawing.Point(0, 0);
-            this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(228, 112);
-            this.btnNext.TabIndex = 1;
-            this.btnNext.Text = "Enter Client Info";
-            this.btnNext.UseVisualStyleBackColor = false;
-            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
+            this.btnClientInfo.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnClientInfo.FlatAppearance.BorderSize = 0;
+            this.btnClientInfo.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClientInfo.Location = new System.Drawing.Point(0, 0);
+            this.btnClientInfo.Margin = new System.Windows.Forms.Padding(2);
+            this.btnClientInfo.Name = "btnClientInfo";
+            this.btnClientInfo.Size = new System.Drawing.Size(173, 102);
+            this.btnClientInfo.TabIndex = 1;
+            this.btnClientInfo.Text = "Enter Client Info";
+            this.btnClientInfo.UseVisualStyleBackColor = false;
+            this.btnClientInfo.Click += new System.EventHandler(this.btnClientInfo_Click);
             // 
-            // btnPrev
+            // btnSelectServices
             // 
-            this.btnPrev.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.btnSelectServices.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPrev.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.btnPrev.FlatAppearance.BorderSize = 0;
-            this.btnPrev.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPrev.Location = new System.Drawing.Point(0, 111);
-            this.btnPrev.Name = "btnPrev";
-            this.btnPrev.Size = new System.Drawing.Size(228, 112);
-            this.btnPrev.TabIndex = 2;
-            this.btnPrev.Text = "Select Services";
-            this.btnPrev.UseVisualStyleBackColor = false;
-            this.btnPrev.Click += new System.EventHandler(this.btnPrev_Click);
+            this.btnSelectServices.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnSelectServices.FlatAppearance.BorderSize = 0;
+            this.btnSelectServices.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSelectServices.Location = new System.Drawing.Point(0, 100);
+            this.btnSelectServices.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSelectServices.Name = "btnSelectServices";
+            this.btnSelectServices.Size = new System.Drawing.Size(173, 102);
+            this.btnSelectServices.TabIndex = 2;
+            this.btnSelectServices.Text = "Select Services";
+            this.btnSelectServices.UseVisualStyleBackColor = false;
+            this.btnSelectServices.Click += new System.EventHandler(this.btnSelectServices_Click);
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.panel1.Controls.Add(this.button3);
-            this.panel1.Controls.Add(this.button2);
-            this.panel1.Controls.Add(this.button1);
-            this.panel1.Controls.Add(this.btnPrev);
-            this.panel1.Controls.Add(this.btnNext);
-            this.panel1.Location = new System.Drawing.Point(2, 1);
+            this.panel1.Controls.Add(this.btnPricingPage);
+            this.panel1.Controls.Add(this.btnSelectServices);
+            this.panel1.Controls.Add(this.btnClientInfo);
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(228, 633);
+            this.panel1.Size = new System.Drawing.Size(173, 525);
             this.panel1.TabIndex = 21;
             // 
-            // button1
+            // btnPricingPage
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.btnPricingPage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(0, 222);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(228, 112);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Enter Pricing";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // selectServices1
-            // 
-            this.selectServices1.Location = new System.Drawing.Point(238, 12);
-            this.selectServices1.Name = "selectServices1";
-            this.selectServices1.Size = new System.Drawing.Size(1030, 569);
-            this.selectServices1.TabIndex = 25;
-            this.selectServices1.Visible = false;
+            this.btnPricingPage.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnPricingPage.FlatAppearance.BorderSize = 0;
+            this.btnPricingPage.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPricingPage.Location = new System.Drawing.Point(0, 196);
+            this.btnPricingPage.Margin = new System.Windows.Forms.Padding(2);
+            this.btnPricingPage.Name = "btnPricingPage";
+            this.btnPricingPage.Size = new System.Drawing.Size(173, 102);
+            this.btnPricingPage.TabIndex = 3;
+            this.btnPricingPage.Text = "Enter Pricing";
+            this.btnPricingPage.UseVisualStyleBackColor = false;
+            this.btnPricingPage.Click += new System.EventHandler(this.btnPricingPage_Click);
             // 
             // verifyConditions1
             // 
-            this.verifyConditions1.Location = new System.Drawing.Point(238, 12);
+            this.verifyConditions1.Location = new System.Drawing.Point(178, 10);
+            this.verifyConditions1.Margin = new System.Windows.Forms.Padding(2);
             this.verifyConditions1.Name = "verifyConditions1";
-            this.verifyConditions1.Size = new System.Drawing.Size(807, 392);
+            this.verifyConditions1.Size = new System.Drawing.Size(605, 318);
             this.verifyConditions1.TabIndex = 24;
             this.verifyConditions1.Visible = false;
+            this.verifyConditions1.Load += new System.EventHandler(this.verifyConditions1_Load);
             // 
             // clientInfo1
             // 
-            this.clientInfo1.Location = new System.Drawing.Point(236, 12);
+            this.clientInfo1.Address = "";
+            this.clientInfo1.City = "";
+            this.clientInfo1.Email = "";
+            this.clientInfo1.Location = new System.Drawing.Point(177, 10);
+            this.clientInfo1.Margin = new System.Windows.Forms.Padding(2);
             this.clientInfo1.Name = "clientInfo1";
-            this.clientInfo1.Size = new System.Drawing.Size(741, 569);
-            this.clientInfo1.TabIndex = 22;
+            this.clientInfo1.Number = null;
+            this.clientInfo1.Size = new System.Drawing.Size(556, 464);
+            this.clientInfo1.State = "";
+            this.clientInfo1.TabIndex = 3;
+            this.clientInfo1.Zip = "";
             // 
-            // button2
+            // btnPrev
             // 
-            this.button2.Location = new System.Drawing.Point(50, 435);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btnPrev.Location = new System.Drawing.Point(298, 479);
+            this.btnPrev.Name = "btnPrev";
+            this.btnPrev.Size = new System.Drawing.Size(160, 38);
+            this.btnPrev.TabIndex = 26;
+            this.btnPrev.Text = "Previous";
+            this.btnPrev.UseVisualStyleBackColor = true;
+            this.btnPrev.Click += new System.EventHandler(this.btnPrev_Click);
             // 
-            // button3
+            // btnNext
             // 
-            this.button3.Location = new System.Drawing.Point(50, 464);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 5;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.btnNext.Location = new System.Drawing.Point(464, 479);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(160, 38);
+            this.btnNext.TabIndex = 27;
+            this.btnNext.Text = "Next";
+            this.btnNext.UseVisualStyleBackColor = true;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // PanelForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1280, 635);
-            this.Controls.Add(this.clientInfo1);
+            this.ClientSize = new System.Drawing.Size(913, 525);
+            this.Controls.Add(this.btnNext);
+            this.Controls.Add(this.btnPrev);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.selectServices1);
+            this.Controls.Add(this.clientInfo1);
             this.Controls.Add(this.verifyConditions1);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "PanelForm";
             this.Text = "Job Proposal Software";
             this.Load += new System.EventHandler(this.PanelForm_Load);
@@ -162,15 +166,16 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button btnNext;
-        private System.Windows.Forms.Button btnPrev;
+        private System.Windows.Forms.Button btnClientInfo;
+        private System.Windows.Forms.Button btnSelectServices;
         private System.Windows.Forms.Panel panel1;
         private ClientInfo clientInfo1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnPricingPage;
         private VerifyConditions verifyConditions1;
         private SelectServices newHomeServices1;
         private SelectServices selectServices1;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
+        private SelectServices selectServices2;
+        private System.Windows.Forms.Button btnPrev;
+        private System.Windows.Forms.Button btnNext;
     }
 }

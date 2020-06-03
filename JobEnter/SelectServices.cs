@@ -23,42 +23,62 @@ namespace JobEnter
         private List<String> proposed = new List<String>();
         private string[] newHomeStrings = System.IO.File.ReadAllLines("NewHomeConditions.txt");
         private string[] additionStrings = System.IO.File.ReadAllLines("Addition.txt");
+        private List<String> cities = new List<String> { "Edina", "Minneapolis" };
 
         String city;
 
         private void NewHomeServices_Load(object sender, EventArgs e)
         {
+            foreach (String s in cities)
+            {
+                comboBox1.Items.Add(s);
+            }
             updateCity(city);
         }
 
         public void updateCity(String city)
         {
-            city = this.getCity();
             checkedListBox1.Items.Clear();
             if (this.getCity() == "Minneapolis")
             {
-                checkedListBox1.Items.AddRange(newHomeStrings);
+                addToBox(newHomeStrings);
             }
             else if (this.getCity() == "Edina")
             {
-                checkedListBox1.Items.AddRange(additionStrings);
+                addToBox(additionStrings);
             }
         }
 
+        public void addToBox(String[] listS)
+        {
+            for (int i = 0; i < listS.Length; i++)
+            {
+                String s = listS[i];
+                if (s == "")
+                {
+                    Console.WriteLine(s);
+                }
+                else if (!s.StartsWith("-"))
+                {
+                    checkedListBox1.Items.Add(s);
+                }
+                else if (s.StartsWith("-"))
+                {
+                    s = s.ToUpper();
+                    checkedListBox1.Items.Add(s);
+                }
+            }
+        }
 
         public void setCity(String c)
         {
             this.city = c;
             updateCity(c);
+            comboBox1.Text = c;
         }
         public String getCity()
         {
             return this.city;
-        }
-
-        private void vScrollBar1_Scroll(object sender, ScrollEventArgs e)
-        {
-
         }
 
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -66,13 +86,30 @@ namespace JobEnter
 
         }
 
-        public List<String> getAllSelectedStrings()
+        public List<String> getSelectedServices()
         {
             List<String> selectedStrings = new List<String>();
 
             foreach (String s in checkedListBox1.CheckedItems)
             {
-                selectedStrings.Add(s);
+                if (!s.StartsWith("-"))
+                {
+                    selectedStrings.Add(s);
+                }
+            }
+            return selectedStrings;
+        }
+
+        public List<String> getSelectedTitles()
+        {
+            List<String> selectedStrings = new List<String>();
+
+            foreach (String s in checkedListBox1.CheckedItems)
+            {
+                if (s.StartsWith("-"))
+                {
+                    selectedStrings.Add(s);
+                }
             }
             return selectedStrings;
         }
@@ -88,5 +125,10 @@ namespace JobEnter
             return selectedIndexes;
         }
 
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            setCity(comboBox1.SelectedItem.ToString());
+            Console.WriteLine(comboBox1.SelectedItem.ToString());
+        }
     }
 }

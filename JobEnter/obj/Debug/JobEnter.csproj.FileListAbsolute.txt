@@ -136,4 +136,4 @@ C:\Users\Wyatt\Desktop\Git\Job Proposal Software\JobEnter\JobEnter\obj\Debug\Job
 C:\Users\Wyatt\Desktop\Git\Job Proposal Software\JobEnter\JobEnter\obj\Debug\JobEnter.ClientInfo.resources
 C:\Users\Wyatt\Desktop\Git\Job Proposal Software\JobEnter\JobEnter\obj\Debug\JobEnter.VerifyConditions.resources
 C:\Users\Wyatt\Desktop\Git\Job Proposal Software\JobEnter\JobEnter\obj\Debug\JobEnter.SelectServices.resources
-C:\Users\Wyatt\Desktop\Git\Job Proposal Software\JobEnter\JobEnter\obj\Debug\JobEnter.csprojAssemblyReference.cache
+C:\Users\wyatt\Desktop\Git\Job Proposal Software\JobEnter\JobEnter\obj\Debug\JobEnter.csprojAssemblyReference.cache
