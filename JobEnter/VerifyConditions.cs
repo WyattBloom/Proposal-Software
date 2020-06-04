@@ -26,7 +26,8 @@ namespace JobEnter
 
         public void addToBox(String txtToAdd)
         {
-            lbox1.Items.Add(txtToAdd);
+            if(txtToAdd != null) 
+                lbox1.Items.Add(txtToAdd);
         }
 
         public List<String> getTextFromBox()

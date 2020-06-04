@@ -21,14 +21,25 @@ namespace JobEnter
         private List<String> newHome = new List<String>();
         private List<String> existing = new List<String>();
         private List<String> proposed = new List<String>();
-        private string[] newHomeStrings = System.IO.File.ReadAllLines("NewHomeConditions.txt");
-        private string[] additionStrings = System.IO.File.ReadAllLines("Addition.txt");
+        private string[] newHomeStrings; 
+        private string[] additionStrings;
+
         private List<String> cities = new List<String> { "Edina", "Minneapolis" };
 
-        String city;
+        String city { get; set; }
 
         private void NewHomeServices_Load(object sender, EventArgs e)
         {
+            try
+            {
+                newHomeStrings = File.ReadAllLines("NewHomeConditions.txt");
+                additionStrings  = File.ReadAllLines("Addition.txt");
+            }catch(System.Exception ex)
+            {
+                MessageBox.Show("Unable to find file. " + ex.Message);
+            }
+
+
             foreach (String s in cities)
             {
                 comboBox1.Items.Add(s);
@@ -51,12 +62,13 @@ namespace JobEnter
 
         public void addToBox(String[] listS)
         {
+            List<String> titles = new List<string>();
             for (int i = 0; i < listS.Length; i++)
             {
                 String s = listS[i];
                 if (s == "")
                 {
-                    Console.WriteLine(s);
+                    
                 }
                 else if (!s.StartsWith("-"))
                 {
@@ -83,7 +95,16 @@ namespace JobEnter
 
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            for(int i = 0; i < checkedListBox1.CheckedItems.Count; i++)
+            {
+                if (checkedListBox1.CheckedItems[i].ToString().StartsWith("-"))
+                {
+                    for(int j = i; j < checkedListBox1.CheckedItems.Count; j++)
+                    {
 
+                    }
+                }
+            }
         }
 
         public List<String> getSelectedServices()
@@ -98,6 +119,27 @@ namespace JobEnter
                 }
             }
             return selectedStrings;
+        }
+
+        public void getTitles()
+        {
+            List<String> selectedTitles = new List<string>();
+            System.Collections.IEnumerator checkedList = checkedListBox1.CheckedItems.GetEnumerator();
+
+            while (checkedList.MoveNext())
+            {
+                if (checkedList.Current.ToString().StartsWith("-"))
+                {
+                    String tempVal = checkedList.Current.ToString();
+                    while (checkedList.MoveNext())
+                    {
+                        if (!checkedList.Current.ToString().StartsWith("-"))
+                            Console.WriteLine(tempVal + ": " + checkedList.Current.ToString());
+                        else
+                            tempVal = checkedList.Current.ToString();
+                    }
+                }
+            }
         }
 
         public List<String> getSelectedTitles()

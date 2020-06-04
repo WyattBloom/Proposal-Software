@@ -63,7 +63,7 @@ namespace JobEnter
         {
             count = 1;
             Console.WriteLine(clientInfo1.City);
-            selectServices2.setCity(clientInfo1.City);
+            selectServices1.setCity(clientInfo1.City);
 
             showHide(count);
         }
@@ -73,22 +73,20 @@ namespace JobEnter
             count = 2;
             showHide(count);
 
-            verifyConditions1.clearBox();
+            verifyPage.clearBox();
 
             Console.WriteLine(clientInfo1.Name);
             Console.WriteLine(clientInfo1.Address);
-            
-            verifyConditions1.addToBox(clientInfo1.Name);
-            verifyConditions1.addToBox(clientInfo1.Address);
+
+            verifyPage.addToBox(clientInfo1.Name);
+            verifyPage.addToBox(clientInfo1.Address);
         }
 
         #endregion
 
         private void verifyConditions1_Load(object sender, EventArgs e)
         {
-            updateMethods();
-            verifyConditions1.addToBox(name);
-            verifyConditions1.addToBox(address);
+
         }
 
         private void showHide(int num)
@@ -97,17 +95,17 @@ namespace JobEnter
             {
                 case 0:
                     clientInfo1.Visible = true;
-                    selectServices2.Visible = false;
-                    verifyConditions1.Visible = false;
+                    selectServices1.Visible = false;
+                    verifyPage.Visible = false;
                     break;
                 case 1:
                     clientInfo1.Visible = false;
-                    verifyConditions1.Visible = false;
-                    selectServices2.Visible = true;
+                    verifyPage.Visible = false;
+                    selectServices1.Visible = true;
                     break;
                 case 2:
-                    verifyConditions1.Visible = true;
-                    selectServices2.Visible = false;
+                    verifyPage.Visible = true;
+                    selectServices1.Visible = false;
                     clientInfo1.Visible = false;
                     break;
             }
@@ -123,6 +121,20 @@ namespace JobEnter
         {
             count--;
             showHide(count);
+        }
+
+        private void verifyConditions2_Load(object sender, EventArgs e)
+        {
+            updateMethods();
+            verifyPage.addToBox(clientInfo1.Name);
+            verifyPage.addToBox(clientInfo1.Address);
+            verifyPage.addToBox(clientInfo1.Number);
+            verifyPage.addToBox(clientInfo1.City);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            selectServices1.getTitles();
         }
     }
 }
