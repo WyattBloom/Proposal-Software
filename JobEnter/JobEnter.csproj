@@ -317,6 +317,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="bin\Debug\Addition.txt" />
+    <Content Include="bin\Debug\ExistingProposal.txt" />
     <Content Include="icons\logo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

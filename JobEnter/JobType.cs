@@ -16,5 +16,36 @@ namespace JobEnter
         {
             InitializeComponent();
         }
+
+        private String jobType { get; set; }
+
+        private void JobType_Load(object sender, EventArgs e)
+        {
+
+        }
+
+
+        public String getSelectedButton()
+        {
+            var checkedButton = panel1.Controls.OfType<RadioButton>()
+              .FirstOrDefault(r => r.Checked);
+
+            if (checkedButton != null)
+                return checkedButton.Text;
+            else
+                return "";
+        }
+
+        public void setSelectedButton(String setText)
+        {
+            foreach(var x in panel1.Controls.OfType<RadioButton>())
+            {
+                if (x.Text == setText)
+                    x.Checked = true;
+                else
+                    x.Checked = false;
+            }
+        }
+
     }
 }

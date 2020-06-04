@@ -40,18 +40,20 @@ namespace JobEnter
 
         public void updateMethods()
         {
-            name = clientInfo1.Name;
-            number = clientInfo1.Number;
+            name    = clientInfo1.Name;
+            number  = clientInfo1.Number;
             address = clientInfo1.Address;
-            email = clientInfo1.Email;
-            city = clientInfo1.City;
-            state = clientInfo1.State;
-            zip = clientInfo1.Zip;
+            email   = clientInfo1.Email;
+            city    = clientInfo1.City;
+            state   = clientInfo1.State;
+            zip     = clientInfo1.Zip;
         }
 
 
 
         #region Button Click Methods
+
+        private int countMax = 3;
 
         private void btnClientInfo_Click(object sender, EventArgs e)
         {
@@ -59,34 +61,33 @@ namespace JobEnter
             showHide(count);
         }
 
-        private void btnSelectServices_Click(object sender, EventArgs e)
+        private void btnJobType_Click(object sender, EventArgs e)
         {
             count = 1;
+            showHide(count);
+
+            jobType1.setSelectedButton(selectServices1.getJobType());
+        }
+
+        private void btnSelectServices_Click(object sender, EventArgs e)
+        {
+            count = 2;
             Console.WriteLine(clientInfo1.City);
-            selectServices1.setCity(clientInfo1.City);
+            selectServices1.updateJobType(jobType1.getSelectedButton());
+            selectServices1.setSelectedIndex(jobType1.getSelectedButton());
 
             showHide(count);
         }
 
         private void btnPricingPage_Click(object sender, EventArgs e)
         {
-            count = 2;
+            count = 3;
             showHide(count);
 
             verifyPage.clearBox();
 
-            Console.WriteLine(clientInfo1.Name);
-            Console.WriteLine(clientInfo1.Address);
-
             verifyPage.addToBox(clientInfo1.Name);
             verifyPage.addToBox(clientInfo1.Address);
-        }
-
-        #endregion
-
-        private void verifyConditions1_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void showHide(int num)
@@ -94,34 +95,78 @@ namespace JobEnter
             switch (num)
             {
                 case 0:
-                    clientInfo1.Visible = true;
+                    clientInfo1.Visible     = true;
                     selectServices1.Visible = false;
-                    verifyPage.Visible = false;
+                    verifyPage.Visible      = false;
+                    jobType1.Visible        = false;
                     break;
                 case 1:
-                    clientInfo1.Visible = false;
-                    verifyPage.Visible = false;
-                    selectServices1.Visible = true;
+                    jobType1.Visible        = true;
+                    clientInfo1.Visible     = false;
+                    verifyPage.Visible      = false;
+                    selectServices1.Visible = false;
+
+                    jobType1.setSelectedButton(selectServices1.getJobType());
                     break;
                 case 2:
-                    verifyPage.Visible = true;
+                    selectServices1.Visible = true;
+                    verifyPage.Visible      = false;
+                    clientInfo1.Visible     = false;
+                    jobType1.Visible        = false;
+
+                    selectServices1.updateJobType(jobType1.getSelectedButton());
+                    selectServices1.setSelectedIndex(jobType1.getSelectedButton());
+                    break;
+                case 3:
+                    verifyPage.Visible      = true;
                     selectServices1.Visible = false;
-                    clientInfo1.Visible = false;
+                    jobType1.Visible        = false;
+                    clientInfo1.Visible     = false;
+
+                    verifyPage.clearBox();
+                    verifyPage.addToBox(clientInfo1.Name);
+                    verifyPage.addToBox(clientInfo1.Address);
                     break;
             }
         }
 
-        private void btnNext_Click(object sender, EventArgs e)
+        private void btnNext_Click(object sender, EventArgs e) 
         {
-            count++;
+            if (!(count + 1 > countMax))
+                count++;
+            else
+                count = countMax;
+
             showHide(count);
         }
 
         private void btnPrev_Click(object sender, EventArgs e)
         {
-            count--;
+            if (!(count - 1 < 0))
+                count--;
+            else
+                count = 0;
             showHide(count);
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //            selectServices1.getTitles();
+            jobType1.getSelectedButton();
+        }
+
+        #endregion
+
+
+        #region Load Events
+
+        private void verifyConditions1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+
+
 
         private void verifyConditions2_Load(object sender, EventArgs e)
         {
@@ -132,9 +177,13 @@ namespace JobEnter
             verifyPage.addToBox(clientInfo1.City);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void selectServices1_Load(object sender, EventArgs e)
         {
-            selectServices1.getTitles();
+            selectServices1.setCity(jobType1.getSelectedButton());
         }
+
+        #endregion
+
+
     }
 }

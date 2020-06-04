@@ -24,9 +24,15 @@ namespace JobEnter
         private string[] newHomeStrings; 
         private string[] additionStrings;
 
-        private List<String> cities = new List<String> { "Edina", "Minneapolis" };
+        private List<String> cities = new List<String> { "One Stake", 
+                                                    "Two Stake", 
+                                                    "All Stake", 
+                                                    "New Home", 
+                                                    "Proposed", 
+                                                    "Addition" };
 
         String city { get; set; }
+        String jobType;
 
         private void NewHomeServices_Load(object sender, EventArgs e)
         {
@@ -36,7 +42,7 @@ namespace JobEnter
                 additionStrings  = File.ReadAllLines("Addition.txt");
             }catch(System.Exception ex)
             {
-                MessageBox.Show("Unable to find file. " + ex.Message);
+                Console.WriteLine("Unable to find file.");
             }
 
 
@@ -44,21 +50,39 @@ namespace JobEnter
             {
                 comboBox1.Items.Add(s);
             }
-            updateCity(city);
+            updateJobType(city);
         }
 
-        public void updateCity(String city)
+        public void updateJobType(String type)
         {
-            checkedListBox1.Items.Clear();
-            if (this.getCity() == "Minneapolis")
+            if (type == "New Home")
             {
                 addToBox(newHomeStrings);
             }
-            else if (this.getCity() == "Edina")
+            else if (type == "Addition")
             {
                 addToBox(additionStrings);
             }
         }
+
+        public void setSelectedIndex(String input)
+        {
+            comboBox1.Text = input;
+            updateJobType(input);
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            checkedListBox1.Items.Clear();
+
+            setJobType(comboBox1.SelectedItem.ToString());
+            updateJobType(getJobType());
+            Console.WriteLine(comboBox1.SelectedItem.ToString());
+        }
+
+        public void setJobType(String jbIn) { this.jobType = jbIn; }
+        public String getJobType() { return this.jobType; }
+
 
         public void addToBox(String[] listS)
         {
@@ -82,16 +106,8 @@ namespace JobEnter
             }
         }
 
-        public void setCity(String c)
-        {
-            this.city = c;
-            updateCity(c);
-            comboBox1.Text = c;
-        }
-        public String getCity()
-        {
-            return this.city;
-        }
+        public void setCity(String c) {   this.city = c;  }
+        public String getCity() {   return this.city;   }
 
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -167,10 +183,6 @@ namespace JobEnter
             return selectedIndexes;
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            setCity(comboBox1.SelectedItem.ToString());
-            Console.WriteLine(comboBox1.SelectedItem.ToString());
-        }
+
     }
 }
