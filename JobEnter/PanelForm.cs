@@ -66,16 +66,13 @@ namespace JobEnter
             count = 1;
             showHide(count);
 
-            jobType1.setSelectedButton(selectServices1.getJobType());
+            //jobType1.setSelectedButton(selectServices1.getJobType());
         }
 
         private void btnSelectServices_Click(object sender, EventArgs e)
         {
             count = 2;
             Console.WriteLine(clientInfo1.City);
-            selectServices1.updateJobType(jobType1.getSelectedButton());
-            selectServices1.setSelectedIndex(jobType1.getSelectedButton());
-
             showHide(count);
         }
 
@@ -83,11 +80,6 @@ namespace JobEnter
         {
             count = 3;
             showHide(count);
-
-            verifyPage.clearBox();
-
-            verifyPage.addToBox(clientInfo1.Name);
-            verifyPage.addToBox(clientInfo1.Address);
         }
 
         private void showHide(int num)
@@ -105,8 +97,6 @@ namespace JobEnter
                     clientInfo1.Visible     = false;
                     verifyPage.Visible      = false;
                     selectServices1.Visible = false;
-
-                    jobType1.setSelectedButton(selectServices1.getJobType());
                     break;
                 case 2:
                     selectServices1.Visible = true;
@@ -114,8 +104,9 @@ namespace JobEnter
                     clientInfo1.Visible     = false;
                     jobType1.Visible        = false;
 
-                    selectServices1.updateJobType(jobType1.getSelectedButton());
-                    selectServices1.setSelectedIndex(jobType1.getSelectedButton());
+                    selectServices1.setCheckedTemplate(city);
+                    selectServices1.setLabelText(jobType1.getSelectedButton());
+                    selectServices1.updateCheckboxList(jobType1.getSelectedButton());
                     break;
                 case 3:
                     verifyPage.Visible      = true;
@@ -123,9 +114,10 @@ namespace JobEnter
                     jobType1.Visible        = false;
                     clientInfo1.Visible     = false;
 
+                    selectServices1.selectHeaders();
                     verifyPage.clearBox();
-                    verifyPage.addToBox(clientInfo1.Name);
-                    verifyPage.addToBox(clientInfo1.Address);
+                    verifyPage.addToBox(selectServices1.getSelectedTitles());
+                    //verifyPage.addToBox();
                     break;
             }
         }
@@ -151,12 +143,19 @@ namespace JobEnter
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //            selectServices1.getTitles();
-            jobType1.getSelectedButton();
+            selectServices1.selectHeaders();
         }
 
         #endregion
 
+        #region Update Pages
+
+        // Write methods that will be called when each page becomes visible
+        // Ex. Set selected services label and city
+        // .. Set Put all info into verify conditions
+
+
+        #endregion
 
         #region Load Events
 
@@ -179,7 +178,7 @@ namespace JobEnter
 
         private void selectServices1_Load(object sender, EventArgs e)
         {
-            selectServices1.setCity(jobType1.getSelectedButton());
+
         }
 
         #endregion

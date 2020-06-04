@@ -30,6 +30,14 @@ namespace JobEnter
                 lbox1.Items.Add(txtToAdd);
         }
 
+        public void addToBox(List<String> listToAdd)
+        {
+            foreach(String s in listToAdd)
+            {
+                lbox1.Items.Add(s);
+            }
+        }
+
         public List<String> getTextFromBox()
         {
             List<String> returnList = new List<String>();

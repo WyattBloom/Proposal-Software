@@ -18,6 +18,7 @@ namespace JobEnter
         }
 
         private String jobType { get; set; }
+        private Boolean changed = false;
 
         private void JobType_Load(object sender, EventArgs e)
         {
@@ -46,6 +47,15 @@ namespace JobEnter
                     x.Checked = false;
             }
         }
+
+        public Boolean jobChanged()
+        {
+            Boolean temp = changed;
+            changed = false;
+            return temp;
+        }
+
+
 
     }
 }
