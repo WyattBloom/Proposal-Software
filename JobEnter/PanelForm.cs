@@ -104,7 +104,7 @@ namespace JobEnter
                     clientInfo1.Visible     = false;
                     jobType1.Visible        = false;
 
-                    selectServices1.setCheckedTemplate(city);
+                    selectServices1.setComboSelected(clientInfo1.City);
                     selectServices1.setLabelText(jobType1.getSelectedButton());
                     selectServices1.updateCheckboxList(jobType1.getSelectedButton());
                     break;
@@ -116,6 +116,13 @@ namespace JobEnter
 
                     selectServices1.selectHeaders();
                     verifyPage.clearBox();
+                    verifyPage.addToBox(clientInfo1.Name,
+                                        clientInfo1.Number,
+                                        clientInfo1.Email,
+                                        clientInfo1.Address,
+                                        clientInfo1.State,
+                                        clientInfo1.City,
+                                        clientInfo1.Zip);
                     verifyPage.addToBox(selectServices1.getSelectedTitles());
                     //verifyPage.addToBox();
                     break;

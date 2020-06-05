@@ -57,7 +57,7 @@ namespace JobEnter
 
         public string Number   
         {
-            get { return number; }   // get method
+            get { return boxNumber.Text; }   // get method
             set { number = value; }  // set method
         }
 

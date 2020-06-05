@@ -16,24 +16,24 @@ namespace JobEnter
 
         #region Variables
 
-        private List<String> newHome    = new List<String>();
-        private List<String> existing   = new List<String>();
-        private List<String> proposed   = new List<String>();
-        private string[] newHomeStrings; 
+        private List<String> newHome = new List<String>();
+        private List<String> existing = new List<String>();
+        private List<String> proposed = new List<String>();
+        private string[] newHomeStrings;
         private string[] additionStrings;
         private List<String> existingMinneapolis = new List<string>();
-        private List<String> existingEdina       = new List<string>();
+        private List<String> existingEdina = new List<string>();
 
-        private List<String> jobTypes = new List<String> { "One Stake", 
-                                                    "Two Stake", 
-                                                    "All Stake", 
-                                                    "New Home", 
-                                                    "Proposed", 
+        private List<String> jobTypes = new List<String> { "One Stake",
+                                                    "Two Stake",
+                                                    "All Stake",
+                                                    "New Home",
+                                                    "Proposed",
                                                     "Addition" };
-        private List<String> cities   = new List<String> { "Edina",
+        private List<String> cities = new List<String> { "Edina",
                                                     "Minneapolis" };
-        String city     { get; set; }
-        String jobType  { get; set; }
+        String city { get; set; }
+        String jobType { get; set; }
         private String currType;
         #endregion
 
@@ -57,7 +57,7 @@ namespace JobEnter
         #region UI Updates
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {            
+        {
             city = (comboBox1.SelectedItem.ToString());
             setCheckedTemplate(city);
             Console.WriteLine(comboBox1.SelectedItem.ToString());
@@ -152,16 +152,16 @@ namespace JobEnter
         public void setComboSelected(String input)
         {
             comboBox1.Text = input;
-            updateCheckboxList(input);
+            setCheckedTemplate(input);
         }
 
-        public void setJobType(String jbIn) {   this.jobType = jbIn;    }
+        public void setJobType(String jbIn) { this.jobType = jbIn; }
         public String getJobType() { return this.jobType; }
         public void setLabelText(String s)
         {
-            if(currType == "")
+            if (currType == "")
             { label2.Text = s; }
-            else if(currType == s)
+            else if (currType == s)
             { }
             else
             {
@@ -176,7 +176,7 @@ namespace JobEnter
 
         #region Other Methods
 
-        public void clearBox() {   checkedListBox1.Items.Clear();   }
+        public void clearBox() { checkedListBox1.Items.Clear(); }
 
         public void updateCheckboxList(String type)
         {
@@ -224,23 +224,26 @@ namespace JobEnter
                 if (checkedListBox1.Items[i].ToString().StartsWith("-"))
                     indexes.Add(i);
             }
-
-            int last = indexes.Last();
-            for(int i = 0; i < indexes.Count-1; i++)
+            try
             {
-                if(!i.Equals(last))
+                int last = indexes.Last();
+                for (int i = 0; i < indexes.Count - 1; i++)
                 {
-                    Console.WriteLine("I: " + indexes[i]);
-                    Console.WriteLine("For Header: " + indexes[i] + " | " + checkedListBox1.Items[indexes[i]].ToString());
-                    Console.WriteLine("For Header: " + indexes[i+1] + " | " + checkedListBox1.Items[indexes[i+1]].ToString());
-                    for(int j = indexes[i]; j < indexes[i+1]; j++)
+                    if (!i.Equals(last))
                     {
-                        if (checkedListBox1.GetItemChecked(j))
-                            checkedListBox1.SetItemChecked(indexes[i], true);
-                    }
+                        Console.WriteLine("I: " + indexes[i]);
+                        Console.WriteLine("For Header: " + indexes[i] + " | " + checkedListBox1.Items[indexes[i]].ToString());
+                        Console.WriteLine("For Header: " + indexes[i + 1] + " | " + checkedListBox1.Items[indexes[i + 1]].ToString());
+                        for (int j = indexes[i]; j < indexes[i + 1]; j++)
+                        {
+                            if (checkedListBox1.GetItemChecked(j))
+                                checkedListBox1.SetItemChecked(indexes[i], true);
+                        }
 
+                    }
                 }
             }
+            catch (System.Exception ex) { Console.WriteLine(ex); }
 
         }
 
@@ -264,6 +267,7 @@ namespace JobEnter
 
 
         #endregion
+
 
     }
 }

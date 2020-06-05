@@ -36,11 +36,10 @@
             this.btnPricingPage = new System.Windows.Forms.Button();
             this.btnPrev = new System.Windows.Forms.Button();
             this.btnNext = new System.Windows.Forms.Button();
-            this.selectServices1 = new JobEnter.SelectServices();
-            this.verifyConditions1 = new JobEnter.VerifyConditions();
-            this.verifyPage = new JobEnter.VerifyConditions();
-            this.jobType1 = new JobEnter.JobType();
             this.clientInfo1 = new JobEnter.ClientInfo();
+            this.selectServices1 = new JobEnter.SelectServices();
+            this.jobType1 = new JobEnter.JobType();
+            this.verifyPage = new JobEnter.VerifyConditions();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -159,72 +158,60 @@
             this.btnNext.UseVisualStyleBackColor = true;
             this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
-            // selectServices1
-            // 
-            this.selectServices1.Location = new System.Drawing.Point(237, 11);
-            this.selectServices1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.selectServices1.Name = "selectServices1";
-            this.selectServices1.Size = new System.Drawing.Size(949, 498);
-            this.selectServices1.TabIndex = 31;
-            this.selectServices1.Visible = false;
-            // 
-            // verifyConditions1
-            // 
-            this.verifyConditions1.Location = new System.Drawing.Point(237, 12);
-            this.verifyConditions1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.verifyConditions1.Name = "verifyConditions1";
-            this.verifyConditions1.Size = new System.Drawing.Size(968, 391);
-            this.verifyConditions1.TabIndex = 24;
-            this.verifyConditions1.Visible = false;
-            this.verifyConditions1.Load += new System.EventHandler(this.verifyConditions1_Load);
-            // 
-            // verifyPage
-            // 
-            this.verifyPage.Location = new System.Drawing.Point(237, 14);
-            this.verifyPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.verifyPage.Name = "verifyPage";
-            this.verifyPage.Size = new System.Drawing.Size(807, 391);
-            this.verifyPage.TabIndex = 28;
-            this.verifyPage.Visible = false;
-            this.verifyPage.Load += new System.EventHandler(this.verifyConditions2_Load);
-            // 
-            // jobType1
-            // 
-            this.jobType1.BackColor = System.Drawing.SystemColors.Control;
-            this.jobType1.Location = new System.Drawing.Point(331, 26);
-            this.jobType1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.jobType1.Name = "jobType1";
-            this.jobType1.Size = new System.Drawing.Size(372, 316);
-            this.jobType1.TabIndex = 30;
-            this.jobType1.Visible = false;
-            // 
             // clientInfo1
             // 
             this.clientInfo1.Address = "";
             this.clientInfo1.City = "";
             this.clientInfo1.Email = "";
-            this.clientInfo1.Location = new System.Drawing.Point(236, 12);
+            this.clientInfo1.Location = new System.Drawing.Point(237, 0);
             this.clientInfo1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.clientInfo1.Name = "clientInfo1";
             this.clientInfo1.Number = null;
-            this.clientInfo1.Size = new System.Drawing.Size(741, 571);
+            this.clientInfo1.Size = new System.Drawing.Size(809, 584);
             this.clientInfo1.State = "";
-            this.clientInfo1.TabIndex = 3;
+            this.clientInfo1.TabIndex = 29;
             this.clientInfo1.Zip = "";
+            // 
+            // selectServices1
+            // 
+            this.selectServices1.Location = new System.Drawing.Point(237, 27);
+            this.selectServices1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.selectServices1.Name = "selectServices1";
+            this.selectServices1.Size = new System.Drawing.Size(1023, 548);
+            this.selectServices1.TabIndex = 31;
+            this.selectServices1.Visible = false;
+            // 
+            // jobType1
+            // 
+            this.jobType1.BackColor = System.Drawing.SystemColors.Control;
+            this.jobType1.Location = new System.Drawing.Point(347, 41);
+            this.jobType1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.jobType1.Name = "jobType1";
+            this.jobType1.Size = new System.Drawing.Size(364, 302);
+            this.jobType1.TabIndex = 30;
+            this.jobType1.Visible = false;
+            // 
+            // verifyPage
+            // 
+            this.verifyPage.Location = new System.Drawing.Point(237, 0);
+            this.verifyPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.verifyPage.Name = "verifyPage";
+            this.verifyPage.Size = new System.Drawing.Size(798, 343);
+            this.verifyPage.TabIndex = 32;
+            this.verifyPage.Visible = false;
             // 
             // PanelForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1217, 646);
-            this.Controls.Add(this.selectServices1);
+            this.ClientSize = new System.Drawing.Size(1390, 646);
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.btnPrev);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.verifyConditions1);
-            this.Controls.Add(this.verifyPage);
-            this.Controls.Add(this.jobType1);
             this.Controls.Add(this.clientInfo1);
+            this.Controls.Add(this.jobType1);
+            this.Controls.Add(this.selectServices1);
+            this.Controls.Add(this.verifyPage);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "PanelForm";
             this.Text = "Job Proposal Software";
@@ -238,15 +225,14 @@
         private System.Windows.Forms.Button btnClientInfo;
         private System.Windows.Forms.Button btnSelectServices;
         private System.Windows.Forms.Panel panel1;
-        private ClientInfo clientInfo1;
         private System.Windows.Forms.Button btnPricingPage;
-        private VerifyConditions verifyConditions1;
         private System.Windows.Forms.Button btnPrev;
         private System.Windows.Forms.Button btnNext;
-        private VerifyConditions verifyPage;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnJobType;
+        private ClientInfo clientInfo1;
         private JobType jobType1;
         private SelectServices selectServices1;
+        private VerifyConditions verifyPage;
     }
 }

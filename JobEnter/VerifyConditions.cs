@@ -38,6 +38,19 @@ namespace JobEnter
             }
         }
 
+        public void addToBox(String n, String num, String e, String a, String c, String s, String z)
+        {
+            lbox1.Items.Add("Name: " + n);
+            lbox1.Items.Add("Number: " + num);
+            lbox1.Items.Add("Email: " + e);
+            lbox1.Items.Add("Address: " + a);
+            lbox1.Items.Add("City: " + c);
+            lbox1.Items.Add("State: " + s);
+            lbox1.Items.Add("Zip: " + z);
+        }
+
+
+
         public List<String> getTextFromBox()
         {
             List<String> returnList = new List<String>();
