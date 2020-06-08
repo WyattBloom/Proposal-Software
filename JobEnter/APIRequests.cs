@@ -23,6 +23,7 @@ namespace JobEnter
         private String number;
         private String state;
         private String zip;
+        private String price;
         private DateTime date;
 
         public void setName(String n) { this.name = n; }
@@ -38,6 +39,8 @@ namespace JobEnter
         public void setZip(String z) { this.zip = z; }
 
         public void setNumber(String pn) { this.number = pn; }
+
+        public void setPrice(String p) { this.price = p; }
         
         public void setDate(DateTime d) { this.date = d; }
 
@@ -50,14 +53,39 @@ namespace JobEnter
             sheetID = this.getSheetID(sheetName);
         }
 
-        public APIRequests(String sheetName, string accessTokenIn, 
+        // Does not include email authentication
+        public APIRequests(String sheetName, string accessTokenIn,
+                    String name, String email, String address,
+                    String city, String state, String zip,
+                    String price, String phoneNum, DateTime date)
+        {
+            accessToken = accessTokenIn;
+            smartsheet = new SmartsheetBuilder()
+                            .SetAccessToken(accessToken)
+                            .Build();
+            sheetID = this.getSheetID(sheetName);
+
+            if (name     != null) { this.name = name; }
+            if (address  != null) { this.address = address; }
+            if (email    != null) { this.email = email; }
+            if (phoneNum != null) { this.number = phoneNum; }
+            if (city     != null) { this.city = city; }
+            if (state    != null) { this.state = state; }
+            if (zip      != null) { this.zip = zip; }
+            if (price    != null) { this.price = price; }
+            this.date = date;
+        }
+
+        // Includes Email Authentication
+        public APIRequests(String sheetName, string accessTokenIn, String userEmail, 
                             String name, String email, String address, 
                             String city, String state, String zip,
-                            String phoneNum, DateTime date)
+                            String price, String phoneNum, DateTime date)
         {
             accessToken = accessTokenIn;
             smartsheet  = new SmartsheetBuilder()
                             .SetAccessToken(accessToken)
+                            .SetAssumedUser(userEmail)
                             .Build();
             sheetID     = this.getSheetID(sheetName);
 
@@ -174,7 +202,7 @@ namespace JobEnter
                 new Cell
                 {
                     ColumnId = this.getColumnID("Money"),
-                    Value = 3500
+                    Value = this.price
                 },
                 new Cell
                 {

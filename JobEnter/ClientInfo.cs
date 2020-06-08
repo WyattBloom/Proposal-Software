@@ -36,6 +36,19 @@ namespace JobEnter
 
         }
 
+        public void clearAll()
+        {
+            boxName.Text = "";
+            boxEmail.Text = "";
+            boxNumber.Text = "";
+            boxAddress.Text = "";
+            boxCity.Text = "";
+            boxState.Text = "";
+            boxZip.Text = "";
+            boxInstructions.Text = "";
+        }
+
+
         #region Getters and Setters
 
         public string Name   

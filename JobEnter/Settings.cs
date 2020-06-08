@@ -16,5 +16,28 @@ namespace JobEnter
         {
             InitializeComponent();
         }
+
+        private String accessToken;
+        private String sheetName;
+
+        private void Settings_Load(object sender, EventArgs e)
+        {
+            boxAccess.Text = accessToken;
+            boxSName.Text = sheetName;
+        }
+
+        public String AccessToken
+        {
+            get { return accessToken; }
+            set { accessToken = value; }
+        }
+
+        public String SheetName
+        {
+            get { return sheetName; }
+            set { sheetName = value; }
+        }
+
+
     }
 }

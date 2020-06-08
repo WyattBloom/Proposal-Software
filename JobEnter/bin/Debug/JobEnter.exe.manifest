@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="JobEnter.exe" size="680928">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="JobEnter.exe" size="684000">
       <assemblyIdentity name="JobEnter" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>VIKGXDea2eEhWm24/1IY8tb4phTfviWCx1xMCTGaL20=</dsig:DigestValue>
+        <dsig:DigestValue>Mg3JYRPQCOyWfCaBpMORbC2wzFNRSdhcrC1cZvtLoj8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -119,13 +119,13 @@
       <dsig:DigestValue>0vUM0V778gdJNQ6DOykYaQkjzN+6iDBwzmA4S2ZTNGE=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="bin\Debug\Minneapolis-Existing.txt" size="1265">
+  <file name="bin\Debug\Minneapolis-Existing.txt" size="1643">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>Z7U3HLuk5M8RAMamvSiyXnYhSW7o8kYMearQOll0+mc=</dsig:DigestValue>
+      <dsig:DigestValue>+y8rgEgSNqbbIxV3bnYXlxzpBqBfbUJl7fONMuRkniQ=</dsig:DigestValue>
     </hash>
   </file>
   <file name="icons\logo.png" size="10465">

@@ -25,6 +25,7 @@ namespace JobEnter
 
         }
 
+
         public void addToBox(String txtToAdd)
         {
             if(txtToAdd != null) 
@@ -51,7 +52,11 @@ namespace JobEnter
             lbox1.Items.Add("Special Instructions:" + SI);
         }
 
-
+        public string Price
+        {
+            get { return boxPrice.Text; }   // get method
+            set { boxPrice.Text = value; }  // set method
+        }
 
         public List<String> getTextFromBox()
         {

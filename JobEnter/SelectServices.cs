@@ -54,6 +54,11 @@ namespace JobEnter
                 comboBox1.Items.Add(s);
         }
 
+        public void clearAll()
+        {
+            checkedListBox1.Items.Clear();
+            comboBox1.SelectedItem = "";
+        }
 
         #region UI Updates
 

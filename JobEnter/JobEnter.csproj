@@ -224,6 +224,9 @@
     <EmbeddedResource Include="SelectServices.resx">
       <DependentUpon>SelectServices.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Settings.resx">
+      <DependentUpon>Settings.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="StakingPage.resx">
       <DependentUpon>StakingPage.cs</DependentUpon>
     </EmbeddedResource>
