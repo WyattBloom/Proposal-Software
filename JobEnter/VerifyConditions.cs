@@ -22,6 +22,7 @@ namespace JobEnter
 
         private void VerifyConditions_Load(object sender, EventArgs e)
         {
+
         }
 
         public void addToBox(String txtToAdd)
@@ -38,7 +39,7 @@ namespace JobEnter
             }
         }
 
-        public void addToBox(String n, String num, String e, String a, String c, String s, String z)
+        public void addToBox(String n, String num, String e, String a, String c, String s, String z, String SI)
         {
             lbox1.Items.Add("Name: " + n);
             lbox1.Items.Add("Number: " + num);
@@ -47,6 +48,7 @@ namespace JobEnter
             lbox1.Items.Add("City: " + c);
             lbox1.Items.Add("State: " + s);
             lbox1.Items.Add("Zip: " + z);
+            lbox1.Items.Add("Special Instructions:" + SI);
         }
 
 
@@ -66,33 +68,6 @@ namespace JobEnter
         public void clearBox()
         {
             lbox1.Items.Clear();
-        }
-
-        public void saveToFile(String address)
-        {
-            string folderPath = "";
-            FolderBrowserDialog folderBrowserDialog1 = new FolderBrowserDialog();
-            if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
-            {
-                folderPath = folderBrowserDialog1.SelectedPath;
-            }
-            String folderName = "Proposal for Services at " + address;
-            createFolder(folderPath, folderName);
-        }
-
-
-        public void createFolder(String path, String fileName)
-        {
-            if(!Directory.Exists(path + "/" + fileName))
-            {
-                //Create a folder on the desktop 
-                Create_Folder folder2 = new Create_Folder(path, fileName);
-                folder2.createFolder();
-            }
-            else
-            {
-                MessageBox.Show("Folder already exists", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
 
     }

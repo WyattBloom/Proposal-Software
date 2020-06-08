@@ -1,4 +1,5 @@
 ﻿using Microsoft.Office.Interop.Outlook;
+using Microsoft.Office.Interop.Word;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -34,7 +35,7 @@ namespace JobEnter
                                                     "Minneapolis" };
         String city { get; set; }
         String jobType { get; set; }
-        private String currType;
+        private String currType = "";
         #endregion
 
         private void NewHomeServices_Load(object sender, EventArgs e)
@@ -157,17 +158,29 @@ namespace JobEnter
 
         public void setJobType(String jbIn) { this.jobType = jbIn; }
         public String getJobType() { return this.jobType; }
-        public void setLabelText(String s)
+        public void setBoxesShown(String s)
         {
-            if (currType == "")
-            { label2.Text = s; }
-            else if (currType == s)
-            { }
-            else
+            if (currType == s)
+            { Console.WriteLine("Second if: " + s); }
+            else if (currType != s)
             {
-                label2.Text = s;
-                currType = label2.Text;
+                Console.WriteLine("Third if: " + s);
+                currType = s;
+                label2.Text = currType;
                 checkedListBox1.Items.Clear();
+                updateCheckboxList(s);
+            }
+        }
+
+        public void updateCheckboxList(String type)
+        {
+            if (type == "New Home")
+            {
+                addToBox(newHomeStrings);
+            }
+            else if (type == "Addition")
+            {
+                addToBox(additionStrings);
             }
         }
 
@@ -178,18 +191,6 @@ namespace JobEnter
 
         public void clearBox() { checkedListBox1.Items.Clear(); }
 
-        public void updateCheckboxList(String type)
-        {
-            //checkedListBox1.Items.Clear();
-            if (type == "New Home")
-            {
-                addToBox(newHomeStrings);
-            }
-            else if (type == "Addition")
-            {
-                addToBox(additionStrings);
-            }
-        }
 
         public void addToBox(String[] listS)
         {

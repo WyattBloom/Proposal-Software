@@ -11,40 +11,63 @@ namespace JobEnter
 {
     class APIRequests
     {
-        public static String accessToken = "zja8p39vwwxywjoch3nuwpy1de";
-        public SmartsheetClient smartsheet = new SmartsheetBuilder()
-            .SetAccessToken(accessToken)
-            .Build();
+        private String accessToken;
+        private SmartsheetClient smartsheet;
 
         private long sheetID;
 
         private String name;
-        public void setName(String n) { this.name = n; }
-        
+        private String email;
         private String address;
-        public void setAddress(String a) { this.address = a; }
-        
-        private int number;
-        public void setNumber(int pn) { this.number = pn; }
-        
+        private String city;
+        private String number;
+        private String state;
+        private String zip;
         private DateTime date;
+
+        public void setName(String n) { this.name = n; }
+
+        public void setEmail(String e) { this.email = e; }
+
+        public void setAddress(String a) { this.address = a; }
+
+        public void setCity(String c) { this.city = c; }
+
+        public void setState(String s) { this.state = s; }
+
+        public void setZip(String z) { this.zip = z; }
+
+        public void setNumber(String pn) { this.number = pn; }
+        
         public void setDate(DateTime d) { this.date = d; }
 
         public APIRequests(String sheetName, String accessTokenIn)
         {
             accessToken = accessTokenIn;
+            smartsheet = new SmartsheetBuilder()
+                .SetAccessToken(accessToken)
+                .Build();
             sheetID = this.getSheetID(sheetName);
         }
 
         public APIRequests(String sheetName, string accessTokenIn, 
-                String name, String address, int phoneNum, DateTime date)
+                            String name, String email, String address, 
+                            String city, String state, String zip,
+                            String phoneNum, DateTime date)
         {
             accessToken = accessTokenIn;
-            sheetID = this.getSheetID(sheetName);
-            this.name = name;
-            this.address = address;
-            this.number = phoneNum;
-            this.date = date;
+            smartsheet  = new SmartsheetBuilder()
+                            .SetAccessToken(accessToken)
+                            .Build();
+            sheetID     = this.getSheetID(sheetName);
+
+            if (name     != null) { this.name    = name;     }
+            if (address  != null) { this.address = address;  }
+            if (email    != null) { this.email   = email;    }
+            if (phoneNum != null) { this.number  = phoneNum; }
+            if (city     != null) { this.city    = city;     }
+            if (state    != null) { this.state   = state;    }
+            if (zip      != null) { this.zip     = zip;      }
         }
         public void addRow( String name, String address, int phone, 
                             DateObjectValue date, String money)
@@ -93,10 +116,12 @@ namespace JobEnter
               null                        // Nullable<long> page
             );
 
-            foreach(var x in sheet.Columns)
+            foreach (var x in sheet.Columns)
             {
                 if (x.Title == columnName)
+                {
                     return Convert.ToInt64(x.Id);
+                }
             }
             return 0;
         }
@@ -104,7 +129,7 @@ namespace JobEnter
         public void addRow()
         {
 
-            // Specify cell values of second row
+            // Specify cell values of row
             Cell[] cellsA = new Cell[] {
                 new Cell
                 {
@@ -113,8 +138,28 @@ namespace JobEnter
                 },
                 new Cell
                 {
+                    ColumnId = this.getColumnID("Email"),
+                    Value = this.email
+                },
+                new Cell
+                {
                     ColumnId = this.getColumnID("Address"),
                     Value = this.address
+                },
+                new Cell
+                {
+                    ColumnId = this.getColumnID("City"),
+                    Value = this.city
+                },
+                new Cell
+                {
+                    ColumnId = this.getColumnID("State"),
+                    Value = this.state
+                },
+                new Cell
+                {
+                    ColumnId = this.getColumnID("Zip"),
+                    Value = this.zip
                 },
                 new Cell
                 {
@@ -138,7 +183,7 @@ namespace JobEnter
                 }
             };
 
-            // Specify contents of second row
+            // Specify contents of row
             Row rowA = new Row
             {
                 ToBottom = true,

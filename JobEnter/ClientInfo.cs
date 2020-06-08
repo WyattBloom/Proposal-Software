@@ -36,17 +36,6 @@ namespace JobEnter
 
         }
 
-        public void updateVariables()
-        {
-            name = boxName.Text;
-            number = boxNumber.Text;
-            address = boxAddress.Text;
-            city = boxCity.Text;
-            state = boxState.Text;
-            zip = boxZip.Text;
-            email = boxEmail.Text;
-        }
-
         #region Getters and Setters
 
         public string Name   
@@ -58,38 +47,45 @@ namespace JobEnter
         public string Number   
         {
             get { return boxNumber.Text; }   // get method
-            set { number = value; }  // set method
+            set { boxNumber.Text = value; }  // set method
         }
 
         public string Address
         {
             get { return boxAddress.Text; }   // get method
-            set { address = value; }  // set method
+            set { boxAddress.Text = value; }  // set method
         }
 
         public string Email
         {
             get { return boxEmail.Text; }   // get method
-            set { email = value; }  // set method
+            set { boxEmail.Text = value; }  // set method
         }
 
         public string City
         {
             get { return boxCity.Text; }   // get method
-            set { city = value; }  // set method
+            set { boxCity.Text = value; }  // set method
         }
 
         public string State
         {
             get { return boxState.Text; }   // get method
-            set { state = value; }  // set method
+            set { boxState.Text = value; }  // set method
         }
 
         public string Zip
         {
             get { return boxZip.Text; }   // get method
-            set { zip = value; }  // set method
+            set { boxZip.Text = value; }  // set method
         }
+
+        public String SpecialInstructions
+        {
+            get { return boxInstructions.Text; }
+            set { boxInstructions.Text = value; }
+        }
+
         #endregion
     }
 }

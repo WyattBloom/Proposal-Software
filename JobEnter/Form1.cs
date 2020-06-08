@@ -613,7 +613,7 @@ namespace JobEnter
 
             apiInstance.setName(boxName.Text);
             apiInstance.setAddress(boxAddress.Text);
-            apiInstance.setNumber(Convert.ToInt32(boxPhone.Text));
+            apiInstance.setNumber(boxPhone.Text);
             apiInstance.setDate(new DateTime(2020, 05, 28));
 
             apiInstance.addRow();

@@ -37,10 +37,17 @@
             this.btnPrev = new System.Windows.Forms.Button();
             this.btnNext = new System.Windows.Forms.Button();
             this.clientInfo1 = new JobEnter.ClientInfo();
-            this.selectServices1 = new JobEnter.SelectServices();
             this.jobType1 = new JobEnter.JobType();
+            this.selectServices1 = new JobEnter.SelectServices();
             this.verifyPage = new JobEnter.VerifyConditions();
+            this.stakingPage1 = new JobEnter.StakingPage();
+            this.button2 = new System.Windows.Forms.Button();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.smartsheetOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newJobEntryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.changeAccessTokeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnClientInfo
@@ -80,12 +87,13 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.btnJobType);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.btnPricingPage);
             this.panel1.Controls.Add(this.btnSelectServices);
             this.panel1.Controls.Add(this.btnClientInfo);
-            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Location = new System.Drawing.Point(0, 33);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(231, 646);
@@ -110,7 +118,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(55, 521);
+            this.button1.Location = new System.Drawing.Point(67, 512);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(81, 28);
@@ -138,7 +146,7 @@
             // 
             // btnPrev
             // 
-            this.btnPrev.Location = new System.Drawing.Point(397, 590);
+            this.btnPrev.Location = new System.Drawing.Point(397, 623);
             this.btnPrev.Margin = new System.Windows.Forms.Padding(4);
             this.btnPrev.Name = "btnPrev";
             this.btnPrev.Size = new System.Drawing.Size(213, 47);
@@ -149,7 +157,7 @@
             // 
             // btnNext
             // 
-            this.btnNext.Location = new System.Drawing.Point(619, 590);
+            this.btnNext.Location = new System.Drawing.Point(619, 623);
             this.btnNext.Margin = new System.Windows.Forms.Padding(4);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(213, 47);
@@ -163,61 +171,121 @@
             this.clientInfo1.Address = "";
             this.clientInfo1.City = "";
             this.clientInfo1.Email = "";
-            this.clientInfo1.Location = new System.Drawing.Point(237, 0);
+            this.clientInfo1.Location = new System.Drawing.Point(237, 33);
             this.clientInfo1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.clientInfo1.Name = "clientInfo1";
-            this.clientInfo1.Number = null;
+            this.clientInfo1.Number = "";
             this.clientInfo1.Size = new System.Drawing.Size(809, 584);
+            this.clientInfo1.SpecialInstructions = "";
             this.clientInfo1.State = "";
             this.clientInfo1.TabIndex = 29;
             this.clientInfo1.Zip = "";
             // 
-            // selectServices1
-            // 
-            this.selectServices1.Location = new System.Drawing.Point(237, 27);
-            this.selectServices1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.selectServices1.Name = "selectServices1";
-            this.selectServices1.Size = new System.Drawing.Size(1023, 548);
-            this.selectServices1.TabIndex = 31;
-            this.selectServices1.Visible = false;
-            // 
             // jobType1
             // 
             this.jobType1.BackColor = System.Drawing.SystemColors.Control;
-            this.jobType1.Location = new System.Drawing.Point(347, 41);
+            this.jobType1.Location = new System.Drawing.Point(310, 73);
             this.jobType1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.jobType1.Name = "jobType1";
             this.jobType1.Size = new System.Drawing.Size(364, 302);
             this.jobType1.TabIndex = 30;
             this.jobType1.Visible = false;
             // 
+            // selectServices1
+            // 
+            this.selectServices1.Location = new System.Drawing.Point(237, 33);
+            this.selectServices1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.selectServices1.Name = "selectServices1";
+            this.selectServices1.Size = new System.Drawing.Size(1023, 548);
+            this.selectServices1.TabIndex = 31;
+            this.selectServices1.Visible = false;
+            // 
             // verifyPage
             // 
-            this.verifyPage.Location = new System.Drawing.Point(237, 0);
+            this.verifyPage.Location = new System.Drawing.Point(237, 33);
             this.verifyPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.verifyPage.Name = "verifyPage";
-            this.verifyPage.Size = new System.Drawing.Size(798, 343);
+            this.verifyPage.Size = new System.Drawing.Size(1047, 575);
             this.verifyPage.TabIndex = 32;
             this.verifyPage.Visible = false;
+            // 
+            // stakingPage1
+            // 
+            this.stakingPage1.Location = new System.Drawing.Point(281, 73);
+            this.stakingPage1.Name = "stakingPage1";
+            this.stakingPage1.Size = new System.Drawing.Size(470, 180);
+            this.stakingPage1.TabIndex = 33;
+            this.stakingPage1.Visible = false;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(67, 556);
+            this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(81, 28);
+            this.button2.TabIndex = 6;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.smartsheetOptionsToolStripMenuItem,
+            this.newJobEntryToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1390, 28);
+            this.menuStrip1.TabIndex = 34;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // smartsheetOptionsToolStripMenuItem
+            // 
+            this.smartsheetOptionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.changeAccessTokeToolStripMenuItem});
+            this.smartsheetOptionsToolStripMenuItem.Name = "smartsheetOptionsToolStripMenuItem";
+            this.smartsheetOptionsToolStripMenuItem.Size = new System.Drawing.Size(153, 24);
+            this.smartsheetOptionsToolStripMenuItem.Text = "Smartsheet Options";
+            // 
+            // newJobEntryToolStripMenuItem
+            // 
+            this.newJobEntryToolStripMenuItem.Name = "newJobEntryToolStripMenuItem";
+            this.newJobEntryToolStripMenuItem.Size = new System.Drawing.Size(116, 24);
+            this.newJobEntryToolStripMenuItem.Text = "New job entry";
+            this.newJobEntryToolStripMenuItem.Click += new System.EventHandler(this.newJobEntryToolStripMenuItem_Click);
+            // 
+            // changeAccessTokeToolStripMenuItem
+            // 
+            this.changeAccessTokeToolStripMenuItem.Name = "changeAccessTokeToolStripMenuItem";
+            this.changeAccessTokeToolStripMenuItem.Size = new System.Drawing.Size(233, 26);
+            this.changeAccessTokeToolStripMenuItem.Text = "Change Access Token";
             // 
             // PanelForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1390, 646);
+            this.ClientSize = new System.Drawing.Size(1390, 680);
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.btnPrev);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.clientInfo1);
             this.Controls.Add(this.jobType1);
             this.Controls.Add(this.selectServices1);
+            this.Controls.Add(this.clientInfo1);
+            this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.verifyPage);
+            this.Controls.Add(this.stakingPage1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "PanelForm";
             this.Text = "Job Proposal Software";
             this.Load += new System.EventHandler(this.PanelForm_Load);
             this.panel1.ResumeLayout(false);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -234,5 +302,11 @@
         private JobType jobType1;
         private SelectServices selectServices1;
         private VerifyConditions verifyPage;
+        private StakingPage stakingPage1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem smartsheetOptionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem newJobEntryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem changeAccessTokeToolStripMenuItem;
     }
 }
