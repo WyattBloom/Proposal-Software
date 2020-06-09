@@ -10,7 +10,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using Microsoft.Office.Interop.Outlook;
-using System.ServiceModel.Description; 
+using System.ServiceModel.Description;
+using System.Security.Cryptography;
 
 namespace JobEnter
 {
@@ -188,7 +189,7 @@ namespace JobEnter
                     count = 3;
                     verifyPage.addToBox("Saving...");
                     String absoluteFolderPath = saveToFile(clientInfo1.Address);
-
+                    
                     Console.WriteLine("Here");
                     Console.WriteLine(absoluteFolderPath);
                     if (absoluteFolderPath == null)
@@ -200,7 +201,13 @@ namespace JobEnter
                         else
                             verifyPage.addToBox("File saved successfully");
                     }
-                    updateAPI();
+
+                    string CTFFile = getCTF("Tom");
+                    String destFile = System.IO.Path.Combine(absoluteFolderPath, "CTFFile.docx");
+                    File.Copy("TomCTFLetter.docx", destFile);
+
+
+                    // updateAPI();
 
                     break;
             }
@@ -338,9 +345,34 @@ namespace JobEnter
 
         #endregion
 
+        private String getCTF(String name)
+        {
+            String localTemplate;
+            switch (name)
+            {
+                case "Tom":
+                    localTemplate = "TomCTFLetter.docx";
+                    break;
+                case "Wayne":
+                    localTemplate = "WayneCTFLetter.docx";
+                    break;
+                default:
+                    return "";
+            }
+            return localTemplate;
+        }
+
+
+
         private void button2_Click(object sender, EventArgs e)
         {
-            updateAPI();
+            String absoluteFolderPath = saveToFile(clientInfo1.Address);
+
+            string CTFFile = getCTF("Tom");
+            Console.WriteLine("CTF: " + CTFFile + " | Absolute: " + absoluteFolderPath);
+
+            String destFile = System.IO.Path.Combine(absoluteFolderPath, "CTFFile.docx");
+            File.Copy("TomCTFLetter.docx", destFile);
         }
 
         private void newJobEntryToolStripMenuItem_Click(object sender, EventArgs e)
