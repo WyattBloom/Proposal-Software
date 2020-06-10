@@ -12,6 +12,8 @@ using System.IO;
 using Microsoft.Office.Interop.Outlook;
 using System.ServiceModel.Description;
 using System.Security.Cryptography;
+using Microsoft.Office.Interop.Word;
+using System.Runtime.Serialization.Formatters;
 
 namespace JobEnter
 {
@@ -188,7 +190,7 @@ namespace JobEnter
                 case 4:
                     count = 3;
                     verifyPage.addToBox("Saving...");
-                    String absoluteFolderPath = saveToFile(clientInfo1.Address);
+                    String absoluteFolderPath = saveToFile(clientInfo1.Address);    
                     
                     Console.WriteLine("Here");
                     Console.WriteLine(absoluteFolderPath);
@@ -366,13 +368,12 @@ namespace JobEnter
 
         private void button2_Click(object sender, EventArgs e)
         {
-            String absoluteFolderPath = saveToFile(clientInfo1.Address);
-
-            string CTFFile = getCTF("Tom");
-            Console.WriteLine("CTF: " + CTFFile + " | Absolute: " + absoluteFolderPath);
-
-            String destFile = System.IO.Path.Combine(absoluteFolderPath, "CTFFile.docx");
-            File.Copy("TomCTFLetter.docx", destFile);
+            using(Document doc = new Document())
+            {
+                Stream docStream = File.OpenRead(Path.GetFullPath("TomCTFLetter.docx"));
+                doc.Open(docStream, ;
+            }
+            
         }
 
         private void newJobEntryToolStripMenuItem_Click(object sender, EventArgs e)
