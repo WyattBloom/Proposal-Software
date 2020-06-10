@@ -14,6 +14,8 @@ using System.ServiceModel.Description;
 using System.Security.Cryptography;
 using Microsoft.Office.Interop.Word;
 using System.Runtime.Serialization.Formatters;
+using System.Text.RegularExpressions;
+
 
 namespace JobEnter
 {
@@ -190,15 +192,18 @@ namespace JobEnter
                 case 4:
                     count = 3;
                     verifyPage.addToBox("Saving...");
-                    String absoluteFolderPath = saveToFile(clientInfo1.Address);    
-                    
+                    String absoluteFolderPath = saveToFile(clientInfo1.Address);
+
+                    String templateName = getTemplateName(jobType1.getSelectedButton());
                     Console.WriteLine("Here");
                     Console.WriteLine(absoluteFolderPath);
+
+                    
                     if (absoluteFolderPath == null)
                         break;
                     else
                     {
-                        if (!saveToWord(absoluteFolderPath))
+                        if (!saveToWord(absoluteFolderPath, templateName))
                             break;
                         else
                             verifyPage.addToBox("File saved successfully");
@@ -234,6 +239,31 @@ namespace JobEnter
             showHide(count);
         }
 
+        private void btnSaved()
+        {
+
+        }
+
+
+        private String getTemplateName(String selected)
+        {
+            switch (selected)
+            {
+                case "One Stake":
+                    return "StakingTemplate.docx";
+                case "Two Stake":
+                    return "StakingTemplate.docx";
+                case "All Stake":
+                    return "StakingTemplate.docx";
+                case "Proposed":
+                    return "Proposal Template.docx";
+                case "New Home":
+                    return "StakingTemplate.docx";
+                case "Addition":
+                    return "Additions Template.docx";
+            }
+            return null;
+        }
 
         #endregion
 
@@ -270,7 +300,7 @@ namespace JobEnter
 
         #region Interacting with word document
 
-        private Boolean saveToWord(String absoluteFolderPath)
+        private Boolean saveToWord(String absoluteFolderPath, String fileType)
         {
             try
             {
@@ -278,8 +308,8 @@ namespace JobEnter
                 {
                     String absoluteFilePath = absoluteFolderPath + "\\Proposal For Services at " + clientInfo1.Address;
 
-                    CreateWordDoc doc1 = new CreateWordDoc(Directory.GetCurrentDirectory() + "\\StakingTemplate.docx", absoluteFilePath);
-                    FindAndReplace(doc1);
+                    CreateWordDoc doc1 = new CreateWordDoc(Directory.GetCurrentDirectory() + "\\" + fileType, absoluteFilePath);
+                    FindAndReplaceTemplate(doc1);
                     doc1.closeAndSave();
 
                     //______verifyPage.addToBox("Saved to: " + absoluteFilePath);_____
@@ -299,28 +329,83 @@ namespace JobEnter
         }
 
 
-        private void FindAndReplace(CreateWordDoc doc1)
+        private void FindAndReplaceTemplate(CreateWordDoc doc1)
         {
             try
             {
                 doc1.CreateDocument();
 
-                //Find and replace
-                if (clientInfo1.Name    != null) { doc1.FindAndReplace("<name>", clientInfo1.Name); }
-                if (clientInfo1.Address != null) { doc1.FindAndReplace("<address>", clientInfo1.Address); }
-                if (clientInfo1.Number  != null) { doc1.FindAndReplace("<phone>", clientInfo1.Number); }
-                if (clientInfo1.Email   != null) { doc1.FindAndReplace("<email>", clientInfo1.Email); }
-                if (clientInfo1.SpecialInstructions != null) { doc1.FindAndReplace("<price>", "TEMP VAL"); }
-                if (clientInfo1.SpecialInstructions != null) { doc1.FindAndReplace("<days>", "TEMP VAL"); }
-                if (clientInfo1.SpecialInstructions != null) { doc1.FindAndReplace("<stakePrice>", "TEMP VAL"); }
+                FindAndReplace_ClientInfo(doc1);
+                FindAndReplace_ServicesAndTitles(doc1);
 
-                if (clientInfo1.SpecialInstructions != "")
-                    doc1.FindAndReplace("<instructions>", clientInfo1.SpecialInstructions);
-                else
-                    doc1.FindAndReplace("<instructions>", "None");
             }catch(System.Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message, "Error 3", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+        private void FindAndReplace_ClientInfo(CreateWordDoc doc1)
+        {
+            //Find and replace
+            if (clientInfo1.Name != null) {     doc1.FindAndReplace("<name>", clientInfo1.Name); }
+            if (clientInfo1.Address != null) {  doc1.FindAndReplace("<address>", clientInfo1.Address); }
+            if (clientInfo1.Number != null) {   doc1.FindAndReplace("<phone>", clientInfo1.Number); }
+            if (clientInfo1.Email != null) {    doc1.FindAndReplace("<email>", clientInfo1.Email); }
+            if (verifyPage.Price != null) {     doc1.FindAndReplace("<price>", verifyPage.Price); }
+            if (clientInfo1.SpecialInstructions != null) { doc1.FindAndReplace("<days>", "TEMP VAL"); }
+            if (clientInfo1.SpecialInstructions != null) { doc1.FindAndReplace("<stakePrice>", "TEMP VAL"); }
+
+            if (clientInfo1.SpecialInstructions != "")
+                doc1.FindAndReplace("<instructions>", clientInfo1.SpecialInstructions);
+            else
+                doc1.FindAndReplace("<instructions>", "None");
+        }
+
+        private void FindAndReplace_ServicesAndTitles(CreateWordDoc doc1)
+        {
+            List<String> titles = selectServices1.getSelectedStrings();
+            String allServices = "";
+            foreach (String s in titles)
+            {
+                if (s.StartsWith("-"))
+                {
+                    var result = s.Substring(s.LastIndexOf("-") + 1);
+                    Console.WriteLine(result);
+                    addTitle(doc1, result);
+                }
+                allServices = allServices += "\n■" + s;
+            }
+            Console.Write(allServices);
+/*            System.Windows.Forms.Clipboard.SetText(allBuilding);
+            doc1.FindAndReplace("<improvements>", "^c^p");
+            doc1.FindAndReplace("<build/improve>", "Building & Improvements:^p");
+
+            doc1.FindAndReplace("<build/improve>", "");
+            doc1.FindAndReplace("<improvements>", "");
+*/
+        }
+
+        private void addTitle(CreateWordDoc doc1, String titleIn)
+        {
+            switch (titleIn)
+            {
+                case "Building and Improvements":
+                    doc1.FindAndReplace("<build/improveHeader>", "Building & Improvements:");
+                    break;
+                case "Utilities":
+                    Console.WriteLine("Utilities");
+                    doc1.FindAndReplace("<utilHeader>", "Utilities:");
+                    break;
+                case "Natural Features":
+                    Console.WriteLine("Natural Features");
+                    doc1.FindAndReplace("<naturalHeader>", "Natural Features: ");
+                    break;
+                case "Hardcover Note":
+                    Console.WriteLine("Hardcover");
+                    break;
+                case "":
+                    break;
             }
         }
 
@@ -368,12 +453,8 @@ namespace JobEnter
 
         private void button2_Click(object sender, EventArgs e)
         {
-            using(Document doc = new Document())
-            {
-                Stream docStream = File.OpenRead(Path.GetFullPath("TomCTFLetter.docx"));
-                doc.Open(docStream, ;
-            }
-            
+
+
         }
 
         private void newJobEntryToolStripMenuItem_Click(object sender, EventArgs e)
@@ -388,6 +469,28 @@ namespace JobEnter
         private void changeAccessTokeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             set1.Show();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+        }
+
+
+
+        private void Test(CreateWordDoc doc1)
+        {
+            List<String> titles = selectServices1.getSelectedStrings();
+            String allServices = "";
+            foreach (String s in titles)
+            {
+                if (s.StartsWith("-"))
+                {
+                    var result = s.Substring(s.LastIndexOf("-") + 1);
+                    addTitle(doc1, result);
+                }
+                allServices = allServices += "\n■" + s;
+            }
+            Console.WriteLine("All: " + allServices);
         }
     }
 }

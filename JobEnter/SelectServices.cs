@@ -209,7 +209,7 @@ namespace JobEnter
                         checkedListBox1.Items.Add(s);
                     else if (s.StartsWith("-"))
                     {
-                        s = s.ToUpper();
+                        //s = s.ToUpper();
                         checkedListBox1.Items.Add(s);
                     }
                 }
