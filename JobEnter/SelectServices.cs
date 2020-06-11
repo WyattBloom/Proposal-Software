@@ -139,6 +139,21 @@ namespace JobEnter
             return selectedStrings;
         }
 
+        public List<String> getNotTitles()
+        {
+            List<String> outList = new List<String>();
+            foreach (String s in checkedListBox1.Items)
+            {
+                if (!checkedListBox1.CheckedItems.Contains(s))
+                {
+                    if(s.StartsWith("-"))
+                        outList.Add(s);
+                }
+            }
+            return outList;
+        }
+
+
         public List<int> getAllSelectedIndexes()
         {
             List<int> selectedIndexes = new List<int>();

@@ -300,6 +300,7 @@ namespace JobEnter
 
         #region Interacting with word document
 
+        private CreateWordDoc doc2;
         private Boolean saveToWord(String absoluteFolderPath, String fileType)
         {
             try
@@ -308,8 +309,11 @@ namespace JobEnter
                 {
                     String absoluteFilePath = absoluteFolderPath + "\\Proposal For Services at " + clientInfo1.Address;
 
-                    CreateWordDoc doc1 = new CreateWordDoc(Directory.GetCurrentDirectory() + "\\" + fileType, absoluteFilePath);
+                    CreateWordDoc  doc1 = new CreateWordDoc(Directory.GetCurrentDirectory() + "\\" + fileType, absoluteFilePath);
+
+                    doc2 = new CreateWordDoc(Directory.GetCurrentDirectory() + "\\" + fileType, absoluteFilePath);
                     FindAndReplaceTemplate(doc1);
+                    doc2.closeAndSave();
                     doc1.closeAndSave();
 
                     //______verifyPage.addToBox("Saved to: " + absoluteFilePath);_____
@@ -333,10 +337,10 @@ namespace JobEnter
         {
             try
             {
-                doc1.CreateDocument();
+                doc2.CreateDocument();
 
-                FindAndReplace_ClientInfo(doc1);
-                FindAndReplace_ServicesAndTitles(doc1);
+                FindAndReplace_ClientInfo(doc2);
+                FindAndReplace_ServicesAndTitles(doc2);
 
             }catch(System.Exception ex)
             {
@@ -348,34 +352,45 @@ namespace JobEnter
         private void FindAndReplace_ClientInfo(CreateWordDoc doc1)
         {
             //Find and replace
-            if (clientInfo1.Name != null) {     doc1.FindAndReplace("<name>", clientInfo1.Name); }
-            if (clientInfo1.Address != null) {  doc1.FindAndReplace("<address>", clientInfo1.Address); }
-            if (clientInfo1.Number != null) {   doc1.FindAndReplace("<phone>", clientInfo1.Number); }
-            if (clientInfo1.Email != null) {    doc1.FindAndReplace("<email>", clientInfo1.Email); }
-            if (verifyPage.Price != null) {     doc1.FindAndReplace("<price>", verifyPage.Price); }
-            if (clientInfo1.SpecialInstructions != null) { doc1.FindAndReplace("<days>", "TEMP VAL"); }
-            if (clientInfo1.SpecialInstructions != null) { doc1.FindAndReplace("<stakePrice>", "TEMP VAL"); }
+            if (clientInfo1.Name != null) {     doc2.FindAndReplace("<name>", clientInfo1.Name); }
+            if (clientInfo1.Address != null) {  doc2.FindAndReplace("<address>", clientInfo1.Address); }
+            if (clientInfo1.Number != null) {   doc2.FindAndReplace("<phone>", clientInfo1.Number); }
+            if (clientInfo1.Email != null) {    doc2.FindAndReplace("<email>", clientInfo1.Email); }
+            if (verifyPage.Price != null) {     doc2.FindAndReplace("<price>", verifyPage.Price); }
+            if (clientInfo1.SpecialInstructions != null) { doc2.FindAndReplace("<days>", "TEMP VAL"); }
+            if (clientInfo1.SpecialInstructions != null) { doc2.FindAndReplace("<stakePrice>", "TEMP VAL"); }
 
             if (clientInfo1.SpecialInstructions != "")
-                doc1.FindAndReplace("<instructions>", clientInfo1.SpecialInstructions);
+                doc2.FindAndReplace("<instructions>", clientInfo1.SpecialInstructions);
             else
-                doc1.FindAndReplace("<instructions>", "None");
+                doc2.FindAndReplace("<instructions>", "None");
         }
 
         private void FindAndReplace_ServicesAndTitles(CreateWordDoc doc1)
         {
             List<String> titles = selectServices1.getSelectedStrings();
+            List<String> selectedTitles = selectServices1.getTitles();
+            List<String> nonTitles = selectServices1.getNotTitles();
+
             String allServices = "";
+            foreach (String s in selectedTitles)
+            {
+                var result = s.Substring(s.LastIndexOf("-") + 1);
+                Console.WriteLine(result);
+                //replaceTitles(result, result);
+                //addTitle(doc1, result);
+            }
+            foreach(String s in nonTitles)
+            {
+                var result = s.Substring(s.LastIndexOf("-") + 1);
+                Console.WriteLine(result);
+                //replaceTitles(result, "");
+            }
             foreach (String s in titles)
             {
-                if (s.StartsWith("-"))
-                {
-                    var result = s.Substring(s.LastIndexOf("-") + 1);
-                    Console.WriteLine(result);
-                    addTitle(doc1, result);
-                }
                 allServices = allServices += "\n■" + s;
             }
+
             Console.Write(allServices);
 /*            System.Windows.Forms.Clipboard.SetText(allBuilding);
             doc1.FindAndReplace("<improvements>", "^c^p");
@@ -391,15 +406,15 @@ namespace JobEnter
             switch (titleIn)
             {
                 case "Building and Improvements":
-                    doc1.FindAndReplace("<build/improveHeader>", "Building & Improvements:");
+                    doc2.FindAndReplace("<build/improveHeader>", "Building & Improvements:");
                     break;
                 case "Utilities":
                     Console.WriteLine("Utilities");
-                    doc1.FindAndReplace("<utilHeader>", "Utilities:");
+                    doc2.FindAndReplace("<utilHeader>", "Utilities:");
                     break;
                 case "Natural Features":
                     Console.WriteLine("Natural Features");
-                    doc1.FindAndReplace("<naturalHeader>", "Natural Features: ");
+                    doc2.FindAndReplace("<naturalHeader>", "Natural Features: ");
                     break;
                 case "Hardcover Note":
                     Console.WriteLine("Hardcover");
@@ -473,6 +488,30 @@ namespace JobEnter
 
         private void button1_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void replaceTitles(String titleIn, String replaceWith)
+        {
+            switch (titleIn)
+            {
+                case "Building and Improvements":
+                    doc2.FindAndReplace("<build/improveHeader>", replaceWith);
+                    break;
+                case "Utilities":
+                    Console.WriteLine("Utilities");
+                    doc2.FindAndReplace("<utilHeader>", replaceWith);
+                    break;
+                case "Natural Features":
+                    Console.WriteLine("Natural Features");
+                    doc2.FindAndReplace("<naturalHeader>", replaceWith);
+                    break;
+                case "Hardcover Note":
+                    Console.WriteLine("Hardcover");
+                    break;
+                case "":
+                    break;
+            }
         }
 
 
