@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="JobEnter.exe" size="686560">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="JobEnter.exe" size="688608">
       <assemblyIdentity name="JobEnter" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>NYyUV3K3xGtCK8q095IJO76/pLjJNqVj8jyGJKrjqww=</dsig:DigestValue>
+        <dsig:DigestValue>F7wyxVWRlMW/yWfVx+4Y8NPoew0v4m+m1HB8tr0N3D8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

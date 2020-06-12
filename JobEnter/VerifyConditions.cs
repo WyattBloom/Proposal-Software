@@ -58,6 +58,18 @@ namespace JobEnter
             set { boxPrice.Text = value; }  // set method
         }
 
+        public String StakePrice
+        {
+            get { return boxStakePrice.Text; }
+            set { boxStakePrice.Text = value; }
+        }
+
+        public String Days
+        {
+            get { return boxDays.Text; }
+            set { boxDays.Text = value; }
+        }
+
         public List<String> getTextFromBox()
         {
             List<String> returnList = new List<String>();
@@ -69,6 +81,24 @@ namespace JobEnter
 
             return returnList;
         }
+
+        public void clearAll()
+        {
+            clearBox();
+            Action<Control.ControlCollection> func = null;
+
+            func = (controls) =>
+            {
+                foreach (Control control in controls)
+                    if (control is TextBox)
+                        (control as TextBox).Clear();
+                    else
+                        func(control.Controls);
+            };
+
+            func(Controls);
+        }
+
 
         public void clearBox()
         {

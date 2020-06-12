@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Windows.Forms;
 
 namespace JobEnter
@@ -108,24 +109,33 @@ namespace JobEnter
 
         public List<String> getTitles()
         {
-            List<String> selectedTitles = new List<string>();
-            System.Collections.IEnumerator checkedList = checkedListBox1.CheckedItems.GetEnumerator();
-
-            while (checkedList.MoveNext())
+            List<String> titles = new List<string>();
+            foreach(String s in checkedListBox1.Items)
             {
-                if (checkedList.Current.ToString().StartsWith("-"))
-                {
-                    String tempVal = checkedList.Current.ToString();
-                    while (checkedList.MoveNext())
-                    {
-                        if (!checkedList.Current.ToString().StartsWith("-"))
-                            Console.WriteLine(tempVal + ": " + checkedList.Current.ToString());
-                        else
-                            tempVal = checkedList.Current.ToString();
-                    }
-                }
+                if (s.StartsWith("-"))
+                    titles.Add(s);
             }
-            return selectedTitles;
+            return titles;
+            /*            List<String> selectedTitles = new List<string>();
+                        System.Collections.IEnumerator checkedList = checkedListBox1.CheckedItems.GetEnumerator();
+
+
+                        while (checkedList.MoveNext())
+                        {
+                            if (checkedList.Current.ToString().StartsWith("-"))
+                            {
+                                String tempVal = checkedList.Current.ToString();
+                                while (checkedList.MoveNext())
+                                {
+                                    if (!checkedList.Current.ToString().StartsWith("-"))
+                                        Console.WriteLine(tempVal + ": " + checkedList.Current.ToString());
+                                    else
+                                        tempVal = checkedList.Current.ToString();
+                                }
+                            }
+                        }
+                        return selectedTitles;
+            */
         }
 
         public List<String> getSelectedTitles()
@@ -153,6 +163,35 @@ namespace JobEnter
             return outList;
         }
 
+        public List<String> getTitlesAndList()
+        {
+            List<String> titleService = new List<string>();
+            String temp = "";
+            foreach(String s in checkedListBox1.Items)
+            {
+                if (s.StartsWith("-"))
+                {
+                    titleService.Add(temp);
+                    temp = "";
+                    titleService.Add(s);
+                }
+                else
+                {
+                    if (checkedListBox1.GetItemChecked(getIndex(s)))
+                    {
+                        temp = temp += "■" + s + "\n";
+                    }
+                }
+            }
+            
+            return titleService;
+        }
+
+
+        public int getIndex(String sIn)
+        {
+            return checkedListBox1.Items.IndexOf(sIn);
+        }
 
         public List<int> getAllSelectedIndexes()
         {

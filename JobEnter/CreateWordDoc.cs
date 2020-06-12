@@ -77,28 +77,34 @@ namespace JobEnter
 
         public void FindAndReplace(object textToFind, object replaceWithText)
         {
-            object matchCase = true;
-            object matchWholeWord = true;
-            object matchWildCards = false;
-            object matchSoundLike = false;
-            object nmatchAllforms = false;
-            object forward = true;
-            object format = true;
-            object matchKashida = false;
-            object matchDiactitics = false;
-            object matchAlefHamza = false;
-            object matchControl = false;
-            object read_only = false;
-            object visible = true;
-            object replace = 2;
-            object wrap = 1;
+            try
+            {
+                object matchCase = true;
+                object matchWholeWord = true;
+                object matchWildCards = false;
+                object matchSoundLike = false;
+                object nmatchAllforms = false;
+                object forward = true;
+                object format = true;
+                object matchKashida = false;
+                object matchDiactitics = false;
+                object matchAlefHamza = false;
+                object matchControl = false;
+                object read_only = false;
+                object visible = true;
+                object replace = 2;
+                object wrap = 1;
 
-            wordApp.Selection.Find.Execute(ref textToFind,
-                ref matchCase, ref matchWholeWord, ref matchWildCards,
-                ref matchSoundLike, ref nmatchAllforms, ref forward,
-                ref wrap, ref format, ref replaceWithText, ref replace,
-                ref matchKashida, ref matchDiactitics, ref matchAlefHamza,
-                ref matchControl);
+                wordApp.Selection.Find.Execute(ref textToFind,
+                    ref matchCase, ref matchWholeWord, ref matchWildCards,
+                    ref matchSoundLike, ref nmatchAllforms, ref forward,
+                    ref wrap, ref format, ref replaceWithText, ref replace,
+                    ref matchKashida, ref matchDiactitics, ref matchAlefHamza,
+                    ref matchControl);
+            }catch(System.NullReferenceException ex)
+            {
+                MessageBox.Show("Error in find and replace. \n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
     }

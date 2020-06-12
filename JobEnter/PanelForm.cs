@@ -195,8 +195,7 @@ namespace JobEnter
                     String absoluteFolderPath = saveToFile(clientInfo1.Address);
 
                     String templateName = getTemplateName(jobType1.getSelectedButton());
-                    Console.WriteLine("Here");
-                    Console.WriteLine(absoluteFolderPath);
+                    Console.WriteLine(templateName);
 
                     
                     if (absoluteFolderPath == null)
@@ -243,7 +242,6 @@ namespace JobEnter
         {
 
         }
-
 
         private String getTemplateName(String selected)
         {
@@ -300,7 +298,6 @@ namespace JobEnter
 
         #region Interacting with word document
 
-        private CreateWordDoc doc2;
         private Boolean saveToWord(String absoluteFolderPath, String fileType)
         {
             try
@@ -309,11 +306,9 @@ namespace JobEnter
                 {
                     String absoluteFilePath = absoluteFolderPath + "\\Proposal For Services at " + clientInfo1.Address;
 
-                    CreateWordDoc  doc1 = new CreateWordDoc(Directory.GetCurrentDirectory() + "\\" + fileType, absoluteFilePath);
-
-                    doc2 = new CreateWordDoc(Directory.GetCurrentDirectory() + "\\" + fileType, absoluteFilePath);
+                    CreateWordDoc doc1 = new CreateWordDoc(Directory.GetCurrentDirectory() + "\\" + fileType, absoluteFilePath);
+                    doc1.CreateDocument();
                     FindAndReplaceTemplate(doc1);
-                    doc2.closeAndSave();
                     doc1.closeAndSave();
 
                     //______verifyPage.addToBox("Saved to: " + absoluteFilePath);_____
@@ -337,10 +332,8 @@ namespace JobEnter
         {
             try
             {
-                doc2.CreateDocument();
-
-                FindAndReplace_ClientInfo(doc2);
-                FindAndReplace_ServicesAndTitles(doc2);
+                FindAndReplace_ClientInfo(doc1);
+                FindAndReplace_ServicesAndTitles(doc1);
 
             }catch(System.Exception ex)
             {
@@ -351,78 +344,100 @@ namespace JobEnter
 
         private void FindAndReplace_ClientInfo(CreateWordDoc doc1)
         {
-            //Find and replace
-            if (clientInfo1.Name != null) {     doc2.FindAndReplace("<name>", clientInfo1.Name); }
-            if (clientInfo1.Address != null) {  doc2.FindAndReplace("<address>", clientInfo1.Address); }
-            if (clientInfo1.Number != null) {   doc2.FindAndReplace("<phone>", clientInfo1.Number); }
-            if (clientInfo1.Email != null) {    doc2.FindAndReplace("<email>", clientInfo1.Email); }
-            if (verifyPage.Price != null) {     doc2.FindAndReplace("<price>", verifyPage.Price); }
-            if (clientInfo1.SpecialInstructions != null) { doc2.FindAndReplace("<days>", "TEMP VAL"); }
-            if (clientInfo1.SpecialInstructions != null) { doc2.FindAndReplace("<stakePrice>", "TEMP VAL"); }
+            try
+            {
+                //Find and replace
+                if (clientInfo1.Name      != null) { doc1.FindAndReplace("<name>",       clientInfo1.Name); }
+                if (clientInfo1.Address   != null) { doc1.FindAndReplace("<address>",    clientInfo1.Address); }
+                if (clientInfo1.Number    != null) { doc1.FindAndReplace("<phone>",      clientInfo1.Number); }
+                if (clientInfo1.Email     != null) { doc1.FindAndReplace("<email>",      clientInfo1.Email); }
+                if (verifyPage.Price      != null) { doc1.FindAndReplace("<price>",      verifyPage.Price); }
+                if (verifyPage.StakePrice != null) { doc1.FindAndReplace("<stakePrice>", verifyPage.StakePrice); }
+                if (verifyPage.Days       != null) { doc1.FindAndReplace("<days>",       verifyPage.Days); }
 
-            if (clientInfo1.SpecialInstructions != "")
-                doc2.FindAndReplace("<instructions>", clientInfo1.SpecialInstructions);
-            else
-                doc2.FindAndReplace("<instructions>", "None");
+                if (clientInfo1.SpecialInstructions == "")
+                    doc1.FindAndReplace("<instructions>", "None");
+                else
+                    doc1.FindAndReplace("<instructions>", clientInfo1.SpecialInstructions);
+
+            }catch(System.Exception ex)
+            {
+                Console.WriteLine("Error 5");
+            }
         }
 
         private void FindAndReplace_ServicesAndTitles(CreateWordDoc doc1)
         {
-            List<String> titles = selectServices1.getSelectedStrings();
-            List<String> selectedTitles = selectServices1.getTitles();
-            List<String> nonTitles = selectServices1.getNotTitles();
-
-            String allServices = "";
-            foreach (String s in selectedTitles)
+            try
             {
-                var result = s.Substring(s.LastIndexOf("-") + 1);
-                Console.WriteLine(result);
-                //replaceTitles(result, result);
-                //addTitle(doc1, result);
-            }
-            foreach(String s in nonTitles)
-            {
-                var result = s.Substring(s.LastIndexOf("-") + 1);
-                Console.WriteLine(result);
-                //replaceTitles(result, "");
-            }
-            foreach (String s in titles)
-            {
-                allServices = allServices += "\n■" + s;
-            }
+                List<String> titles = selectServices1.getSelectedStrings();
+                List<String> selectedTitles = selectServices1.getSelectedTitles();
+                List<String> nonTitles = selectServices1.getNotTitles();
 
-            Console.Write(allServices);
-/*            System.Windows.Forms.Clipboard.SetText(allBuilding);
-            doc1.FindAndReplace("<improvements>", "^c^p");
-            doc1.FindAndReplace("<build/improve>", "Building & Improvements:^p");
+                List<String> titlesAndServices = selectServices1.getTitlesAndList();
+                for(int i = 0; i < titlesAndServices.Count -1; i++)
+                {
+                    if (titlesAndServices[i].StartsWith("-"))
+                    {
+                        Console.WriteLine("S: " + titlesAndServices[i]);
+                        Console.WriteLine("S + 1: " + titlesAndServices[i+1]);
 
-            doc1.FindAndReplace("<build/improve>", "");
-            doc1.FindAndReplace("<improvements>", "");
-*/
+                        if (titlesAndServices[i + 1] == "")
+                        {
+                            var result = titlesAndServices[i].Substring(titlesAndServices[i].LastIndexOf("-") + 1);
+                            replaceTitles(doc1, result, titlesAndServices[i + 1], "");
+                        }
+                        else
+                        {
+                            var result = titlesAndServices[i].Substring(titlesAndServices[i].LastIndexOf("-") + 1);
+
+                            System.Windows.Forms.Clipboard.SetText(titlesAndServices[i + 1]);
+                            replaceTitles(doc1, result, "^c^p", result + "^p");
+                        }
+
+                    }
+                }
+            }catch(System.Exception ex)
+            {
+                Console.WriteLine("Error 4. " + ex.Message);
+            }
         }
 
-        private void addTitle(CreateWordDoc doc1, String titleIn)
+        private void replaceTitles(CreateWordDoc doc1, String titleIn, String servicesIn, String replaceWith)
         {
             switch (titleIn)
             {
                 case "Building and Improvements":
-                    doc2.FindAndReplace("<build/improveHeader>", "Building & Improvements:");
+                    //Console.WriteLine("Build: " + titleIn + " | " + replaceWith);
+                    doc1.FindAndReplace("<build/improveHeader>", replaceWith);
+                    doc1.FindAndReplace("<build/improveBody>", servicesIn);
                     break;
                 case "Utilities":
-                    Console.WriteLine("Utilities");
-                    doc2.FindAndReplace("<utilHeader>", "Utilities:");
+                    //Console.WriteLine("Utilities:" + titleIn + " | " + replaceWith);
+                    doc1.FindAndReplace("<utilHeader>", replaceWith);
+                    doc1.FindAndReplace("<utilBody>", servicesIn);
                     break;
                 case "Natural Features":
-                    Console.WriteLine("Natural Features");
-                    doc2.FindAndReplace("<naturalHeader>", "Natural Features: ");
+                    //Console.WriteLine("Natural: " + titleIn + " | " + replaceWith);
+                    doc1.FindAndReplace("<naturalHeader>", replaceWith);
+                    doc1.FindAndReplace("<naturalBody>", servicesIn);
+                    break;
+                case "New Home":
+                    doc1.FindAndReplace("<additionHeader>", replaceWith);
+                    doc1.FindAndReplace("<additionBody>", servicesIn);
+                    break;
+                case "Storm Water":
+                    doc1.FindAndReplace("<stormWaterHeader>", replaceWith);
+                    doc1.FindAndReplace("<stormWaterBody>", servicesIn);
                     break;
                 case "Hardcover Note":
-                    Console.WriteLine("Hardcover");
+                    //Console.WriteLine("Hardcover: " + titleIn + " | " + replaceWith);
                     break;
                 case "":
                     break;
             }
         }
+
 
         #endregion
 
@@ -464,11 +479,16 @@ namespace JobEnter
             return localTemplate;
         }
 
-
+        private void button1_Click(object sender, EventArgs e)
+        {
+            foreach (String s in selectServices1.getTitlesAndList())
+            {
+                Console.WriteLine(s);
+            }
+        }
 
         private void button2_Click(object sender, EventArgs e)
         {
-
 
         }
 
@@ -477,59 +497,13 @@ namespace JobEnter
             clientInfo1.clearAll();
             jobType1.setSelectedButton("");
             selectServices1.clearAll();
-            verifyPage.clearBox();
+            verifyPage.clearAll();
             // Code to clear everything for a new job entry
         }
 
         private void changeAccessTokeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             set1.Show();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void replaceTitles(String titleIn, String replaceWith)
-        {
-            switch (titleIn)
-            {
-                case "Building and Improvements":
-                    doc2.FindAndReplace("<build/improveHeader>", replaceWith);
-                    break;
-                case "Utilities":
-                    Console.WriteLine("Utilities");
-                    doc2.FindAndReplace("<utilHeader>", replaceWith);
-                    break;
-                case "Natural Features":
-                    Console.WriteLine("Natural Features");
-                    doc2.FindAndReplace("<naturalHeader>", replaceWith);
-                    break;
-                case "Hardcover Note":
-                    Console.WriteLine("Hardcover");
-                    break;
-                case "":
-                    break;
-            }
-        }
-
-
-
-        private void Test(CreateWordDoc doc1)
-        {
-            List<String> titles = selectServices1.getSelectedStrings();
-            String allServices = "";
-            foreach (String s in titles)
-            {
-                if (s.StartsWith("-"))
-                {
-                    var result = s.Substring(s.LastIndexOf("-") + 1);
-                    addTitle(doc1, result);
-                }
-                allServices = allServices += "\n■" + s;
-            }
-            Console.WriteLine("All: " + allServices);
         }
     }
 }
