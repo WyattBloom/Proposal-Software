@@ -25,6 +25,7 @@ namespace JobEnter
         private string[] additionStrings;
         private List<String> existingMinneapolis = new List<string>();
         private List<String> edinaStrings = new List<string>();
+        private List<String> newHomeMinneapolis = new List<string>();
 
         private List<String> jobTypes = new List<String> { "One Stake",
                                                     "Two Stake",
@@ -83,6 +84,44 @@ namespace JobEnter
                     break;
                 case "Edina":
                     setSelectedFromList(edinaStrings);
+                    break;
+            }
+        }
+
+        // Temp Method
+        public void setCheckedTemplate(String city, String jobType)
+        {
+            switch (jobType)
+            {
+                case "Proposal":
+                    if(city == "Minneapolis")
+                    {
+
+                    }
+                    else if(city == "Edina")
+                    {
+
+                    }
+                    break;
+                case "New Home":
+                    if (city == "Minneapolis")
+                    {
+                        setSelectedFromList(newHomeMinneapolis);
+                    }
+                    else if (city == "Edina")
+                    {
+
+                    }
+                    break;
+                case "Addition":
+                    if (city == "Minneapolis")
+                    {
+
+                    }
+                    else if (city == "Edina")
+                    {
+
+                    }
                     break;
             }
         }
@@ -327,8 +366,23 @@ namespace JobEnter
         }
 
 
+
         #endregion
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < checkedListBox1.Items.Count; i++)
+            {
+                checkedListBox1.SetItemChecked(i, false);
+            }
+        }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < checkedListBox1.Items.Count; i++)
+            {
+                checkedListBox1.SetItemChecked(i, true);
+            }
+        }
     }
 }

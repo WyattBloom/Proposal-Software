@@ -217,10 +217,10 @@ namespace JobEnter
                     //                    openFile(fileInFolder);
 
                     //FileInfo fi1 = new FileInfo(templateName);
-                    /*                    while (checkFileStatus(fi1))
-                                        {
-                                            Console.WriteLine("Still in loop");
-                                        }
+                    /*while (checkFileStatus(fi1))
+                    {
+                        Console.WriteLine("Still in loop");
+                    }
                     */
 
                    updateAPI();

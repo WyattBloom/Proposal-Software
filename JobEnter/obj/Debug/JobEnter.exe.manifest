@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="JobEnter.exe" size="691680">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="JobEnter.exe" size="692192">
       <assemblyIdentity name="JobEnter" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>VLlSvsKA+i5A2XfCGLZeyvy64J8Hysa+ByXgsueywZU=</dsig:DigestValue>
+        <dsig:DigestValue>wrcQ/VNm1KLNo1ZVNVnZ5uWaz0P8zqk/Aqv7wbGh7Pw=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -101,22 +101,22 @@
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="bin\Debug\Addition.txt" size="6222">
+  <file name="bin\Debug\Addition.txt" size="5583">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>Z2qBh4M5YFq8rXGTWP+XrbyS0ptZmx09tre38InVgRY=</dsig:DigestValue>
+      <dsig:DigestValue>T3gDP/KPKnWd37xCAk5AWsZ145fJ7Bcj5kfw/SPkay0=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="bin\Debug\ExistingProposal.txt" size="3592">
+  <file name="bin\Debug\ExistingProposal.txt" size="3073">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>0vUM0V778gdJNQ6DOykYaQkjzN+6iDBwzmA4S2ZTNGE=</dsig:DigestValue>
+      <dsig:DigestValue>B0Ct3Jly8s0yhzUcLJO8n3Cg1Z+xxGuS0eVlLsT99/k=</dsig:DigestValue>
     </hash>
   </file>
   <file name="bin\Debug\Minneapolis-Existing.txt" size="1643">

@@ -1,3 +1,4 @@
+-Building and Improvements
 Show significant and visible improvements deemed necessary by the surveyor on site, unless otherwise specified by the client beforehand. 
 Show any apparent and significant encroachments across boundary lines observed in the process of conducting the fieldwork.
 Show front and nearest side (front to back) of the homes on the adjacent lots that front the same street as the subject property. 
@@ -7,13 +8,16 @@ Show the door threshold (entrance) elevation of the building on the site.
 Show the floor elevation of the garage, nearest the door, on the site.
 Tabulate areas of existing hardcover.  Note: Impervious surface requirements vary city to city.  Be sure to have this tabulation reviewed and approved by the appropriate governmental agency before using this information for any site design or construction.
 
+-Utilities
 Show visible improvements related to public utilities such as, curbs, roadways and sidewalks.
 Show visible appurtenances to utilities in adjacent streets and alleys such as, manholes, power poles, catch basins, overhead utility lines or cable/telephone pedestals.
 
+-Natural Features
 Show location of trees larger than 6”+/- inches in diameter, unless otherwise specified by client.  Species not determined by surveyor.   
 Show topography over the entire lot and up to the edge of the adjacent roadway at a contour interval of 1 or 2 feet, whichever is more appropriate.  In addition to contours, show critical spot elevations across the property, as needed, to depict vertical relief.
 Establish a project benchmark in relation to the topography shown.
 
+-Addition
 Show footprint of the proposed addition and related improvements, per your plans.  
 Show proposed elevations associated with the proposed addition and improvements.
 Show proposed grading & drainage details by depicting proposed contours, spot elevations, and drainage arrows, as necessary, to show the control of storm water runoff.
@@ -23,3 +27,7 @@ Note: Gaining governmental approvals for your proposed addition and improvements
 
 Design of stormwater retention/detention facilities.  Prepare a design submittal package for governing agency (city or watershed) per site requirements.  Stormwater submittal will include:  supporting calculations, plan of existing and proposed drainage patterns, and necessary details.  Best Management Practice (BMP) design will be utilized per requirements.
 Prepare a submittal package for governing agency review.  During review process Advance will answer questions and make revisions to plans necessary for approval.  Advance does not guarantee approval of project.
+
+-DESIGN/DEVELOPMENT FOR A STORMWATER MANAGEMENT PLAN: $600 - $1200
+Design of stormwater retention/detention facilities.  Prepare a design submittal package for governing agency (city or watershed) per site requirements.  Stormwater submittal will include: supporting calculations, plan of existing and proposed drainage patterns, and necessary details.  Best Management Practice (BMP) design will be utilized per requirements.
+Prepare a submittal package for governing agency review. During review process Advance will answer questions and make revisions to plans necessary for approval. Advance does not guarantee approval of project.

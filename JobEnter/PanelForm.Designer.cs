@@ -213,11 +213,13 @@
             // 
             // verifyPage
             // 
+            this.verifyPage.Days = "";
             this.verifyPage.Location = new System.Drawing.Point(178, 27);
             this.verifyPage.Margin = new System.Windows.Forms.Padding(2);
             this.verifyPage.Name = "verifyPage";
             this.verifyPage.Price = "";
             this.verifyPage.Size = new System.Drawing.Size(853, 467);
+            this.verifyPage.StakePrice = "";
             this.verifyPage.TabIndex = 32;
             this.verifyPage.Visible = false;
             // 
@@ -244,9 +246,9 @@
             // selectServices1
             // 
             this.selectServices1.Location = new System.Drawing.Point(178, 27);
-            this.selectServices1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.selectServices1.Margin = new System.Windows.Forms.Padding(2);
             this.selectServices1.Name = "selectServices1";
-            this.selectServices1.Size = new System.Drawing.Size(767, 445);
+            this.selectServices1.Size = new System.Drawing.Size(767, 467);
             this.selectServices1.TabIndex = 31;
             this.selectServices1.Visible = false;
             // 
@@ -270,15 +272,15 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1042, 550);
-            this.Controls.Add(this.verifyPage);
+            this.Controls.Add(this.selectServices1);
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.btnPrev);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.jobType1);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.stakingPage1);
-            this.Controls.Add(this.selectServices1);
             this.Controls.Add(this.clientInfo1);
+            this.Controls.Add(this.verifyPage);
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "PanelForm";
