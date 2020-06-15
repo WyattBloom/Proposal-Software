@@ -24,7 +24,7 @@ namespace JobEnter
         private string[] newHomeStrings;
         private string[] additionStrings;
         private List<String> existingMinneapolis = new List<string>();
-        private List<String> existingEdina = new List<string>();
+        private List<String> edinaStrings = new List<string>();
 
         private List<String> jobTypes = new List<String> { "One Stake",
                                                     "Two Stake",
@@ -44,7 +44,7 @@ namespace JobEnter
             label2.Text = "";
             try
             {
-                newHomeStrings = File.ReadAllLines("NewHomeConditions.txt");
+                newHomeStrings = File.ReadAllLines("NewHome.txt");
                 additionStrings = File.ReadAllLines("Addition.txt");
                 existingMinneapolis = File.ReadAllLines("Minneapolis-Existing.txt").ToList<String>();
             } catch (System.Exception ex) {
@@ -82,10 +82,15 @@ namespace JobEnter
                     setSelectedFromList(existingMinneapolis);
                     break;
                 case "Edina":
+                    setSelectedFromList(edinaStrings);
                     break;
             }
         }
 
+        public void setComboSelected(String input)
+        {
+            comboBox1.Text = input;
+        }
 
         private void setSelectedFromList(List<String> listIn)
         {
@@ -209,12 +214,6 @@ namespace JobEnter
             return outList;
         }
 
-        public void setComboSelected(String input)
-        {
-            comboBox1.Text = input;
-            setCheckedTemplate(input);
-        }
-
         public void setJobType(String jbIn) { this.jobType = jbIn; }
         public String getJobType() { return this.jobType; }
         public void setBoxesShown(String s)
@@ -236,10 +235,12 @@ namespace JobEnter
             if (type == "New Home")
             {
                 addToBox(newHomeStrings);
+                edinaStrings = File.ReadAllLines("NewHome-Edina.txt").ToList<String>();
             }
             else if (type == "Addition")
             {
                 addToBox(additionStrings);
+                edinaStrings = File.ReadAllLines("Addition-Edina.txt").ToList<String>();
             }
         }
 

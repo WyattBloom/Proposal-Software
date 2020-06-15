@@ -16,6 +16,7 @@ namespace JobEnter
 
         private long sheetID;
 
+        private String gisLink;
         private String name;
         private String email;
         private String address;
@@ -25,6 +26,8 @@ namespace JobEnter
         private String zip;
         private String price;
         private DateTime date;
+
+        public void setGISLink(String gisIn) { this.gisLink = gisIn; }
 
         public void setName(String n) { this.name = n; }
 
@@ -76,11 +79,42 @@ namespace JobEnter
             this.date = date;
         }
 
+        // Includes GIS Link
+        public APIRequests(String sheetName, string accessTokenIn,
+                    String gisIn, String name, String email, 
+                    String address, String city, String state, 
+                    String zip, String price, String phoneNum, DateTime date)
+        {
+            accessToken = accessTokenIn;
+            smartsheet = new SmartsheetBuilder()
+                            .SetAccessToken(accessToken)
+                            .Build();
+            sheetID = this.getSheetID(sheetName);
+            try
+            {
+                if (gisIn    != null) { this.gisLink = gisIn; }
+                if (name     != null) { this.name    = name; }
+                if (address  != null) { this.address = address; }
+                if (email    != null) { this.email   = email; }
+                if (phoneNum != null) { this.number  = phoneNum; }
+                if (city     != null) { this.city    = city; }
+                if (state    != null) { this.state   = state; }
+                if (zip      != null) { this.zip     = zip; }
+                if (price    != null) { this.price   = price; }
+                this.date = date;
+            }catch(System.Exception ex)
+            {
+                Console.WriteLine("Error in API 1. " + ex.Message);
+            }
+        }
+
+
+
         // Includes Email Authentication
-        public APIRequests(String sheetName, string accessTokenIn, String userEmail, 
-                            String name, String email, String address, 
-                            String city, String state, String zip,
-                            String price, String phoneNum, DateTime date)
+        /*public APIRequests(String sheetName, string accessTokenIn, String GIS, 
+                            String userEmail, String name, String email, 
+                            String address, String city, String state, 
+                            String zip, String price, String phoneNum, DateTime date)
         {
             accessToken = accessTokenIn;
             smartsheet  = new SmartsheetBuilder()
@@ -96,7 +130,7 @@ namespace JobEnter
             if (city     != null) { this.city    = city;     }
             if (state    != null) { this.state   = state;    }
             if (zip      != null) { this.zip     = zip;      }
-        }
+        }*/
         public void addRow( String name, String address, int phone, 
                             DateObjectValue date, String money)
         {
@@ -109,6 +143,7 @@ namespace JobEnter
         {
 
         }
+
 
         public long getSheetID(String sheetName)
         {
@@ -156,10 +191,17 @@ namespace JobEnter
 
         public void addRow()
         {
-
-            // Specify cell values of row
-            Cell[] cellsA = new Cell[] {
+            if (gisLink == null)
+                gisLink = "";
+            try
+            {
+                // Specify cell values of row
+                Cell[] cellsA = new Cell[] {
                 new Cell
+                {
+                    ColumnId = this.getColumnID("GIS"),
+                    Value = this.gisLink
+                },new Cell
                 {
                     ColumnId = this.getColumnID("Name"),
                     Value = this.name
@@ -211,20 +253,24 @@ namespace JobEnter
                 }
             };
 
-            // Specify contents of row
-            Row rowA = new Row
+                // Specify contents of row
+                Row rowA = new Row
+                {
+                    ToBottom = true,
+                    Cells = cellsA
+                };
+
+
+
+                // Add rows to sheet
+                IList<Row> newRows = smartsheet.SheetResources.RowResources.AddRows(
+                  4235468226226052,               // sheetId
+                  new Row[] { rowA }             // IEnumerable<Row> rowsToAdd
+                );
+            }catch(System.Exception ex)
             {
-                ToBottom = true,
-                Cells = cellsA
-            };
-
-
-
-            // Add rows to sheet
-            IList<Row> newRows = smartsheet.SheetResources.RowResources.AddRows(
-              4235468226226052,               // sheetId
-              new Row[] { rowA }             // IEnumerable<Row> rowsToAdd
-            );
+                Console.WriteLine("Error in API 2. " + ex.Message);
+            }
         }
 
     }

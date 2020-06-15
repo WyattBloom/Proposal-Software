@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="JobEnter.exe" size="688608">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="JobEnter.exe" size="691680">
       <assemblyIdentity name="JobEnter" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>F7wyxVWRlMW/yWfVx+4Y8NPoew0v4m+m1HB8tr0N3D8=</dsig:DigestValue>
+        <dsig:DigestValue>VLlSvsKA+i5A2XfCGLZeyvy64J8Hysa+ByXgsueywZU=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -101,13 +101,13 @@
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="bin\Debug\Addition.txt" size="6229">
+  <file name="bin\Debug\Addition.txt" size="6222">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>isW1ZibbckwO2cocyN5Qcr+8qYUBl77uTAlnJ5oPIoY=</dsig:DigestValue>
+      <dsig:DigestValue>Z2qBh4M5YFq8rXGTWP+XrbyS0ptZmx09tre38InVgRY=</dsig:DigestValue>
     </hash>
   </file>
   <file name="bin\Debug\ExistingProposal.txt" size="3592">

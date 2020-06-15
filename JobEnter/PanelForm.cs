@@ -161,7 +161,8 @@ namespace JobEnter
                     // Set dropdown box City and Checkbox List items
                     selectServices1.setComboSelected(clientInfo1.City);
                     selectServices1.setBoxesShown(jobType1.getSelectedButton());
-
+                    selectServices1.setCheckedTemplate(clientInfo1.City);
+                    
                     btnNext.Text = "Next";
                     break;
                 case 3:
@@ -197,23 +198,32 @@ namespace JobEnter
                     String templateName = getTemplateName(jobType1.getSelectedButton());
                     Console.WriteLine(templateName);
 
-                    
-                    if (absoluteFolderPath == null)
-                        break;
-                    else
-                    {
-                        if (!saveToWord(absoluteFolderPath, templateName))
-                            break;
-                        else
-                            verifyPage.addToBox("File saved successfully");
-                    }
+                    /* 
+                     if (absoluteFolderPath == null)
+                         break;
+                     else
+                     {
+                         if (!saveToWord(absoluteFolderPath, templateName))
+                             break;
+                         else
+                             verifyPage.addToBox("File saved successfully");
+                     }*/
+                     /*
+                     string CTFFile = getCTF("Tom");
+                     String destFile = System.IO.Path.Combine(absoluteFolderPath, "CTFFile.docx");
+                     File.Copy("TomCTFLetter.docx", destFile);
+                     */
+                    //Open File for edits
+                    //                    openFile(fileInFolder);
 
-                    string CTFFile = getCTF("Tom");
-                    String destFile = System.IO.Path.Combine(absoluteFolderPath, "CTFFile.docx");
-                    File.Copy("TomCTFLetter.docx", destFile);
+                    //FileInfo fi1 = new FileInfo(templateName);
+                    /*                    while (checkFileStatus(fi1))
+                                        {
+                                            Console.WriteLine("Still in loop");
+                                        }
+                    */
 
-
-                    // updateAPI();
+                   updateAPI();
 
                     break;
             }
@@ -254,7 +264,7 @@ namespace JobEnter
                 case "All Stake":
                     return "StakingTemplate.docx";
                 case "Proposed":
-                    return "Proposal Template.docx";
+                    return "fullTemplate.docx";
                 case "New Home":
                     return "StakingTemplate.docx";
                 case "Addition":
@@ -332,7 +342,9 @@ namespace JobEnter
         {
             try
             {
+                // Find and replace client info
                 FindAndReplace_ClientInfo(doc1);
+                // Find and replace selected services and titles
                 FindAndReplace_ServicesAndTitles(doc1);
 
             }catch(System.Exception ex)
@@ -394,7 +406,6 @@ namespace JobEnter
                             System.Windows.Forms.Clipboard.SetText(titlesAndServices[i + 1]);
                             replaceTitles(doc1, result, "^c^p", result + "^p");
                         }
-
                     }
                 }
             }catch(System.Exception ex)
@@ -403,64 +414,82 @@ namespace JobEnter
             }
         }
 
-        private void replaceTitles(CreateWordDoc doc1, String titleIn, String servicesIn, String replaceWith)
+        /*
+         * Addition(Edina)- Existing Condition: $1350
+         * New Home(Edina)- Existing Condition: $1350
+         * 
+        */
+        private void replaceTitles(CreateWordDoc doc1, String titleIn, 
+                                String servicesIn, String replaceWith)
         {
             switch (titleIn)
             {
                 case "Building and Improvements":
-                    //Console.WriteLine("Build: " + titleIn + " | " + replaceWith);
                     doc1.FindAndReplace("<build/improveHeader>", replaceWith);
                     doc1.FindAndReplace("<build/improveBody>", servicesIn);
                     break;
                 case "Utilities":
-                    //Console.WriteLine("Utilities:" + titleIn + " | " + replaceWith);
                     doc1.FindAndReplace("<utilHeader>", replaceWith);
                     doc1.FindAndReplace("<utilBody>", servicesIn);
                     break;
                 case "Natural Features":
-                    //Console.WriteLine("Natural: " + titleIn + " | " + replaceWith);
                     doc1.FindAndReplace("<naturalHeader>", replaceWith);
                     doc1.FindAndReplace("<naturalBody>", servicesIn);
                     break;
-                case "New Home":
-                    doc1.FindAndReplace("<additionHeader>", replaceWith);
-                    doc1.FindAndReplace("<additionBody>", servicesIn);
+                case "Homes":
+                    doc1.FindAndReplace("<homesHeader>", replaceWith);
+                    doc1.FindAndReplace("<homesBody>", servicesIn);
                     break;
-                case "Storm Water":
-                    doc1.FindAndReplace("<stormWaterHeader>", replaceWith);
-                    doc1.FindAndReplace("<stormWaterBody>", servicesIn);
+                case "Edina Stuff":
+                    doc1.FindAndReplace("<edinaHeader>", replaceWith);
+                    doc1.FindAndReplace("<edinaBody>", servicesIn);
+                    break;
+                case "Staking":
+                    doc1.FindAndReplace("<stakingHeader>", replaceWith);
+                    doc1.FindAndReplace("<stakingBody>", servicesIn);
+                    break;
+                case "Foundation":
+                    doc1.FindAndReplace("<foundationHeader>", replaceWith);
+                    doc1.FindAndReplace("<foundationBody>", servicesIn);
+                    break;
+                case "Final":
+                    doc1.FindAndReplace("<finalHeader>", replaceWith);
+                    doc1.FindAndReplace("<finalBody>", servicesIn);
                     break;
                 case "Hardcover Note":
-                    //Console.WriteLine("Hardcover: " + titleIn + " | " + replaceWith);
+                    doc1.FindAndReplace("<hardnoteHeader>", replaceWith);
+                    doc1.FindAndReplace("<hardnoteBody>", servicesIn);
+                    break;
+                case "Storm Water":
+                    // Edina Specific
+                    // DESIGN/DEVELOPMENT FOR A STORMWATER MANAGEMENT PLAN: $600 - $1200
+                    doc1.FindAndReplace("<stormWaterHeader>", replaceWith);
+                    doc1.FindAndReplace("<stormWaterBody>", servicesIn);
                     break;
                 case "":
                     break;
             }
         }
 
-
-        #endregion
-
-        #region API Methods
-
-        private void updateAPI()
+        public bool checkFileStatus(FileInfo fileName)
         {
+            FileStream streamInput = null;
+
             try
             {
-                APIRequests apiInstance = new APIRequests(set1.SheetName, set1.AccessToken,
-                    clientInfo1.Name, clientInfo1.Email, clientInfo1.Address, clientInfo1.City,
-                    clientInfo1.State, clientInfo1.Zip, verifyPage.Price, clientInfo1.Number, DateTime.Today);
-
-                apiInstance.addRow();
-                MessageBox.Show("Row successfully added to smartsheet", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                streamInput = fileName.Open(FileMode.Open, FileAccess.Read, FileShare.None);
             }
-            catch (System.Exception ex)
+            catch (IOException) { return true; }
+            finally
             {
-                MessageBox.Show("Unable to update Smartsheet: \n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (streamInput != null)
+                    streamInput.Close();
             }
+
+            return false;
         }
 
-        #endregion
+
 
         private String getCTF(String name)
         {
@@ -479,18 +508,97 @@ namespace JobEnter
             return localTemplate;
         }
 
+
+        #endregion
+
+        //======================================================================//
+        #region PDF Methods
+
+
+
+
+        #endregion
+
+        //======================================================================//
+        #region Email Methods
+
+
+
+
+        #endregion
+
+        //======================================================================//
+        #region API Methods
+
+        private void updateAPI()
+        {
+            try
+            {
+                APIRequests apiInstance = new APIRequests(set1.SheetName, set1.AccessToken,
+                    verifyPage.getGIS(clientInfo1.City), clientInfo1.Name, clientInfo1.Email, 
+                    clientInfo1.Address, clientInfo1.City, clientInfo1.State, clientInfo1.Zip, 
+                    verifyPage.Price, clientInfo1.Number, DateTime.Today);
+
+                apiInstance.addRow();
+                MessageBox.Show("Row successfully added to smartsheet", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show("Unable to update Smartsheet: \n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        #endregion
+
         private void button1_Click(object sender, EventArgs e)
         {
-            foreach (String s in selectServices1.getTitlesAndList())
-            {
-                Console.WriteLine(s);
-            }
+            //foreach (String s in selectServices1.getTitlesAndList())
+            //{
+            //    Console.WriteLine(s);
+            //}
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            verifyPage.addToBox(verifyPage.getGIS(clientInfo1.City));
         }
+
+        public String getGIS(String city)
+        {
+            String outVal = "";
+            switch (city)
+            {
+                case "Rogers":
+                    outVal = "https://gis.hennepin.us/property/map/";
+                    break;
+                case "Ramsey":
+                    outVal = "https://beacon.schneidercorp.com/application.aspx?app=RamseyCountyMN&PageType=Search";
+                    break;
+                case "Anoka":
+                    outVal = "http://gis.anokacountymn.gov/webgis/#<http://gis.anokacountymn.gov/webgis";
+                    break;
+                case "Carver":
+                    outVal = "https://gis.co.carver.mn.us/publicparcel/";
+                    break;
+                case "Washington":
+                    outVal = "https://wcmn.maps.arcgis.com/apps/webappviewer/index.html?id=5c2fe2b598e744afbc07cc0550162984";
+                    break;
+                case "Dakota":
+                    outVal = "https://gis.co.dakota.mn.us/DCGIS/";
+                    break;
+                case "Scott":
+                    outVal = "https://gis.co.scott.mn.us/sg3/";
+                    break;
+                case "Sherburne":
+                    outVal = "https://beacon.schneidercorp.com/?site=SherburneCountyMN";
+                    break;
+                case "Wright":
+                    outVal = "https://beacon.schneidercorp.com/Application.aspx?App=WrightCountyMN";
+                    break;
+            }
+            return outVal;
+        }
+
 
         private void newJobEntryToolStripMenuItem_Click(object sender, EventArgs e)
         {

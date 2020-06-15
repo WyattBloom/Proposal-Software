@@ -25,6 +25,43 @@ namespace JobEnter
 
         }
 
+        public String getGIS(String city)
+        {
+            String outVal = "";
+            switch (city)
+            {
+                case "Rogers":
+                    outVal = "https://gis.hennepin.us/property/map/";
+                    break;
+                case "Ramsey":
+                    outVal = "https://beacon.schneidercorp.com/application.aspx?app=RamseyCountyMN&PageType=Search";
+                    break;
+                case "Anoka":
+                    outVal = "http://gis.anokacountymn.gov/webgis/#<http://gis.anokacountymn.gov/webgis";
+                    break;
+                case "Carver":
+                    outVal = "https://gis.co.carver.mn.us/publicparcel/";
+                    break;
+                case "Washington":
+                    outVal = "https://wcmn.maps.arcgis.com/apps/webappviewer/index.html?id=5c2fe2b598e744afbc07cc0550162984";
+                    break;
+                case "Dakota":
+                    outVal = "https://gis.co.dakota.mn.us/DCGIS/";
+                    break;
+                case "Scott":
+                    outVal = "https://gis.co.scott.mn.us/sg3/";
+                    break;
+                case "Sherburne":
+                    outVal = "https://beacon.schneidercorp.com/?site=SherburneCountyMN";
+                    break;
+                case "Wright":
+                    outVal = "https://beacon.schneidercorp.com/Application.aspx?App=WrightCountyMN";
+                    break;
+            }
+            return outVal;
+        }
+
+
 
         public void addToBox(String txtToAdd)
         {
