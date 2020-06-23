@@ -1,4 +1,4 @@
--Building & Improvements:
+-Building and Improvements
 Show significant and visible improvements such as, but not limited to, buildings, decks, porches, walks, fences, and driveways. 
 Show any apparent and significant encroachments across boundary lines.
 Show front and nearest side (front to back) of the homes on the adjacent lots that front the same street as the subject property. 
@@ -10,12 +10,12 @@ Show the floor elevation of the garage, nearest the door, on the site.
 Tabulate areas of existing hardcover.  Note: Impervious surface requirements vary city to city.  Be sure to have this tabulation reviewed and approved by the appropriate governmental agency before using this information for any site design or construction.
 Show the peak or eave height of the existing building on site, as directed by the client.
 
--Utilities:
+-Utilities
 Show visible improvements related to public utilities such as, curbs, roadways and sidewalks.
 Show visible appurtenances to utilities in adjacent streets and alleys such as, manholes, power poles, catch basins, overhead utility lines or cable/telephone pedestals. 
 Show public utilities from plans or markings, combined with visible evidence of such utilities to develop a view of underground utility lines.  Note: The exact location of underground features cannot be accurately, completely, and reliably depicted without actual excavation of those utilities.
 
--Natural Features:
+-Natural Features
 Show edge of wooded areas and isolated, significant trees.
 Show significant or isolated bushes and or shrubs. 
 Show topography over the entire lot and up to the edge of the adjacent roadway at a contour interval of 1 or 2 feet, whichever is more appropriate.  In addition to contours, show critical spot elevations across the property, as needed, to depict vertical relief.
@@ -28,7 +28,7 @@ Show approximate edge of lowland per the plat and/or field observations.
 Show approximate top of steep slope.
 Show Bluff Line, per our interpretation of the city definition.  Note: While we show the bluff line per our interpretation of the city’s code, be sure to gain verification and approval from the city that they are correct before proceeding with any site design or construction.
 
--New Homes:
+-New Homes
 Show footprint of the proposed dwelling and related improvements, per your plans.  
 Show proposed elevations for the first floor, low floor, top of foundation, and garage floor.
 Show proposed grading & drainage details by depicting proposed contours, spot elevations, and drainage arrows, as necessary, to show the control of storm water runoff.
@@ -36,13 +36,13 @@ Tabulate areas of proposed hardcover.  Note: Impervious surface requirements var
 Note: While we show a proposed dwelling, related improvements and grading & drainage details, we are not as familiar with the plan or overall concept for the project as our client, their builder, or their architect is.  Before relying on the survey for construction and design or submitting the provided information to the city, the client is responsible to verify we are depicting their proposed dwelling and improvements correctly.
 Note: Gaining governmental approvals for your proposed dwelling and improvements is independent of the services we provide.  While we provide the appropriate documents to submit to such governmental agencies, we do not guarantee that your project will be approved at the city or county level.
 
--House Staking ($400):
+-House Staking
 Place building corner stakes and offsets, per the proposed survey, to guide the excavator in digging and the foundation contractor for their layout.
 Provide staking sheet, after building corner stakes and offsets have been set, showing how the house was staked.  Client is responsible to verify the house staking before proceeding with excavation and foundation construction. 
 
--Foundation As-built ($350):
+-Foundation as built
 Provide a foundation as-built survey showing the location and elevation of the new existing foundation.
 
--Final As-built:
+-Final as built
 Provide a final as-built survey showing actual existing lot conditions after all construction and grading is complete.  Final as-built survey will reflect the items included on the proposed new home survey.
 Note: Fees for final as-built survey will be determined based on the size of the proposed dwelling, amount of grading required, and extent of impervious surfaces that need to be shown.  Min. $500 – Max. $1000.

@@ -23,7 +23,6 @@ namespace JobEnter
         private String city;
         private String number;
         private String state;
-        private String zip;
         private String price;
         private DateTime date;
 
@@ -38,8 +37,6 @@ namespace JobEnter
         public void setCity(String c) { this.city = c; }
 
         public void setState(String s) { this.state = s; }
-
-        public void setZip(String z) { this.zip = z; }
 
         public void setNumber(String pn) { this.number = pn; }
 
@@ -59,8 +56,8 @@ namespace JobEnter
         // Does not include email authentication
         public APIRequests(String sheetName, string accessTokenIn,
                     String name, String email, String address,
-                    String city, String state, String zip,
-                    String price, String phoneNum, DateTime date)
+                    String city, String state, String price, 
+                    String phoneNum, DateTime date)
         {
             accessToken = accessTokenIn;
             smartsheet = new SmartsheetBuilder()
@@ -74,7 +71,6 @@ namespace JobEnter
             if (phoneNum != null) { this.number = phoneNum; }
             if (city     != null) { this.city = city; }
             if (state    != null) { this.state = state; }
-            if (zip      != null) { this.zip = zip; }
             if (price    != null) { this.price = price; }
             this.date = date;
         }
@@ -83,7 +79,7 @@ namespace JobEnter
         public APIRequests(String sheetName, string accessTokenIn,
                     String gisIn, String name, String email, 
                     String address, String city, String state, 
-                    String zip, String price, String phoneNum, DateTime date)
+                    String price, String phoneNum, DateTime date)
         {
             accessToken = accessTokenIn;
             smartsheet = new SmartsheetBuilder()
@@ -99,7 +95,6 @@ namespace JobEnter
                 if (phoneNum != null) { this.number  = phoneNum; }
                 if (city     != null) { this.city    = city; }
                 if (state    != null) { this.state   = state; }
-                if (zip      != null) { this.zip     = zip; }
                 if (price    != null) { this.price   = price; }
                 this.date = date;
             }catch(System.Exception ex)
@@ -114,7 +109,7 @@ namespace JobEnter
         /*public APIRequests(String sheetName, string accessTokenIn, String GIS, 
                             String userEmail, String name, String email, 
                             String address, String city, String state, 
-                            String zip, String price, String phoneNum, DateTime date)
+                            String price, String phoneNum, DateTime date)
         {
             accessToken = accessTokenIn;
             smartsheet  = new SmartsheetBuilder()
@@ -129,7 +124,6 @@ namespace JobEnter
             if (phoneNum != null) { this.number  = phoneNum; }
             if (city     != null) { this.city    = city;     }
             if (state    != null) { this.state   = state;    }
-            if (zip      != null) { this.zip     = zip;      }
         }*/
         public void addRow( String name, String address, int phone, 
                             DateObjectValue date, String money)
@@ -225,11 +219,6 @@ namespace JobEnter
                 {
                     ColumnId = this.getColumnID("State"),
                     Value = this.state
-                },
-                new Cell
-                {
-                    ColumnId = this.getColumnID("Zip"),
-                    Value = this.zip
                 },
                 new Cell
                 {

@@ -30,28 +30,26 @@
         {
             this.boxInstructions = new System.Windows.Forms.RichTextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.boxZip = new System.Windows.Forms.TextBox();
             this.boxNumber = new System.Windows.Forms.TextBox();
             this.boxEmail = new System.Windows.Forms.TextBox();
-            this.boxState = new System.Windows.Forms.TextBox();
             this.boxCity = new System.Windows.Forms.TextBox();
             this.boxAddress = new System.Windows.Forms.TextBox();
             this.boxName = new System.Windows.Forms.TextBox();
-            this.lblZip = new System.Windows.Forms.Label();
             this.lblCity = new System.Windows.Forms.Label();
-            this.lblState = new System.Windows.Forms.Label();
             this.lblNumber = new System.Windows.Forms.Label();
             this.lblEmail = new System.Windows.Forms.Label();
             this.lblAddress = new System.Windows.Forms.Label();
             this.lblName = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.lblState = new System.Windows.Forms.Label();
+            this.boxCounty = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // boxInstructions
             // 
             this.boxInstructions.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.boxInstructions.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.boxInstructions.Location = new System.Drawing.Point(101, 414);
+            this.boxInstructions.Location = new System.Drawing.Point(101, 379);
             this.boxInstructions.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.boxInstructions.Name = "boxInstructions";
             this.boxInstructions.Size = new System.Drawing.Size(609, 150);
@@ -62,20 +60,11 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(96, 382);
+            this.label2.Location = new System.Drawing.Point(96, 347);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(216, 29);
             this.label2.TabIndex = 33;
             this.label2.Text = "Special Instructions:";
-            // 
-            // boxZip
-            // 
-            this.boxZip.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.boxZip.Location = new System.Drawing.Point(269, 340);
-            this.boxZip.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.boxZip.Name = "boxZip";
-            this.boxZip.Size = new System.Drawing.Size(441, 30);
-            this.boxZip.TabIndex = 6;
             // 
             // boxNumber
             // 
@@ -94,15 +83,6 @@
             this.boxEmail.Name = "boxEmail";
             this.boxEmail.Size = new System.Drawing.Size(441, 30);
             this.boxEmail.TabIndex = 2;
-            // 
-            // boxState
-            // 
-            this.boxState.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.boxState.Location = new System.Drawing.Point(269, 295);
-            this.boxState.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.boxState.Name = "boxState";
-            this.boxState.Size = new System.Drawing.Size(441, 30);
-            this.boxState.TabIndex = 5;
             // 
             // boxCity
             // 
@@ -131,16 +111,6 @@
             this.boxName.Size = new System.Drawing.Size(441, 30);
             this.boxName.TabIndex = 0;
             // 
-            // lblZip
-            // 
-            this.lblZip.AutoSize = true;
-            this.lblZip.Font = new System.Drawing.Font("Times New Roman", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblZip.Location = new System.Drawing.Point(96, 337);
-            this.lblZip.Name = "lblZip";
-            this.lblZip.Size = new System.Drawing.Size(112, 29);
-            this.lblZip.TabIndex = 25;
-            this.lblZip.Text = "Zip Code:";
-            // 
             // lblCity
             // 
             this.lblCity.AutoSize = true;
@@ -150,16 +120,6 @@
             this.lblCity.Size = new System.Drawing.Size(62, 29);
             this.lblCity.TabIndex = 24;
             this.lblCity.Text = "City:";
-            // 
-            // lblState
-            // 
-            this.lblState.AutoSize = true;
-            this.lblState.Font = new System.Drawing.Font("Times New Roman", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblState.Location = new System.Drawing.Point(96, 292);
-            this.lblState.Name = "lblState";
-            this.lblState.Size = new System.Drawing.Size(69, 29);
-            this.lblState.TabIndex = 23;
-            this.lblState.Text = "State:";
             // 
             // lblNumber
             // 
@@ -211,6 +171,25 @@
             this.label1.TabIndex = 35;
             this.label1.Text = "Enter Client Info:";
             // 
+            // lblState
+            // 
+            this.lblState.AutoSize = true;
+            this.lblState.Font = new System.Drawing.Font("Times New Roman", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblState.Location = new System.Drawing.Point(96, 292);
+            this.lblState.Name = "lblState";
+            this.lblState.Size = new System.Drawing.Size(95, 29);
+            this.lblState.TabIndex = 23;
+            this.lblState.Text = "County:";
+            // 
+            // boxCounty
+            // 
+            this.boxCounty.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.boxCounty.Location = new System.Drawing.Point(269, 295);
+            this.boxCounty.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.boxCounty.Name = "boxCounty";
+            this.boxCounty.Size = new System.Drawing.Size(441, 30);
+            this.boxCounty.TabIndex = 5;
+            // 
             // ClientInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -219,18 +198,16 @@
             this.Controls.Add(this.boxInstructions);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblName);
-            this.Controls.Add(this.boxZip);
             this.Controls.Add(this.lblAddress);
             this.Controls.Add(this.boxNumber);
             this.Controls.Add(this.lblEmail);
             this.Controls.Add(this.boxEmail);
             this.Controls.Add(this.lblNumber);
-            this.Controls.Add(this.boxState);
+            this.Controls.Add(this.boxCounty);
             this.Controls.Add(this.lblState);
             this.Controls.Add(this.boxCity);
             this.Controls.Add(this.lblCity);
             this.Controls.Add(this.boxAddress);
-            this.Controls.Add(this.lblZip);
             this.Controls.Add(this.boxName);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "ClientInfo";
@@ -244,20 +221,18 @@
         #endregion
         private System.Windows.Forms.RichTextBox boxInstructions;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox boxZip;
         private System.Windows.Forms.TextBox boxNumber;
         private System.Windows.Forms.TextBox boxEmail;
-        private System.Windows.Forms.TextBox boxState;
         private System.Windows.Forms.TextBox boxCity;
         private System.Windows.Forms.TextBox boxAddress;
         private System.Windows.Forms.TextBox boxName;
-        private System.Windows.Forms.Label lblZip;
         private System.Windows.Forms.Label lblCity;
-        private System.Windows.Forms.Label lblState;
         private System.Windows.Forms.Label lblNumber;
         private System.Windows.Forms.Label lblEmail;
         private System.Windows.Forms.Label lblAddress;
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblState;
+        private System.Windows.Forms.TextBox boxCounty;
     }
 }

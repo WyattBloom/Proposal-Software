@@ -32,9 +32,13 @@ namespace JobEnter
               .FirstOrDefault(r => r.Checked);
 
             if (checkedButton != null)
+            {
+                Console.WriteLine("RBTN Selected: " + checkedButton.Text);
                 return checkedButton.Text;
+            }
             else
-                return "";
+                return null;
+
         }
 
         public void setSelectedButton(String setText)

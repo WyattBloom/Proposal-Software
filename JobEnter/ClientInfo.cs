@@ -24,8 +24,7 @@ namespace JobEnter
         private String address;
         private String email;
         private String city;
-        private String state;
-        private String zip;
+        private String county;
 
         #endregion
 
@@ -43,8 +42,7 @@ namespace JobEnter
             boxNumber.Text = "";
             boxAddress.Text = "";
             boxCity.Text = "";
-            boxState.Text = "";
-            boxZip.Text = "";
+            boxCounty.Text = "";
             boxInstructions.Text = "";
         }
 
@@ -81,16 +79,10 @@ namespace JobEnter
             set { boxCity.Text = value; }  // set method
         }
 
-        public string State
+        public string County
         {
-            get { return boxState.Text; }   // get method
-            set { boxState.Text = value; }  // set method
-        }
-
-        public string Zip
-        {
-            get { return boxZip.Text; }   // get method
-            set { boxZip.Text = value; }  // set method
+            get { return boxCounty.Text; }   // get method
+            set { boxCounty.Text = value; }  // set method
         }
 
         public String SpecialInstructions

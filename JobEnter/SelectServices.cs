@@ -23,8 +23,12 @@ namespace JobEnter
         private List<String> proposed = new List<String>();
         private string[] newHomeStrings;
         private string[] additionStrings;
-        private List<String> existingMinneapolis = new List<string>();
+        private string[] proposedStrings;
+
         private List<String> edinaStrings = new List<string>();
+        private List<String> minneapolisStrings = new List<string>();
+
+        private List<String> existingMinneapolis = new List<string>();
         private List<String> newHomeMinneapolis = new List<string>();
 
         private List<String> jobTypes = new List<String> { "One Stake",
@@ -47,7 +51,8 @@ namespace JobEnter
             {
                 newHomeStrings = File.ReadAllLines("NewHome.txt");
                 additionStrings = File.ReadAllLines("Addition.txt");
-                existingMinneapolis = File.ReadAllLines("Minneapolis-Existing.txt").ToList<String>();
+                proposedStrings = File.ReadAllLines("ExistingProposal.txt");
+                //existingMinneapolis = File.ReadAllLines("Minneapolis-Existing.txt").ToList<String>();
             } catch (System.Exception ex) {
                 Console.WriteLine("Unable to find file.");
             }
@@ -62,43 +67,56 @@ namespace JobEnter
             comboBox1.SelectedItem = "";
         }
 
+
+        #region Methods for Box input
+
         #region UI Updates
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             city = (comboBox1.SelectedItem.ToString());
             setCheckedTemplate(city);
-            Console.WriteLine(comboBox1.SelectedItem.ToString());
+            Console.WriteLine("Selected Index Changed to: " + comboBox1.SelectedItem.ToString());
         }
 
         #endregion
 
-        #region Get Set Methods
-
         public void setCheckedTemplate(String cityIn)
         {
+            Console.WriteLine("Set Checked Template(1)");
+            this.clearSelectedStrings();
             switch (cityIn)
             {
                 case "Minneapolis":
-                    setSelectedFromList(existingMinneapolis);
+                    setSelectedFromList1(minneapolisStrings);
                     break;
                 case "Edina":
-                    setSelectedFromList(edinaStrings);
+                    setSelectedFromList1(edinaStrings);
                     break;
             }
         }
 
+        public void clearSelectedStrings()
+        {
+            for(int i = 0; i < checkedListBox1.Items.Count; i++)
+                checkedListBox1.SetItemCheckState(i, CheckState.Unchecked);
+        }
+
+
         // Temp Method
         public void setCheckedTemplate(String city, String jobType)
         {
+            Console.WriteLine("Set Checked Template(2)");
+            this.clearBox();
+            clearSelectedStrings();
             switch (jobType)
             {
-                case "Proposal":
-                    if(city == "Minneapolis")
+                case "Proposed":
+                    if (city == "Minneapolis")
                     {
 
                     }
-                    else if(city == "Edina")
+                    else if (city == "Edina")
                     {
 
                     }
@@ -106,7 +124,7 @@ namespace JobEnter
                 case "New Home":
                     if (city == "Minneapolis")
                     {
-                        setSelectedFromList(newHomeMinneapolis);
+                        setSelectedFromList1(newHomeMinneapolis);
                     }
                     else if (city == "Edina")
                     {
@@ -116,7 +134,7 @@ namespace JobEnter
                 case "Addition":
                     if (city == "Minneapolis")
                     {
-
+                        setSelectedFromList1(minneapolisStrings);
                     }
                     else if (city == "Edina")
                     {
@@ -126,10 +144,42 @@ namespace JobEnter
             }
         }
 
+        public void setSelectedFromList1(List<String> listIn)
+        {
+            Console.WriteLine("SetSelected(1)");
+            this.clearSelectedStrings();
+            for (int i = 0; i < listIn.Count; i++)
+            {
+                if (checkedListBox1.Items.Contains(listIn[i]))
+                {
+                    checkedListBox1.SetItemChecked(i, true);
+                    //Console.WriteLine("Number " + i + ": " + checkedListBox1.Items[i]);
+                }
+                else
+                {
+                    if (listIn[i] != "")
+                    {
+                        checkedListBox1.Items.Add(listIn[i]);
+                        checkedListBox1.SetItemChecked(this.getIndex(listIn[i]), true);
+                    }
+                }
+            }
+        }
+
+
+
+
+        #endregion
+
+
+        #region Get Set Methods
+
+
         public void setComboSelected(String input)
         {
             comboBox1.Text = input;
         }
+
 
         private void setSelectedFromList(List<String> listIn)
         {
@@ -160,26 +210,6 @@ namespace JobEnter
                     titles.Add(s);
             }
             return titles;
-            /*            List<String> selectedTitles = new List<string>();
-                        System.Collections.IEnumerator checkedList = checkedListBox1.CheckedItems.GetEnumerator();
-
-
-                        while (checkedList.MoveNext())
-                        {
-                            if (checkedList.Current.ToString().StartsWith("-"))
-                            {
-                                String tempVal = checkedList.Current.ToString();
-                                while (checkedList.MoveNext())
-                                {
-                                    if (!checkedList.Current.ToString().StartsWith("-"))
-                                        Console.WriteLine(tempVal + ": " + checkedList.Current.ToString());
-                                    else
-                                        tempVal = checkedList.Current.ToString();
-                                }
-                            }
-                        }
-                        return selectedTitles;
-            */
         }
 
         public List<String> getSelectedTitles()
@@ -257,11 +287,11 @@ namespace JobEnter
         public String getJobType() { return this.jobType; }
         public void setBoxesShown(String s)
         {
+            Console.WriteLine("Set Box List");
             if (currType == s)
-            { Console.WriteLine("Second if: " + s); }
+            {  }
             else if (currType != s)
             {
-                Console.WriteLine("Third if: " + s);
                 currType = s;
                 label2.Text = currType;
                 checkedListBox1.Items.Clear();
@@ -271,15 +301,25 @@ namespace JobEnter
 
         public void updateCheckboxList(String type)
         {
+            Console.WriteLine("Update Checkbox List");
+            edinaStrings.Clear();
+            minneapolisStrings.Clear();
             if (type == "New Home")
             {
                 addToBox(newHomeStrings);
                 edinaStrings = File.ReadAllLines("NewHome-Edina.txt").ToList<String>();
+                minneapolisStrings = File.ReadAllLines("New Home-Minneapolis.txt").ToList<String>();
             }
             else if (type == "Addition")
             {
                 addToBox(additionStrings);
                 edinaStrings = File.ReadAllLines("Addition-Edina.txt").ToList<String>();
+                minneapolisStrings = File.ReadAllLines("New Home-Minneapolis.txt").ToList<String>();
+            }
+            else if (type == "Proposed")
+            {
+                addToBox(proposedStrings);
+                minneapolisStrings = File.ReadAllLines("Minneapolis-Existing.txt").ToList<String>();
             }
         }
 
@@ -331,9 +371,9 @@ namespace JobEnter
                 {
                     if (!i.Equals(last))
                     {
-                        Console.WriteLine("I: " + indexes[i]);
-                        Console.WriteLine("For Header: " + indexes[i] + " | " + checkedListBox1.Items[indexes[i]].ToString());
-                        Console.WriteLine("For Header: " + indexes[i + 1] + " | " + checkedListBox1.Items[indexes[i + 1]].ToString());
+                        //Console.WriteLine("I: " + indexes[i]);
+                        //Console.WriteLine("For Header: " + indexes[i] + " | " + checkedListBox1.Items[indexes[i]].ToString());
+                        //Console.WriteLine("For Header: " + indexes[i + 1] + " | " + checkedListBox1.Items[indexes[i + 1]].ToString());
                         for (int j = indexes[i]; j < indexes[i + 1]; j++)
                         {
                             if (checkedListBox1.GetItemChecked(j))

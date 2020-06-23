@@ -77,7 +77,7 @@ namespace JobEnter
             }
         }
 
-        public void addToBox(String n, String num, String e, String a, String c, String s, String z, String SI)
+        public void addToBox(String n, String num, String e, String a, String c, String s, String SI)
         {
             lbox1.Items.Add("Name: " + n);
             lbox1.Items.Add("Number: " + num);
@@ -85,7 +85,6 @@ namespace JobEnter
             lbox1.Items.Add("Address: " + a);
             lbox1.Items.Add("City: " + c);
             lbox1.Items.Add("State: " + s);
-            lbox1.Items.Add("Zip: " + z);
             lbox1.Items.Add("Special Instructions:" + SI);
         }
 

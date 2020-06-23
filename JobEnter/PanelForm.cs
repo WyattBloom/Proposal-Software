@@ -51,7 +51,7 @@ namespace JobEnter
         }
 
 
-        public String saveToFile(String address)
+        public String getSaveDialog(String address)
         {
             string folderPath = "";
             FolderBrowserDialog folderBrowserDialog1 = new FolderBrowserDialog();
@@ -60,7 +60,9 @@ namespace JobEnter
             if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
             {
                 folderPath = folderBrowserDialog1.SelectedPath;
-                String folderName = "Proposal for Services at " + address;
+                //String folderName = "Proposal for Services at " + address;
+                String folderName = clientInfo1.Address + " " + clientInfo1.City;
+                Console.WriteLine("Folder: " + folderName);
                 String finalFolderPath = createFolder(folderPath, folderName);
                 return finalFolderPath;
             }
@@ -111,7 +113,6 @@ namespace JobEnter
         private void btnSelectServices_Click(object sender, EventArgs e)
         {
             count = 2;
-            Console.WriteLine(clientInfo1.City);
             showHide(count);
         }
 
@@ -154,13 +155,13 @@ namespace JobEnter
                     {
                         selectServices1.Visible = true;
                     }
-                    verifyPage.Visible = false;
+                    verifyPage.Visible  = false;
                     clientInfo1.Visible = false;
-                    jobType1.Visible = false;
+                    jobType1.Visible    = false;
 
                     // Set dropdown box City and Checkbox List items
-                    selectServices1.setComboSelected(clientInfo1.City);
-                    selectServices1.setBoxesShown(jobType1.getSelectedButton());
+                    selectServices1.setComboSelected(  clientInfo1.City);
+                    selectServices1.setBoxesShown(     jobType1.getSelectedButton());
                     selectServices1.setCheckedTemplate(clientInfo1.City);
                     
                     btnNext.Text = "Next";
@@ -181,9 +182,8 @@ namespace JobEnter
                                         clientInfo1.Number,
                                         clientInfo1.Email,
                                         clientInfo1.Address,
-                                        clientInfo1.State,
+                                        clientInfo1.County,
                                         clientInfo1.City,
-                                        clientInfo1.Zip,
                                         clientInfo1.SpecialInstructions);
                     // Add titles to box
                     verifyPage.addToBox(selectServices1.getSelectedTitles());
@@ -192,13 +192,18 @@ namespace JobEnter
                     break;
                 case 4:
                     count = 3;
+
+                    if(verifyConditions() == false)
+                    {
+                        break;
+                    }
                     verifyPage.addToBox("Saving...");
-                    String absoluteFolderPath = saveToFile(clientInfo1.Address);
+                    String absoluteFolderPath = getSaveDialog(clientInfo1.Address);
 
                     String templateName = getTemplateName(jobType1.getSelectedButton());
-                    Console.WriteLine(templateName);
+                    Console.WriteLine("Template Name:" + templateName);
 
-                    /* 
+                    
                      if (absoluteFolderPath == null)
                          break;
                      else
@@ -207,17 +212,17 @@ namespace JobEnter
                              break;
                          else
                              verifyPage.addToBox("File saved successfully");
-                     }*/
-                     /*
+                     }
+                     
                      string CTFFile = getCTF("Tom");
                      String destFile = System.IO.Path.Combine(absoluteFolderPath, "CTFFile.docx");
                      File.Copy("TomCTFLetter.docx", destFile);
-                     */
+                    /* 
                     //Open File for edits
-                    //                    openFile(fileInFolder);
+                    openFile(fileInFolder);
 
-                    //FileInfo fi1 = new FileInfo(templateName);
-                    /*while (checkFileStatus(fi1))
+                    FileInfo fi1 = new FileInfo(templateName);
+                    while (checkFileStatus(fi1))
                     {
                         Console.WriteLine("Still in loop");
                     }
@@ -228,6 +233,37 @@ namespace JobEnter
                     break;
             }
         }
+
+        public Boolean verifyConditions()
+        {
+            if (clientInfo1.Address == "")
+            {
+                count = 0;
+                showHide(count);
+                MessageBox.Show("Please Enter a Address", "Address String Empty", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            else if (clientInfo1.City == "")
+            {
+                count = 0;
+                showHide(count);
+                MessageBox.Show("Please Enter a City", "City String Empty", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            else if (jobType1.getSelectedButton() == null)
+            {
+                count = 1;
+                showHide(count);
+                MessageBox.Show("Please Select a Job Type", "Job Type Null", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+
 
         private void btnNext_Click(object sender, EventArgs e) 
         {
@@ -262,11 +298,11 @@ namespace JobEnter
                 case "Two Stake":
                     return "StakingTemplate.docx";
                 case "All Stake":
-                    return "StakingTemplate.docx";
-                case "Proposed":
                     return "fullTemplate.docx";
+                case "Proposed":
+                    return "Proposal Template.docx";
                 case "New Home":
-                    return "StakingTemplate.docx";
+                    return "Proposal Template.docx";
                 case "Addition":
                     return "Additions Template.docx";
             }
@@ -312,23 +348,15 @@ namespace JobEnter
         {
             try
             {
-                if (clientInfo1.Address != "")
-                {
-                    String absoluteFilePath = absoluteFolderPath + "\\Proposal For Services at " + clientInfo1.Address;
+                String absoluteFilePath = absoluteFolderPath + "\\Proposal For Services at " + clientInfo1.Address;
+                Console.WriteLine("File: " + absoluteFilePath);
+                CreateWordDoc doc1 = new CreateWordDoc(Directory.GetCurrentDirectory() + "\\" + fileType, absoluteFilePath);
+                doc1.CreateDocument();
+                FindAndReplaceTemplate(doc1);
+                doc1.closeAndSave();
 
-                    CreateWordDoc doc1 = new CreateWordDoc(Directory.GetCurrentDirectory() + "\\" + fileType, absoluteFilePath);
-                    doc1.CreateDocument();
-                    FindAndReplaceTemplate(doc1);
-                    doc1.closeAndSave();
-
-                    //______verifyPage.addToBox("Saved to: " + absoluteFilePath);_____
-                    return true;
-                }
-                else
-                {
-                    MessageBox.Show("Address must not be blank", "Error 2", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
-                }
+                //______verifyPage.addToBox("Saved to: " + absoluteFilePath);_____
+                return true;
             }
             catch (System.Exception ex)
             {
@@ -382,26 +410,30 @@ namespace JobEnter
         {
             try
             {
-                List<String> titles = selectServices1.getSelectedStrings();
+                List<String> titles         = selectServices1.getSelectedStrings();
                 List<String> selectedTitles = selectServices1.getSelectedTitles();
-                List<String> nonTitles = selectServices1.getNotTitles();
+                List<String> nonTitles      = selectServices1.getNotTitles();
 
                 List<String> titlesAndServices = selectServices1.getTitlesAndList();
                 for(int i = 0; i < titlesAndServices.Count -1; i++)
                 {
                     if (titlesAndServices[i].StartsWith("-"))
                     {
-                        Console.WriteLine("S: " + titlesAndServices[i]);
-                        Console.WriteLine("S + 1: " + titlesAndServices[i+1]);
+                        //Console.WriteLine("S: " + titlesAndServices[i]);
+                        //Console.WriteLine("S + 1: " + titlesAndServices[i+1]);
 
                         if (titlesAndServices[i + 1] == "")
                         {
                             var result = titlesAndServices[i].Substring(titlesAndServices[i].LastIndexOf("-") + 1);
                             replaceTitles(doc1, result, titlesAndServices[i + 1], "");
+
+                            //Console.WriteLine(titlesAndServices[i + 1]);
                         }
                         else
                         {
                             var result = titlesAndServices[i].Substring(titlesAndServices[i].LastIndexOf("-") + 1);
+
+                            //Console.WriteLine(titlesAndServices[i + 1]);
 
                             System.Windows.Forms.Clipboard.SetText(titlesAndServices[i + 1]);
                             replaceTitles(doc1, result, "^c^p", result + "^p");
@@ -414,14 +446,47 @@ namespace JobEnter
             }
         }
 
+        public String getPrice(String cityIn)
+        {
+
+
+
+            return "";
+        }
+
         /*
          * Addition(Edina)- Existing Condition: $1350
          * New Home(Edina)- Existing Condition: $1350
-         * 
+         * New Home 
+         *      New Home: 
+         *          Edina       - $900
+         *          Minneapolis - $1000
+         *      Final: 
+         *          Edina - 
+         *          Minneapolis - $600 
+         *      Staking: 
+         *          Edina        - $400
+         *          Minneapolis  - $400
+         *      Foundation: 
+         *          Edina     - $300 
+         *          Minneapolis - $300
+         * Addition
+         *      House Staking: $400
+         *      Foundation: $350
+         *      Final: $ 
+         *      Edina:
+         *          Stormwater: %600 - $1200
         */
         private void replaceTitles(CreateWordDoc doc1, String titleIn, 
                                 String servicesIn, String replaceWith)
         {
+            String stakingPrice    = "$400";
+            String finalPrice      = "$600";
+            String foundationPrice = "$350";
+            String stormwaterPrice = "$600 - $1200";
+
+            Console.WriteLine(titleIn);
+
             switch (titleIn)
             {
                 case "Building and Improvements":
@@ -436,7 +501,7 @@ namespace JobEnter
                     doc1.FindAndReplace("<naturalHeader>", replaceWith);
                     doc1.FindAndReplace("<naturalBody>", servicesIn);
                     break;
-                case "Homes":
+                case "New Home":
                     doc1.FindAndReplace("<homesHeader>", replaceWith);
                     doc1.FindAndReplace("<homesBody>", servicesIn);
                     break;
@@ -444,15 +509,15 @@ namespace JobEnter
                     doc1.FindAndReplace("<edinaHeader>", replaceWith);
                     doc1.FindAndReplace("<edinaBody>", servicesIn);
                     break;
-                case "Staking":
+                case "House Staking":
                     doc1.FindAndReplace("<stakingHeader>", replaceWith);
                     doc1.FindAndReplace("<stakingBody>", servicesIn);
                     break;
-                case "Foundation":
+                case "Foundation as Built":
                     doc1.FindAndReplace("<foundationHeader>", replaceWith);
                     doc1.FindAndReplace("<foundationBody>", servicesIn);
                     break;
-                case "Final":
+                case "Final as Built":
                     doc1.FindAndReplace("<finalHeader>", replaceWith);
                     doc1.FindAndReplace("<finalBody>", servicesIn);
                     break;
@@ -535,9 +600,9 @@ namespace JobEnter
             try
             {
                 APIRequests apiInstance = new APIRequests(set1.SheetName, set1.AccessToken,
-                    verifyPage.getGIS(clientInfo1.City), clientInfo1.Name, clientInfo1.Email, 
-                    clientInfo1.Address, clientInfo1.City, clientInfo1.State, clientInfo1.Zip, 
-                    verifyPage.Price, clientInfo1.Number, DateTime.Today);
+                    verifyPage.getGIS(clientInfo1.County), clientInfo1.Name, clientInfo1.Email, 
+                    clientInfo1.Address, clientInfo1.City, clientInfo1.County, verifyPage.Price, 
+                    clientInfo1.Number, DateTime.Today);
 
                 apiInstance.addRow();
                 MessageBox.Show("Row successfully added to smartsheet", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -552,10 +617,7 @@ namespace JobEnter
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //foreach (String s in selectServices1.getTitlesAndList())
-            //{
-            //    Console.WriteLine(s);
-            //}
+            selectServices1.clearSelectedStrings();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -563,12 +625,12 @@ namespace JobEnter
             verifyPage.addToBox(verifyPage.getGIS(clientInfo1.City));
         }
 
-        public String getGIS(String city)
+        public String getGIS(String county)
         {
             String outVal = "";
-            switch (city)
+            switch (county)
             {
-                case "Rogers":
+                case "Hennepin":
                     outVal = "https://gis.hennepin.us/property/map/";
                     break;
                 case "Ramsey":
