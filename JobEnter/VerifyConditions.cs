@@ -37,7 +37,7 @@ namespace JobEnter
                     outVal = "https://beacon.schneidercorp.com/application.aspx?app=RamseyCountyMN&PageType=Search";
                     break;
                 case "Anoka":
-                    outVal = "http://gis.anokacountymn.gov/webgis/#<http://gis.anokacountymn.gov/webgis";
+                    outVal = "http://gis.anokacountymn.gov/";
                     break;
                 case "Carver":
                     outVal = "https://gis.co.carver.mn.us/publicparcel/";

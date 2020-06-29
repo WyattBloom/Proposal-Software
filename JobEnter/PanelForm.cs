@@ -45,8 +45,13 @@ namespace JobEnter
 
         private void PanelForm_Load(object sender, EventArgs e)
         {
-            set1.AccessToken = "zja8p39vwwxywjoch3nuwpy1de";
-            set1.SheetName = "TestSheet1";
+            // Spam Sheet Access Token : zja8p39vwwxywjoch3nuwpy1de
+            // Spam Name               : TestSheet1 
+            // Advsur API Key          : b2j1a696p2uyqw8apn44s3vpiq
+            // Advsur Landing Page ID  : 3637774839506820
+            // Advsur Landing Page Name: Landing Page 2020
+            set1.AccessToken = "b2j1a696p2uyqw8apn44s3vpiq";
+            set1.SheetName = "Landing Page 2020";
             count = 0;
         }
 
@@ -160,9 +165,11 @@ namespace JobEnter
                     jobType1.Visible    = false;
 
                     // Set dropdown box City and Checkbox List items
-                    selectServices1.setComboSelected(  clientInfo1.City);
-                    selectServices1.setBoxesShown(     jobType1.getSelectedButton());
-                    selectServices1.setCheckedTemplate(clientInfo1.City);
+                    selectServices1.setComboSelected(clientInfo1.City);
+                    //selectServices1.setBoxesShown(jobType1.getSelectedButton());
+
+                    selectServices1.setJobType(jobType1.getSelectedButton());
+                    selectServices1.setCheckedTemplate(clientInfo1.City, jobType1.getSelectedButton());
                     
                     btnNext.Text = "Next";
                     break;
@@ -182,7 +189,7 @@ namespace JobEnter
                                         clientInfo1.Number,
                                         clientInfo1.Email,
                                         clientInfo1.Address,
-                                        clientInfo1.County,
+                                        clientInfo1.CountyBox,
                                         clientInfo1.City,
                                         clientInfo1.SpecialInstructions);
                     // Add titles to box
@@ -440,6 +447,7 @@ namespace JobEnter
                         }
                     }
                 }
+                this.cleanUp1(doc1);
             }catch(System.Exception ex)
             {
                 Console.WriteLine("Error 4. " + ex.Message);
@@ -505,6 +513,10 @@ namespace JobEnter
                     doc1.FindAndReplace("<homesHeader>", replaceWith);
                     doc1.FindAndReplace("<homesBody>", servicesIn);
                     break;
+                case "Additions":
+                    doc1.FindAndReplace("<additionHeader>", replaceWith);
+                    doc1.FindAndReplace("<additionBody>", servicesIn);
+                    break;
                 case "Edina Stuff":
                     doc1.FindAndReplace("<edinaHeader>", replaceWith);
                     doc1.FindAndReplace("<edinaBody>", servicesIn);
@@ -534,6 +546,57 @@ namespace JobEnter
                 case "":
                     break;
             }
+        }
+
+        private void cleanUp1(CreateWordDoc doc1)
+        {
+            // Build/Improve
+            doc1.FindAndReplace("<build/improveHeader>", "");
+            doc1.FindAndReplace("<build/improveBody>", "");
+
+            // Utilities
+            doc1.FindAndReplace("<utilHeader>", "");
+            doc1.FindAndReplace("<utilBody>", "");
+
+            // Natural
+            doc1.FindAndReplace("<naturalHeader>", "");
+            doc1.FindAndReplace("<naturalBody>", "");
+
+            // New Home
+            doc1.FindAndReplace("<homesHeader>", "");
+            doc1.FindAndReplace("<homesBody>", "");
+
+            // Additions
+            doc1.FindAndReplace("<additionHeader>", "");
+            doc1.FindAndReplace("<additionBody>", "");
+
+            // Edina
+            doc1.FindAndReplace("<edinaHeader>", "");
+            doc1.FindAndReplace("<edinaBody>", "");
+
+            // Staking
+            doc1.FindAndReplace("<stakingHeader>", "");
+            doc1.FindAndReplace("<stakingBody>", "");
+
+            // Foundation
+            doc1.FindAndReplace("<foundationHeader>", "");
+            doc1.FindAndReplace("<foundationBody>", "");
+
+            // Final
+            doc1.FindAndReplace("<finalHeader>", "");
+            doc1.FindAndReplace("<finalBody>", "");
+
+            // Hardcover Note
+            doc1.FindAndReplace("<hardnoteHeader>", "");
+            doc1.FindAndReplace("<hardnoteBody>", "");
+
+            // Storm Water
+            doc1.FindAndReplace("<stormwaterHeader>", "");
+            doc1.FindAndReplace("<stormwaterBody>", "");
+
+
+
+
         }
 
         public bool checkFileStatus(FileInfo fileName)
@@ -600,12 +663,14 @@ namespace JobEnter
             try
             {
                 APIRequests apiInstance = new APIRequests(set1.SheetName, set1.AccessToken,
-                    verifyPage.getGIS(clientInfo1.County), clientInfo1.Name, clientInfo1.Email, 
-                    clientInfo1.Address, clientInfo1.City, clientInfo1.County, verifyPage.Price, 
-                    clientInfo1.Number, DateTime.Today);
+                    verifyPage.getGIS(clientInfo1.CountyBox), clientInfo1.Name, clientInfo1.Email, 
+                    clientInfo1.Address, clientInfo1.City, clientInfo1.CountyBox, verifyPage.Price, 
+                    clientInfo1.Number, clientInfo1.SpecialInstructions, DateTime.Today);
 
-                apiInstance.addRow();
-                MessageBox.Show("Row successfully added to smartsheet", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (apiInstance.addRow())
+                    MessageBox.Show("Row successfully added to smartsheet", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else
+                    MessageBox.Show("Error in adding row to smartsheet.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (System.Exception ex)
             {
@@ -617,12 +682,12 @@ namespace JobEnter
 
         private void button1_Click(object sender, EventArgs e)
         {
-            selectServices1.clearSelectedStrings();
+            updateAPI();    
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            verifyPage.addToBox(verifyPage.getGIS(clientInfo1.City));
+            Console.WriteLine(getGIS(clientInfo1.CountyBox));
         }
 
         public String getGIS(String county)

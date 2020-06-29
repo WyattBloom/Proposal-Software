@@ -62,7 +62,7 @@
             this.btnClientInfo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnClientInfo.Name = "btnClientInfo";
             this.btnClientInfo.Size = new System.Drawing.Size(231, 126);
-            this.btnClientInfo.TabIndex = 1;
+            this.btnClientInfo.TabIndex = 0;
             this.btnClientInfo.Text = "Enter Client Info";
             this.btnClientInfo.UseVisualStyleBackColor = false;
             this.btnClientInfo.Click += new System.EventHandler(this.btnClientInfo_Click);
@@ -122,7 +122,7 @@
             this.btnJobType.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnJobType.Name = "btnJobType";
             this.btnJobType.Size = new System.Drawing.Size(231, 126);
-            this.btnJobType.TabIndex = 5;
+            this.btnJobType.TabIndex = 1;
             this.btnJobType.Text = "Select Job Type";
             this.btnJobType.UseVisualStyleBackColor = false;
             this.btnJobType.Click += new System.EventHandler(this.btnJobType_Click);
@@ -158,10 +158,10 @@
             // btnPrev
             // 
             this.btnPrev.Location = new System.Drawing.Point(397, 623);
-            this.btnPrev.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnPrev.Margin = new System.Windows.Forms.Padding(4);
             this.btnPrev.Name = "btnPrev";
             this.btnPrev.Size = new System.Drawing.Size(213, 47);
-            this.btnPrev.TabIndex = 26;
+            this.btnPrev.TabIndex = 0;
             this.btnPrev.Text = "Previous";
             this.btnPrev.UseVisualStyleBackColor = true;
             this.btnPrev.Click += new System.EventHandler(this.btnPrev_Click);
@@ -169,10 +169,10 @@
             // btnNext
             // 
             this.btnNext.Location = new System.Drawing.Point(619, 623);
-            this.btnNext.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnNext.Margin = new System.Windows.Forms.Padding(4);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(213, 47);
-            this.btnNext.TabIndex = 27;
+            this.btnNext.TabIndex = 1;
             this.btnNext.Text = "Next";
             this.btnNext.UseVisualStyleBackColor = true;
             this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
@@ -187,7 +187,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1389, 30);
+            this.menuStrip1.Size = new System.Drawing.Size(1389, 28);
             this.menuStrip1.TabIndex = 34;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -196,7 +196,7 @@
             this.smartsheetOptionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.changeAccessTokeToolStripMenuItem});
             this.smartsheetOptionsToolStripMenuItem.Name = "smartsheetOptionsToolStripMenuItem";
-            this.smartsheetOptionsToolStripMenuItem.Size = new System.Drawing.Size(153, 26);
+            this.smartsheetOptionsToolStripMenuItem.Size = new System.Drawing.Size(153, 24);
             this.smartsheetOptionsToolStripMenuItem.Text = "Smartsheet Options";
             // 
             // changeAccessTokeToolStripMenuItem
@@ -209,7 +209,7 @@
             // newJobEntryToolStripMenuItem
             // 
             this.newJobEntryToolStripMenuItem.Name = "newJobEntryToolStripMenuItem";
-            this.newJobEntryToolStripMenuItem.Size = new System.Drawing.Size(116, 26);
+            this.newJobEntryToolStripMenuItem.Size = new System.Drawing.Size(116, 24);
             this.newJobEntryToolStripMenuItem.Text = "New job entry";
             this.newJobEntryToolStripMenuItem.Click += new System.EventHandler(this.newJobEntryToolStripMenuItem_Click);
             // 
@@ -258,7 +258,6 @@
             // 
             this.clientInfo1.Address = "";
             this.clientInfo1.City = "";
-            this.clientInfo1.County = "";
             this.clientInfo1.Email = "";
             this.clientInfo1.Location = new System.Drawing.Point(237, 33);
             this.clientInfo1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);

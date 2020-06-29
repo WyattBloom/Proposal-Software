@@ -6,30 +6,30 @@ Show exterior dimensions of the building footprint along with building corner di
 Show area enclosed by building perimeter at ground level.
 Show the door threshold (entrance) elevation of the building on the site.
 Show the floor elevation of the garage, nearest the door, on the site.
-Tabulate areas of existing hardcover.  Note: Impervious surface requirements vary city to city.  Be sure to have this tabulation reviewed and approved by the appropriate governmental agency before using this information for any site design or construc-tion.
+Tabulate areas of existing hardcover. Note: Impervious surface requirements vary city to city. Be sure to have this tabulation reviewed and approved by the appropriate governmental agency before using this information for any site design or construc-tion.
 
 -Utilities
 Show visible improvements related to public utilities such as, but not limited to, curbs, roadways, sidewalks, manholes, utility poles, catch basins, and phone/cable pedestals.
 
 -Natural Features
-Show edge of wooded areas.  Show general location and approximate size of isolated, substantial trees, 8” or larger.  Species and health of tree is not determined by surveyor.
-Show topography over the entire lot and up to the edge of the adjacent roadway at a contour interval of 1 or 2 feet, whichever is more appropriate.  In addition to contours, show critical spot elevations across the property, as needed, to depict vertical relief.
+Show edge of wooded areas. Show general location and approximate size of isolated, substantial trees, 8” or larger. Species and health of tree is not determined by surveyor.
+Show topography over the entire lot and up to the edge of the adjacent roadway at a contour interval of 1 or 2 feet, whichever is more appropriate. In addition to contours, show critical spot elevations across the property, as needed, to depict vertical relief.
 Establish a project benchmark in relation to the topography shown.
 
 -New Homes
 Show footprint of the proposed dwelling and related improvements, per your plans.
 Show proposed elevations for the first floor, low floor, top of foundation, and garage floor.
 Show proposed grading & drainage details by depicting proposed contours, spot elevations, and drainage arrows, as necessary, to show the control of storm water runoff.
-Tabulate areas of proposed hardcover.  Note: Impervious surface requirements vary city to city.  Be sure to have this tabulation reviewed and approved by the appropriate governmental agency before using this information for any site design or construc-tion.
-Note: While we show a proposed dwelling, related improvements and grading & drainage details, we are not as familiar with the plan or overall concept for the project as our client, their builder, or their architect is.  Before relying on the survey for construc-tion and design or submitting the provided information to the city, the client is responsible to verify we are depicting their pro-posed dwelling and improvements correctly.
-Note: Gaining governmental approvals for your proposed dwelling and improvements is independent of the services we provide.  While we provide the appropriate documents to submit to such governmental agencies, we do not guarantee that your project will be approved at the city or county level.
+Tabulate areas of proposed hardcover. Note: Impervious surface requirements vary city to city. Be sure to have this tabulation reviewed and approved by the appropriate governmental agency before using this information for any site design or construc-tion.
+Note: While we show a proposed dwelling, related improvements and grading & drainage details, we are not as familiar with the plan or overall concept for the project as our client, their builder, or their architect is. Before relying on the survey for construc-tion and design or submitting the provided information to the city, the client is responsible to verify we are depicting their pro-posed dwelling and improvements correctly.
+Note: Gaining governmental approvals for your proposed dwelling and improvements is independent of the services we provide. While we provide the appropriate documents to submit to such governmental agencies, we do not guarantee that your project will be approved at the city or county level.
 
 -House Staking
 Place building corner stakes and offsets, per the proposed survey, to guide the excavator in digging and the foundation contractor for their layout.
-Provide staking sheet, after building corner stakes and offsets have been set, showing how the house was staked.  Client is responsible to verify the house staking before proceeding with excavation and foundation construction.
+Provide staking sheet, after building corner stakes and offsets have been set, showing how the house was staked. Client is responsible to verify the house staking before proceeding with excavation and foundation construction.
 
 -Foundation as built
 Provide a foundation as-built survey showing the location and elevation of the new existing foundation.
 
 -Final as built
-Provide a final as-built survey showing actual existing lot conditions after all construction and grading is complete.  Final as-built survey will reflect the items included on the proposed new home survey.
+Provide a final as-built survey showing actual existing lot conditions after all construction and grading is complete. Final as-built survey will reflect the items included on the proposed new home survey.

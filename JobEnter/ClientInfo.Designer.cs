@@ -42,7 +42,7 @@
             this.lblName = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lblState = new System.Windows.Forms.Label();
-            this.boxCounty = new System.Windows.Forms.TextBox();
+            this.cmbCounty = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // boxInstructions
@@ -181,19 +181,30 @@
             this.lblState.TabIndex = 23;
             this.lblState.Text = "County:";
             // 
-            // boxCounty
+            // cmbCounty
             // 
-            this.boxCounty.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.boxCounty.Location = new System.Drawing.Point(269, 295);
-            this.boxCounty.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.boxCounty.Name = "boxCounty";
-            this.boxCounty.Size = new System.Drawing.Size(441, 30);
-            this.boxCounty.TabIndex = 5;
+            this.cmbCounty.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbCounty.FormattingEnabled = true;
+            this.cmbCounty.Items.AddRange(new object[] {
+            "Anoka",
+            "Carver",
+            "Dakota",
+            "Hennepin",
+            "Ramsey",
+            "Scott",
+            "Sherburne",
+            "Washington",
+            "Wright"});
+            this.cmbCounty.Location = new System.Drawing.Point(269, 295);
+            this.cmbCounty.Name = "cmbCounty";
+            this.cmbCounty.Size = new System.Drawing.Size(441, 30);
+            this.cmbCounty.TabIndex = 36;
             // 
             // ClientInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.cmbCounty);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.boxInstructions);
             this.Controls.Add(this.label2);
@@ -203,7 +214,6 @@
             this.Controls.Add(this.lblEmail);
             this.Controls.Add(this.boxEmail);
             this.Controls.Add(this.lblNumber);
-            this.Controls.Add(this.boxCounty);
             this.Controls.Add(this.lblState);
             this.Controls.Add(this.boxCity);
             this.Controls.Add(this.lblCity);
@@ -233,6 +243,6 @@
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblState;
-        private System.Windows.Forms.TextBox boxCounty;
+        private System.Windows.Forms.ComboBox cmbCounty;
     }
 }

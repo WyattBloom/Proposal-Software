@@ -21,8 +21,9 @@ namespace JobEnter
         private String email;
         private String address;
         private String city;
+        private String county;
         private String number;
-        private String state;
+        private String SI;
         private String price;
         private DateTime date;
 
@@ -36,7 +37,9 @@ namespace JobEnter
 
         public void setCity(String c) { this.city = c; }
 
-        public void setState(String s) { this.state = s; }
+        public void setCounty(String c) { this.county = c; }
+
+        public void setSI(String s) { this.SI = s; }
 
         public void setNumber(String pn) { this.number = pn; }
 
@@ -54,10 +57,10 @@ namespace JobEnter
         }
 
         // Does not include email authentication
-        public APIRequests(String sheetName, string accessTokenIn,
+        /*public APIRequests(String sheetName, string accessTokenIn,
                     String name, String email, String address,
-                    String city, String state, String price, 
-                    String phoneNum, DateTime date)
+                    String city, String county, String state,
+                    String price, String phoneNum, DateTime date)
         {
             accessToken = accessTokenIn;
             smartsheet = new SmartsheetBuilder()
@@ -65,21 +68,23 @@ namespace JobEnter
                             .Build();
             sheetID = this.getSheetID(sheetName);
 
-            if (name     != null) { this.name = name; }
-            if (address  != null) { this.address = address; }
-            if (email    != null) { this.email = email; }
+            if (name != null) { this.name = name; }
+            if (address != null) { this.address = address; }
+            if (email != null) { this.email = email; }
             if (phoneNum != null) { this.number = phoneNum; }
-            if (city     != null) { this.city = city; }
-            if (state    != null) { this.state = state; }
-            if (price    != null) { this.price = price; }
+            if (city != null) { this.city = city; }
+            if (county != null) { this.county = county; }
+            if (state != null) { this.state = state; }
+            if (price != null) { this.price = price; }
             this.date = date;
-        }
+        }*/
 
         // Includes GIS Link
         public APIRequests(String sheetName, string accessTokenIn,
                     String gisIn, String name, String email, 
-                    String address, String city, String state, 
-                    String price, String phoneNum, DateTime date)
+                    String address, String city, String county, 
+                    String price, String phoneNum, String SI,
+                    DateTime date)
         {
             accessToken = accessTokenIn;
             smartsheet = new SmartsheetBuilder()
@@ -94,7 +99,8 @@ namespace JobEnter
                 if (email    != null) { this.email   = email; }
                 if (phoneNum != null) { this.number  = phoneNum; }
                 if (city     != null) { this.city    = city; }
-                if (state    != null) { this.state   = state; }
+                if (county   != null) { this.county  = county; }
+                if (SI       != null) { this.SI      = SI; }
                 if (price    != null) { this.price   = price; }
                 this.date = date;
             }catch(System.Exception ex)
@@ -183,26 +189,39 @@ namespace JobEnter
             return 0;
         }
 
-        public void addRow()
+        public bool addRow()
         {
             if (gisLink == null)
                 gisLink = "";
             try
             {
+                Console.WriteLine("Sheet ID: " + this.sheetID + "| Access Token: " + this.accessToken);
+                Console.WriteLine(this.getColumnID("Project Stage") + "\n" +
+                                  this.getColumnID("GIS Link") + "\n" +
+                                  this.getColumnID("Client") + "\n" +
+                                  this.getColumnID("Client Email") + "\n" + 
+                                  this.getColumnID("Phone No.") + "\n" +
+                                  this.getColumnID("Address") + "\n" +
+                                  this.getColumnID("City") + "\n" +
+                                  this.getColumnID("County"));
                 // Specify cell values of row
                 Cell[] cellsA = new Cell[] {
                 new Cell
                 {
-                    ColumnId = this.getColumnID("GIS"),
+                    ColumnId = this.getColumnID("Project Stage"),
+                    Value = "Sent"
+                },new Cell
+                {
+                    ColumnId = this.getColumnID("GIS Link"),
                     Value = this.gisLink
                 },new Cell
                 {
-                    ColumnId = this.getColumnID("Name"),
+                    ColumnId = this.getColumnID("Client"),
                     Value = this.name
                 },
                 new Cell
                 {
-                    ColumnId = this.getColumnID("Email"),
+                    ColumnId = this.getColumnID("Client Email"),
                     Value = this.email
                 },
                 new Cell
@@ -217,28 +236,23 @@ namespace JobEnter
                 },
                 new Cell
                 {
-                    ColumnId = this.getColumnID("State"),
-                    Value = this.state
-                },
-                new Cell
-                {
-                    ColumnId = this.getColumnID("Phone"),
+                    ColumnId = this.getColumnID("Phone No."),
                     Value = this.number
                 },
                 new Cell
                 {
-                    ColumnId = this.getColumnID("Date"),
+                    ColumnId = this.getColumnID("Date Approved"),
                     Value = this.date
                 },
                 new Cell
                 {
-                    ColumnId = this.getColumnID("Money"),
-                    Value = this.price
+                    ColumnId = this.getColumnID("Special Instructions"),
+                    Value = this.SI
                 },
                 new Cell
                 {
-                    ColumnId = this.getColumnID("Accepted"),
-                    Value = "Pending"
+                    ColumnId = this.getColumnID("Fee"),
+                    Value = this.price
                 }
             };
 
@@ -253,12 +267,14 @@ namespace JobEnter
 
                 // Add rows to sheet
                 IList<Row> newRows = smartsheet.SheetResources.RowResources.AddRows(
-                  4235468226226052,               // sheetId
+                  this.sheetID,                  // sheetId
                   new Row[] { rowA }             // IEnumerable<Row> rowsToAdd
                 );
+                return true;
             }catch(System.Exception ex)
             {
                 Console.WriteLine("Error in API 2. " + ex.Message);
+                return false;
             }
         }
 

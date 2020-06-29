@@ -3,20 +3,25 @@
   <assemblyIdentity name="JobEnter.application" version="2.0.0.1" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <description asmv2:publisher="JobEnter" asmv2:product="JobEnter" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <deployment install="true" mapFileExtensions="true" minimumRequiredVersion="1.0.0.1" co.v1:createDesktopShortcut="true">
-    <deploymentProvider codebase="http://desktop-lafl49p/JobEnterSite/JobEnter.application" />
+    <subscription>
+      <update>
+        <beforeApplicationStartup />
+      </update>
+    </subscription>
+    <deploymentProvider codebase="http://desktop-g6sfv77/JobEnterSite/JobEnter.application" />
   </deployment>
   <compatibleFrameworks xmlns="urn:schemas-microsoft-com:clickonce.v2">
     <framework targetVersion="4.6.1" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="JobEnter.exe.manifest" size="7750">
+    <dependentAssembly dependencyType="install" codebase="JobEnter.exe.manifest" size="3458">
       <assemblyIdentity name="JobEnter.exe" version="2.0.0.1" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>rjd231ukV2wavOpBwxc66ShnjFzKz5WxkVh3V05Hdc4=</dsig:DigestValue>
+        <dsig:DigestValue>sXhUI2oaWCYUN73cEaGON94R+iPr8c/uSTVdSSg/zzQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

@@ -49,9 +49,9 @@ namespace JobEnter
             label2.Text = "";
             try
             {
-                newHomeStrings = File.ReadAllLines("NewHome.txt");
-                additionStrings = File.ReadAllLines("Addition.txt");
-                proposedStrings = File.ReadAllLines("ExistingProposal.txt");
+                newHomeStrings = File.ReadAllLines("Service Files/New Home.txt");
+                additionStrings = File.ReadAllLines("Service Files/Addition.txt");
+                proposedStrings = File.ReadAllLines("Service Files/Existing.txt");
                 //existingMinneapolis = File.ReadAllLines("Minneapolis-Existing.txt").ToList<String>();
             } catch (System.Exception ex) {
                 Console.WriteLine("Unable to find file.");
@@ -75,8 +75,7 @@ namespace JobEnter
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             city = (comboBox1.SelectedItem.ToString());
-            setCheckedTemplate(city);
-            Console.WriteLine("Selected Index Changed to: " + comboBox1.SelectedItem.ToString());
+            setCheckedTemplate(city, jobType);
         }
 
         #endregion
@@ -84,13 +83,14 @@ namespace JobEnter
         public void setCheckedTemplate(String cityIn)
         {
             Console.WriteLine("Set Checked Template(1)");
-            this.clearSelectedStrings();
             switch (cityIn)
             {
                 case "Minneapolis":
+                    Console.WriteLine(minneapolisStrings.Count);
                     setSelectedFromList1(minneapolisStrings);
                     break;
                 case "Edina":
+                    Console.WriteLine(edinaStrings.Count);
                     setSelectedFromList1(edinaStrings);
                     break;
             }
@@ -106,52 +106,87 @@ namespace JobEnter
         // Temp Method
         public void setCheckedTemplate(String city, String jobType)
         {
-            Console.WriteLine("Set Checked Template(2)");
-            this.clearBox();
-            clearSelectedStrings();
+            Console.WriteLine("Job Type: " + jobType);
+
+            setBoxesShown(jobType);
+            checkedListBox1.Items.Clear();
+            this.clearSelectedStrings();
+
             switch (jobType)
             {
                 case "Proposed":
+                    Console.WriteLine("Added Porposed 1");
+                    addToBox(proposedStrings);
                     if (city == "Minneapolis")
                     {
-
+                        minneapolisStrings.Clear();
+                        minneapolisStrings = File.ReadAllLines("Service Files/Existing-Minneapolis.txt").ToList<String>();
+                        setSelectedFromList1(minneapolisStrings);
+                        Console.WriteLine("Proposed Minni");
                     }
                     else if (city == "Edina")
                     {
-
+                        edinaStrings.Clear();
+                        //edinaStrings = File.ReadAllLines(".txt").ToList<String>();
+                        setSelectedFromList1(edinaStrings);
+                        Console.WriteLine("Proposed Edina");
                     }
                     break;
                 case "New Home":
+                    Console.WriteLine("Added New Home 1");
+                    addToBox(newHomeStrings);
                     if (city == "Minneapolis")
                     {
-                        setSelectedFromList1(newHomeMinneapolis);
+                        minneapolisStrings.Clear();
+                        minneapolisStrings = File.ReadAllLines("Service Files/New Home-Minneapolis.txt").ToList<String>();
+                        setSelectedFromList1(minneapolisStrings);
+                        Console.WriteLine("New Minni");
                     }
                     else if (city == "Edina")
                     {
-
+                        edinaStrings.Clear();
+                        edinaStrings = File.ReadAllLines("Service Files/New Home-Edina.txt").ToList<String>();
+                        setSelectedFromList1(edinaStrings);
+                        Console.WriteLine("New Edina");
                     }
                     break;
                 case "Addition":
+                    Console.WriteLine("Added Addition 1");
+                    addToBox(additionStrings);
                     if (city == "Minneapolis")
                     {
+                        minneapolisStrings.Clear();
+                        //minneapolisStrings = File.ReadAllLines(".txt").ToList<String>();
                         setSelectedFromList1(minneapolisStrings);
+                        Console.WriteLine("Addition Minni");
                     }
                     else if (city == "Edina")
                     {
-
+                        edinaStrings.Clear();
+                        edinaStrings = File.ReadAllLines("Service Files/Addition-Edina.txt").ToList<String>();
+                        setSelectedFromList1(edinaStrings);
+                        Console.WriteLine("Addition Edina");
                     }
                     break;
             }
         }
 
+        public void setShownAndChecked(String jobType, String city)
+        {
+            minneapolisStrings.Clear();
+            edinaStrings.Clear();
+            String fileName = (jobType + "-" + city + ".txt");
+            Console.WriteLine(fileName);
+        }
+
         public void setSelectedFromList1(List<String> listIn)
         {
-            Console.WriteLine("SetSelected(1)");
-            this.clearSelectedStrings();
+            Console.WriteLine("Set Selected");
             for (int i = 0; i < listIn.Count; i++)
             {
                 if (checkedListBox1.Items.Contains(listIn[i]))
                 {
+                    //Console.WriteLine("Contained: " + listIn[i]);
                     checkedListBox1.SetItemChecked(i, true);
                     //Console.WriteLine("Number " + i + ": " + checkedListBox1.Items[i]);
                 }
@@ -159,6 +194,7 @@ namespace JobEnter
                 {
                     if (listIn[i] != "")
                     {
+                        //Console.WriteLine("Extra: " + listIn[i]);
                         checkedListBox1.Items.Add(listIn[i]);
                         checkedListBox1.SetItemChecked(this.getIndex(listIn[i]), true);
                     }
@@ -166,7 +202,21 @@ namespace JobEnter
             }
         }
 
+        public void getEdinaStrings()
+        {
+            foreach(String s in edinaStrings)
+            {
+                Console.WriteLine(s);
+            }
+        }
 
+        public void getAllStrings()
+        {
+            foreach(String s in newHomeStrings)
+            {
+                Console.WriteLine(s);
+            }
+        }
 
 
         #endregion
@@ -285,6 +335,7 @@ namespace JobEnter
 
         public void setJobType(String jbIn) { this.jobType = jbIn; }
         public String getJobType() { return this.jobType; }
+
         public void setBoxesShown(String s)
         {
             Console.WriteLine("Set Box List");
@@ -295,31 +346,29 @@ namespace JobEnter
                 currType = s;
                 label2.Text = currType;
                 checkedListBox1.Items.Clear();
-                updateCheckboxList(s);
+                //updateCheckboxList(s);
             }
         }
 
         public void updateCheckboxList(String type)
         {
-            Console.WriteLine("Update Checkbox List");
-            edinaStrings.Clear();
-            minneapolisStrings.Clear();
+            Console.WriteLine("Update Checkbox List: " + type);
             if (type == "New Home")
             {
                 addToBox(newHomeStrings);
-                edinaStrings = File.ReadAllLines("NewHome-Edina.txt").ToList<String>();
-                minneapolisStrings = File.ReadAllLines("New Home-Minneapolis.txt").ToList<String>();
+                edinaStrings = File.ReadAllLines("Service Files/New Home-Edina.txt").ToList<String>();
+                minneapolisStrings = File.ReadAllLines("Service Files/New Home-Minneapolis.txt").ToList<String>();
             }
             else if (type == "Addition")
             {
                 addToBox(additionStrings);
-                edinaStrings = File.ReadAllLines("Addition-Edina.txt").ToList<String>();
-                minneapolisStrings = File.ReadAllLines("New Home-Minneapolis.txt").ToList<String>();
+                edinaStrings = File.ReadAllLines("Service Files/Addition-Edina.txt").ToList<String>();
+                minneapolisStrings = File.ReadAllLines("Service Files/New Home-Minneapolis.txt").ToList<String>();
             }
             else if (type == "Proposed")
             {
                 addToBox(proposedStrings);
-                minneapolisStrings = File.ReadAllLines("Minneapolis-Existing.txt").ToList<String>();
+                minneapolisStrings = File.ReadAllLines("Service Files/Existing-Minneapolis.txt").ToList<String>();
             }
         }
 

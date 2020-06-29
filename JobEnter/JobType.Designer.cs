@@ -48,20 +48,20 @@
             this.panel1.Controls.Add(this.rbtnAllStake);
             this.panel1.Controls.Add(this.rbtnTwoStake);
             this.panel1.Controls.Add(this.rbtnSingle);
-            this.panel1.Location = new System.Drawing.Point(2, 43);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2);
+            this.panel1.Location = new System.Drawing.Point(3, 53);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(266, 200);
+            this.panel1.Size = new System.Drawing.Size(355, 246);
             this.panel1.TabIndex = 0;
             // 
             // rbtnNewHome
             // 
             this.rbtnNewHome.AutoSize = true;
             this.rbtnNewHome.Font = new System.Drawing.Font("Times New Roman", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnNewHome.Location = new System.Drawing.Point(11, 166);
-            this.rbtnNewHome.Margin = new System.Windows.Forms.Padding(2);
+            this.rbtnNewHome.Location = new System.Drawing.Point(15, 204);
+            this.rbtnNewHome.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rbtnNewHome.Name = "rbtnNewHome";
-            this.rbtnNewHome.Size = new System.Drawing.Size(118, 26);
+            this.rbtnNewHome.Size = new System.Drawing.Size(149, 33);
             this.rbtnNewHome.TabIndex = 5;
             this.rbtnNewHome.TabStop = true;
             this.rbtnNewHome.Text = "New Home";
@@ -71,10 +71,10 @@
             // 
             this.rbtnAddition.AutoSize = true;
             this.rbtnAddition.Font = new System.Drawing.Font("Times New Roman", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnAddition.Location = new System.Drawing.Point(11, 136);
-            this.rbtnAddition.Margin = new System.Windows.Forms.Padding(2);
+            this.rbtnAddition.Location = new System.Drawing.Point(15, 167);
+            this.rbtnAddition.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rbtnAddition.Name = "rbtnAddition";
-            this.rbtnAddition.Size = new System.Drawing.Size(98, 26);
+            this.rbtnAddition.Size = new System.Drawing.Size(123, 33);
             this.rbtnAddition.TabIndex = 4;
             this.rbtnAddition.TabStop = true;
             this.rbtnAddition.Text = "Addition";
@@ -84,10 +84,10 @@
             // 
             this.rtbnProposed.AutoSize = true;
             this.rtbnProposed.Font = new System.Drawing.Font("Times New Roman", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rtbnProposed.Location = new System.Drawing.Point(11, 105);
-            this.rtbnProposed.Margin = new System.Windows.Forms.Padding(2);
+            this.rtbnProposed.Location = new System.Drawing.Point(15, 129);
+            this.rtbnProposed.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rtbnProposed.Name = "rtbnProposed";
-            this.rtbnProposed.Size = new System.Drawing.Size(103, 26);
+            this.rtbnProposed.Size = new System.Drawing.Size(129, 33);
             this.rtbnProposed.TabIndex = 3;
             this.rtbnProposed.TabStop = true;
             this.rtbnProposed.Text = "Proposed";
@@ -97,10 +97,10 @@
             // 
             this.rbtnAllStake.AutoSize = true;
             this.rbtnAllStake.Font = new System.Drawing.Font("Times New Roman", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnAllStake.Location = new System.Drawing.Point(11, 73);
-            this.rbtnAllStake.Margin = new System.Windows.Forms.Padding(2);
+            this.rbtnAllStake.Location = new System.Drawing.Point(15, 90);
+            this.rbtnAllStake.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rbtnAllStake.Name = "rbtnAllStake";
-            this.rbtnAllStake.Size = new System.Drawing.Size(102, 26);
+            this.rbtnAllStake.Size = new System.Drawing.Size(125, 33);
             this.rbtnAllStake.TabIndex = 2;
             this.rbtnAllStake.TabStop = true;
             this.rbtnAllStake.Text = "All Stake";
@@ -110,10 +110,10 @@
             // 
             this.rbtnTwoStake.AutoSize = true;
             this.rbtnTwoStake.Font = new System.Drawing.Font("Times New Roman", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnTwoStake.Location = new System.Drawing.Point(11, 41);
-            this.rbtnTwoStake.Margin = new System.Windows.Forms.Padding(2);
+            this.rbtnTwoStake.Location = new System.Drawing.Point(15, 50);
+            this.rbtnTwoStake.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rbtnTwoStake.Name = "rbtnTwoStake";
-            this.rbtnTwoStake.Size = new System.Drawing.Size(112, 26);
+            this.rbtnTwoStake.Size = new System.Drawing.Size(138, 33);
             this.rbtnTwoStake.TabIndex = 1;
             this.rbtnTwoStake.TabStop = true;
             this.rbtnTwoStake.Text = "Two Stake";
@@ -123,10 +123,10 @@
             // 
             this.rbtnSingle.AutoSize = true;
             this.rbtnSingle.Font = new System.Drawing.Font("Times New Roman", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnSingle.Location = new System.Drawing.Point(11, 10);
-            this.rbtnSingle.Margin = new System.Windows.Forms.Padding(2);
+            this.rbtnSingle.Location = new System.Drawing.Point(15, 12);
+            this.rbtnSingle.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rbtnSingle.Name = "rbtnSingle";
-            this.rbtnSingle.Size = new System.Drawing.Size(108, 26);
+            this.rbtnSingle.Size = new System.Drawing.Size(137, 33);
             this.rbtnSingle.TabIndex = 0;
             this.rbtnSingle.TabStop = true;
             this.rbtnSingle.Text = "One Stake";
@@ -136,22 +136,23 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 17.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(3, 18);
+            this.label1.Location = new System.Drawing.Point(4, 22);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(168, 25);
+            this.label1.Size = new System.Drawing.Size(205, 32);
             this.label1.TabIndex = 1;
             this.label1.Text = "Select Job Type";
             // 
             // JobType
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "JobType";
-            this.Size = new System.Drawing.Size(273, 245);
+            this.Size = new System.Drawing.Size(364, 302);
             this.Load += new System.EventHandler(this.JobType_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

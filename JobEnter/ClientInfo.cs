@@ -42,7 +42,7 @@ namespace JobEnter
             boxNumber.Text = "";
             boxAddress.Text = "";
             boxCity.Text = "";
-            boxCounty.Text = "";
+            cmbCounty.Text = "";
             boxInstructions.Text = "";
         }
 
@@ -79,10 +79,10 @@ namespace JobEnter
             set { boxCity.Text = value; }  // set method
         }
 
-        public string County
+        public String CountyBox
         {
-            get { return boxCounty.Text; }   // get method
-            set { boxCounty.Text = value; }  // set method
+            get { return cmbCounty.Text; }
+            set { cmbCounty.Text = value; }
         }
 
         public String SpecialInstructions
