@@ -38,7 +38,7 @@
             this.btnFullTopo = new System.Windows.Forms.Button();
             this.btnFullLake = new System.Windows.Forms.Button();
             this.btnFullHC = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
+            this.btnFullWetland = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // checkedListBox1
@@ -155,20 +155,21 @@
             this.btnFullHC.UseVisualStyleBackColor = true;
             this.btnFullHC.Click += new System.EventHandler(this.btnFullHC_Click);
             // 
-            // button6
+            // btnFullWetland
             // 
-            this.button6.Location = new System.Drawing.Point(768, 145);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 23);
-            this.button6.TabIndex = 12;
-            this.button6.Text = "button6";
-            this.button6.UseVisualStyleBackColor = true;
+            this.btnFullWetland.Location = new System.Drawing.Point(768, 145);
+            this.btnFullWetland.Name = "btnFullWetland";
+            this.btnFullWetland.Size = new System.Drawing.Size(75, 23);
+            this.btnFullWetland.TabIndex = 12;
+            this.btnFullWetland.Text = "Full Wetland";
+            this.btnFullWetland.UseVisualStyleBackColor = true;
+            this.btnFullWetland.Click += new System.EventHandler(this.btnFullWetland_Click);
             // 
             // SelectServices
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.button6);
+            this.Controls.Add(this.btnFullWetland);
             this.Controls.Add(this.btnFullHC);
             this.Controls.Add(this.btnFullLake);
             this.Controls.Add(this.btnFullTopo);
@@ -199,6 +200,6 @@
         private System.Windows.Forms.Button btnFullTopo;
         private System.Windows.Forms.Button btnFullLake;
         private System.Windows.Forms.Button btnFullHC;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button btnFullWetland;
     }
 }

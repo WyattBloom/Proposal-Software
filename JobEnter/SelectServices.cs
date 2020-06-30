@@ -2,6 +2,7 @@
 using Microsoft.Office.Interop.Word;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
@@ -29,6 +30,11 @@ namespace JobEnter
         private string[] newHomeStrings;
         private string[] additionStrings;
         private string[] fullStrings;
+        private string[] lotSplitStrings;
+
+        private String minniPath;
+        private String edinaPath;
+        private String stPaulPath;
 
         private List<String> edinaStrings = new List<string>();
         private List<String> minneapolisStrings = new List<string>();
@@ -36,14 +42,9 @@ namespace JobEnter
         private List<String> existingMinneapolis = new List<string>();
         private List<String> newHomeMinneapolis = new List<string>();
 
-        private List<String> jobTypes = new List<String> { "One Stake",
-                                                    "Two Stake",
-                                                    "All Stake",
-                                                    "New Home",
-                                                    "Full",
-                                                    "Addition" };
-        private List<String> cities = new List<String> { "Edina",
-                                                    "Minneapolis" };
+        private List<String> jobTypes = new List<String> { "One Stake", "Two Stake", "All Stake", "New Home", "Full", "Addition", "Lot Split" };
+        private List<String> cities = new List<String> { "Edina", "Minneapolis", "Minetonka", "St. Paul" };
+        
         String city { get; set; }
         String jobType { get; set; }
         private String currType = "";
@@ -57,7 +58,7 @@ namespace JobEnter
                 newHomeStrings = File.ReadAllLines(Environment.CurrentDirectory + "\\Service Files\\New Home.txt");
                 additionStrings = File.ReadAllLines(Environment.CurrentDirectory + "\\Addition-Full.txt");
                 fullStrings = File.ReadAllLines(Environment.CurrentDirectory + "\\Service Files\\Full.txt");
-                //existingMinneapolis = File.ReadAllLines("Minneapolis-Existing.txt").ToList<String>();
+                lotSplitStrings = File.ReadAllLines(Environment.CurrentDirectory + "\\Service Files\\Lot Split.txt");
             } catch (System.Exception ex) {
                 Console.WriteLine("Unable to find file. " + ex.Message);
             }
@@ -80,7 +81,7 @@ namespace JobEnter
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             city = (comboBox1.SelectedItem.ToString());
-            setCheckedTemplate(city, jobType);
+            //setCheckedTemplate(city, jobType);
         }
 
         #endregion
@@ -91,11 +92,18 @@ namespace JobEnter
                 checkedListBox1.SetItemCheckState(i, CheckState.Unchecked);
         }
 
+        private void checkAll()
+        {
+            for (int i = 0; i < checkedListBox1.Items.Count; i++)
+            {
+                checkedListBox1.SetItemChecked(i, true);
+            }
+        }
 
         // Temp Method
         public void setCheckedTemplate(String city, String jobType)
         {
-            setBoxesShown(jobType);
+            //setBoxesShown(jobType);
             checkedListBox1.Items.Clear();
             this.clearSelectedStrings();
 
@@ -158,18 +166,78 @@ namespace JobEnter
         }
 
         /*
+         * Sets what items show up in the checked list box
+         * Note: Only clears and updates the checkboxes if its different that the current one
+         */
+        public void setBoxesShown()
+        {
+            if (currType == jobType)
+            { }
+            else if (currType != jobType)
+            {
+                currType = jobType;
+                label2.Text = currType;
+                checkedListBox1.Items.Clear();
+                showBoxes(jobType);
+            }
+        }
+
+        /*
          * Experimental Method for handling what boxes show up in checklist box 1
          * Will handle only the boxes, should create a seperate method for setting certain ones to be checked depening on city
          */
-        public void showBoxes()
+        public void showBoxes(String jt)
         {
-            if(this.jobType == "Full")
+            showButtons(jt);
+            if (jt == "Full")
             {
                 addToBox(fullStrings);
             }
-            else if(this.jobType == "Addition")
+            else if(jt == "Addition")
             {
                 addToBox(additionStrings);
+            }
+            else if(jt == "New Home")
+            {
+                addToBox(newHomeStrings);
+                minniPath = Environment.CurrentDirectory + "\\New Home-Minneapolis";
+                edinaPath = Environment.CurrentDirectory + "\\New Home-Edina";
+            }
+            else if(jt == "Lot Split")
+            {
+                addToBox(lotSplitStrings);
+            }
+        }
+
+        public void selectCityBoxes(String c)
+        {
+            switch (c)
+            {
+                case "Minneapolis":
+                    //setStringChecked(minniPath);
+                    break;
+                case "Edina":
+                    //setStringChecked(edinaPath);
+                    break;
+            }
+        }
+
+        public void showButtons(String btn)
+        {
+            switch (btn)
+            {
+                case "Full":
+                    btnFullHC.Visible = true;
+                    btnFullLake.Visible = true;
+                    btnFullTopo.Visible = true;
+                    btnFullWetland.Visible = true;
+                    break;
+                default:
+                    btnFullHC.Visible = false;
+                    btnFullLake.Visible = false;
+                    btnFullTopo.Visible = false;
+                    btnFullWetland.Visible = false;
+                    break;
             }
         }
 
@@ -294,14 +362,6 @@ namespace JobEnter
             return checkedListBox1.Items.IndexOf(sIn);
         }
 
-        public List<int> getAllSelectedIndexes()
-        {
-            List<int> selectedIndexes = new List<int>();
-            foreach (int i in checkedListBox1.CheckedItems)
-                selectedIndexes.Add(i);
-            return selectedIndexes;
-        }
-
         /*
          * Returns a list of all selected services from the check list box
          * Note: Excludes titles, only returns selected services
@@ -317,22 +377,6 @@ namespace JobEnter
         public void setJobType(String jbIn) { this.jobType = jbIn; }
         public String getJobType() { return this.jobType; }
 
-        /*
-         * Sets what items show up in the checked list box
-         * Note: Only clears and updates the checkboxes if its different that the current one
-         */
-        public void setBoxesShown(String s)
-        {
-            if (currType == s)
-            {  }
-            else if (currType != s)
-            {
-                currType = s;
-                label2.Text = currType;
-                checkedListBox1.Items.Clear();
-                //updateCheckboxList(s);
-            }
-        }
 
         /*
          * An old method no longer in use
@@ -405,6 +449,14 @@ namespace JobEnter
             this.uncheckAll();
 
             String templatPath = Environment.CurrentDirectory + "\\Service Files\\Full topo HC.txt";
+            setStringChecked(templatPath);
+        }
+
+        private void btnFullWetland_Click(object sender, EventArgs e)
+        {
+            this.uncheckAll();
+
+            String templatPath = Environment.CurrentDirectory + "\\Service Files\\Full wetland.txt";
             setStringChecked(templatPath);
         }
 
@@ -484,16 +536,11 @@ namespace JobEnter
 
         }
 
-
-
-
         // Temp Method
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
-
-
 
         #endregion
 
@@ -518,10 +565,8 @@ namespace JobEnter
          */
         private void button2_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < checkedListBox1.Items.Count; i++)
-            {
-                checkedListBox1.SetItemChecked(i, true);
-            }
+            checkAll();
         }
+
     }
 }

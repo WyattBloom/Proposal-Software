@@ -9,6 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using Word = Microsoft.Office.Interop.Word;
 using Microsoft.Office.Interop.Outlook;
 using System.ServiceModel.Description;
 using System.Security.Cryptography;
@@ -169,8 +170,9 @@ namespace JobEnter
                     //selectServices1.setBoxesShown(jobType1.getSelectedButton());
 
                     selectServices1.setJobType(jobType1.getSelectedButton());
-                    selectServices1.setCheckedTemplate(clientInfo1.City, jobType1.getSelectedButton());
-                    
+                    selectServices1.setBoxesShown();
+                    selectServices1.selectCityBoxes(clientInfo1.City);
+
                     btnNext.Text = "Next";
                     break;
                 case 3:
@@ -193,51 +195,98 @@ namespace JobEnter
                                         clientInfo1.City,
                                         clientInfo1.SpecialInstructions);
                     // Add titles to box
-                    verifyPage.addToBox(selectServices1.getSelectedTitles());
+                    //verifyPage.addToBox(selectServices1.getSelectedTitles());
 
                     btnNext.Text = "Save";
                     break;
                 case 4:
                     count = 3;
 
+                    //-------Make sure all necessary information is filled in-------
                     if(verifyConditions() == false)
                     {
                         break;
                     }
-                    verifyPage.addToBox("Saving...");
-                    String absoluteFolderPath = getSaveDialog(clientInfo1.Address);
-
-                    String templateName = getTemplateName(jobType1.getSelectedButton());
-                    Console.WriteLine("Template Name:" + templateName);
-
+                    //========================================================
                     
-                     if (absoluteFolderPath == null)
-                         break;
-                     else
-                     {
-                         if (!saveToWord(absoluteFolderPath, templateName))
-                             break;
-                         else
-                             verifyPage.addToBox("File saved successfully");
-                     }
-                     
-                     string CTFFile = getCTF("Tom");
-                     String destFile = System.IO.Path.Combine(absoluteFolderPath, "CTFFile.docx");
-                     File.Copy("TomCTFLetter.docx", destFile);
-                    /* 
-                    //Open File for edits
-                    openFile(fileInFolder);
+                    verifyPage.addToBox("Saving...");
 
-                    FileInfo fi1 = new FileInfo(templateName);
-                    while (checkFileStatus(fi1))
+                    // Location Strings
+                    String absoluteFolderPath = getSaveDialog(clientInfo1.Address);
+                    String absoluteFilePath   = absoluteFolderPath + "\\Proposal For Services at " + clientInfo1.Address;
+                    String pdfPath            = absoluteFilePath + ".pdf";
+                    String templateName = getTemplateName(jobType1.getSelectedButton());
+
+                    if (templateName == null)
                     {
-                        Console.WriteLine("Still in loop");
+                        MessageBox.Show("Could not find template file", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        verifyPage.addToBox("Error");
+                        break;
                     }
-                    */
 
-                   updateAPI();
+                    //--------------Save to File-----------------------------
+                    if (absoluteFolderPath == null)
+                        break;
+                    else
+                    {
+                        if (!saveToWord(absoluteFolderPath, templateName, absoluteFilePath))
+                            break;
+                        else
+                            verifyPage.addToBox("File saved successfully");
+                    }
+                    //=====================================================
+
+
+                    //--------------Add CTF Letter to folder--------------
+                    this.addCTFLetter(absoluteFolderPath);
+                    //====================================================
+
+
+                    //---------------Open File for Editing-------------
+                    openFile(absoluteFilePath + ".docx");
+
+                    FileInfo fi1 = new FileInfo(absoluteFilePath + ".docx");
+                    while (checkFileStatus(fi1))
+                    { }
+                    //=================================================
+                    
+
+                    //--------------Convert Word document to PDF----------
+                    ConvertToPDF converter = new ConvertToPDF(absoluteFilePath, pdfPath, absoluteFolderPath);
+                    converter.convertToPDF();
+                    //====================================================
+
+
+                    //-------------------Open Draft in Outlook--------------
+                    string[] name = clientInfo1.Name.Split(' ');
+                    SendEmail sendEmail = new SendEmail(clientInfo1.Email, "info@advsur.com", clientInfo1.Address, "Hi " + name[0] + "-\nAttached is the proposal you requested.  Please let me know if you have any questions or if you would like to be added to our schedule. \n\nThank you for the opportunity.\n", pdfPath, null);
+                    sendEmail.openOutlookWindow();
+                    //======================================================
+
+                    //----------------Add row to Smartsheet-----------------
+                    verifyPage.addToBox("Adding to Smartsheet...");
+                    updateAPI();
+                    verifyPage.addToBox("Done");
+                    //======================================================
 
                     break;
+            }
+        }
+
+        private void openFile(string fileLocation)
+        {
+            try
+            {
+                if (fileLocation != null)
+                {
+                    Word.Application ap = new Word.Application();
+                    Word.Document document = ap.Documents.Open(fileLocation);
+                    ap.Visible = true;
+                }
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show("Opening File was did not work: " + ex.Message);
             }
         }
 
@@ -269,8 +318,6 @@ namespace JobEnter
                 return true;
             }
         }
-
-
 
         private void btnNext_Click(object sender, EventArgs e) 
         {
@@ -312,8 +359,9 @@ namespace JobEnter
                     return "Proposal Template.docx";
                 case "Addition":
                     return "Additions Template.docx";
+                default:
+                    return null;
             }
-            return null;
         }
 
         #endregion
@@ -351,13 +399,12 @@ namespace JobEnter
 
         #region Interacting with word document
 
-        private Boolean saveToWord(String absoluteFolderPath, String fileType)
+        private Boolean saveToWord(String absoluteFolderPath, String fileType, String filePath)
         {
             try
             {
-                String absoluteFilePath = absoluteFolderPath + "\\Proposal For Services at " + clientInfo1.Address;
-                Console.WriteLine("File: " + absoluteFilePath);
-                CreateWordDoc doc1 = new CreateWordDoc(Directory.GetCurrentDirectory() + "\\" + fileType, absoluteFilePath);
+                Console.WriteLine("File: " + filePath);
+                CreateWordDoc doc1 = new CreateWordDoc(Directory.GetCurrentDirectory() + "\\" + fileType, filePath);
                 doc1.CreateDocument();
                 FindAndReplaceTemplate(doc1);
                 doc1.closeAndSave();
@@ -381,6 +428,7 @@ namespace JobEnter
                 FindAndReplace_ClientInfo(doc1);
                 // Find and replace selected services and titles
                 FindAndReplace_ServicesAndTitles(doc1);
+                this.cleanUp1(doc1);
 
             }catch(System.Exception ex)
             {
@@ -594,9 +642,6 @@ namespace JobEnter
             doc1.FindAndReplace("<stormwaterHeader>", "");
             doc1.FindAndReplace("<stormwaterBody>", "");
 
-
-
-
         }
 
         public bool checkFileStatus(FileInfo fileName)
@@ -617,9 +662,35 @@ namespace JobEnter
             return false;
         }
 
+        private void addCTFLetter(String folderPath)
+        {
+            String CTFFile;
+            String destFile;
+            switch (verifyPage.getCTF())
+            {
+                case "Tom":
+                    CTFFile = ctfFindandReplace("Tom");
+                    destFile = System.IO.Path.Combine(folderPath, "CTFFile.docx");
+                    File.Copy("TomCTFLetter.docx", destFile);
+                    break;
+                case "Wayne":
+                    CTFFile = ctfFindandReplace("Wayne");
+                    destFile = System.IO.Path.Combine(folderPath, "CTFFile.docx");
+                    File.Copy("WayneCTFLetter.docx", destFile);
+                    break;
+                case "WayneTom":
+                    CTFFile = ctfFindandReplace("Wayne");
+                    destFile = System.IO.Path.Combine(folderPath, "CTFFile-Tom.docx");
+                    File.Copy("WayneCTFLetter.docx", destFile);
+                    
+                    CTFFile = ctfFindandReplace("Tom");
+                    destFile = System.IO.Path.Combine(folderPath, "CTFFile-Wayne.docx");
+                    File.Copy("TomCTFLetter.docx", destFile);
+                    break;
+            }
+        }
 
-
-        private String getCTF(String name)
+        private String ctfFindandReplace(String name)
         {
             String localTemplate;
             switch (name)
@@ -682,7 +753,7 @@ namespace JobEnter
 
         private void button1_Click(object sender, EventArgs e)
         {
-            updateAPI();    
+            Console.WriteLine(verifyPage.getCTF());   
         }
 
         private void button2_Click(object sender, EventArgs e)

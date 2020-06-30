@@ -19,14 +19,12 @@ namespace JobEnter
         private string pdfName;
         private string saveLocation;
 
-        public ConvertToPDF(string fileToConvert, string pdfName, string saveLocation)
+        public ConvertToPDF(string fileToConvert, string pdfPath, string saveLocation)
         {
-            this.fileToConvert = fileToConvert;
-            this.pdfName = pdfName;
+            this.fileToConvert = fileToConvert + ".docx";
             this.saveLocation = saveLocation;
-            saveToPath = saveLocation + "\\" + pdfName;
+            saveToPath = pdfPath;
         }
-
 
         /*
         * Creates a pdf copy of the word file 

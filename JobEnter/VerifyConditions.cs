@@ -61,7 +61,16 @@ namespace JobEnter
             return outVal;
         }
 
-
+        public String getCTF()
+        {
+            var list = panel1.Controls.OfType<CheckBox>().Where(x => x.Checked == true);
+            String output = "";
+            foreach(CheckBox s in list)
+            {
+                output = output + s.Text;
+            }
+            return output;
+        }
 
         public void addToBox(String txtToAdd)
         {
@@ -83,8 +92,8 @@ namespace JobEnter
             lbox1.Items.Add("Number: " + num);
             lbox1.Items.Add("Email: " + e);
             lbox1.Items.Add("Address: " + a);
-            lbox1.Items.Add("City: " + c);
-            lbox1.Items.Add("State: " + s);
+            lbox1.Items.Add("City: " + s);
+            lbox1.Items.Add("County: " + c);
             lbox1.Items.Add("Special Instructions:" + SI);
         }
 
