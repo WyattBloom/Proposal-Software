@@ -33,8 +33,12 @@
             this.label3 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnUncheckAll = new System.Windows.Forms.Button();
+            this.btnCheckAll = new System.Windows.Forms.Button();
+            this.btnFullTopo = new System.Windows.Forms.Button();
+            this.btnFullLake = new System.Windows.Forms.Button();
+            this.btnFullHC = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // checkedListBox1
@@ -46,7 +50,7 @@
             this.checkedListBox1.FormattingEnabled = true;
             this.checkedListBox1.HorizontalScrollbar = true;
             this.checkedListBox1.Location = new System.Drawing.Point(9, 32);
-            this.checkedListBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkedListBox1.Margin = new System.Windows.Forms.Padding(2);
             this.checkedListBox1.Name = "checkedListBox1";
             this.checkedListBox1.ScrollAlwaysVisible = true;
             this.checkedListBox1.Size = new System.Drawing.Size(754, 404);
@@ -101,40 +105,83 @@
             this.label2.TabIndex = 5;
             this.label2.Text = "label2";
             // 
-            // button1
+            // btnUncheckAll
             // 
-            this.button1.Location = new System.Drawing.Point(688, 441);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "Uncheck All";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnUncheckAll.Location = new System.Drawing.Point(688, 441);
+            this.btnUncheckAll.Name = "btnUncheckAll";
+            this.btnUncheckAll.Size = new System.Drawing.Size(75, 23);
+            this.btnUncheckAll.TabIndex = 7;
+            this.btnUncheckAll.Text = "Uncheck All";
+            this.btnUncheckAll.UseVisualStyleBackColor = true;
+            this.btnUncheckAll.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button2
+            // btnCheckAll
             // 
-            this.button2.Location = new System.Drawing.Point(9, 441);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 8;
-            this.button2.Text = "Check All";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btnCheckAll.Location = new System.Drawing.Point(9, 441);
+            this.btnCheckAll.Name = "btnCheckAll";
+            this.btnCheckAll.Size = new System.Drawing.Size(75, 23);
+            this.btnCheckAll.TabIndex = 8;
+            this.btnCheckAll.Text = "Check All";
+            this.btnCheckAll.UseVisualStyleBackColor = true;
+            this.btnCheckAll.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // btnFullTopo
+            // 
+            this.btnFullTopo.Location = new System.Drawing.Point(768, 58);
+            this.btnFullTopo.Name = "btnFullTopo";
+            this.btnFullTopo.Size = new System.Drawing.Size(75, 23);
+            this.btnFullTopo.TabIndex = 9;
+            this.btnFullTopo.Text = "Full Topo";
+            this.btnFullTopo.UseVisualStyleBackColor = true;
+            this.btnFullTopo.Click += new System.EventHandler(this.btnFullTopo_Click);
+            // 
+            // btnFullLake
+            // 
+            this.btnFullLake.Location = new System.Drawing.Point(768, 87);
+            this.btnFullLake.Name = "btnFullLake";
+            this.btnFullLake.Size = new System.Drawing.Size(75, 23);
+            this.btnFullLake.TabIndex = 10;
+            this.btnFullLake.Text = "Full On Lake";
+            this.btnFullLake.UseVisualStyleBackColor = true;
+            this.btnFullLake.Click += new System.EventHandler(this.btnFullLake_Click);
+            // 
+            // btnFullHC
+            // 
+            this.btnFullHC.Location = new System.Drawing.Point(768, 116);
+            this.btnFullHC.Name = "btnFullHC";
+            this.btnFullHC.Size = new System.Drawing.Size(75, 23);
+            this.btnFullHC.TabIndex = 11;
+            this.btnFullHC.Text = "Full HC";
+            this.btnFullHC.UseVisualStyleBackColor = true;
+            this.btnFullHC.Click += new System.EventHandler(this.btnFullHC_Click);
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(768, 145);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(75, 23);
+            this.button6.TabIndex = 12;
+            this.button6.Text = "button6";
+            this.button6.UseVisualStyleBackColor = true;
             // 
             // SelectServices
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.button6);
+            this.Controls.Add(this.btnFullHC);
+            this.Controls.Add(this.btnFullLake);
+            this.Controls.Add(this.btnFullTopo);
+            this.Controls.Add(this.btnCheckAll);
+            this.Controls.Add(this.btnUncheckAll);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.checkedListBox1);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "SelectServices";
-            this.Size = new System.Drawing.Size(794, 475);
+            this.Size = new System.Drawing.Size(855, 475);
             this.Load += new System.EventHandler(this.NewHomeServices_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -147,7 +194,11 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnUncheckAll;
+        private System.Windows.Forms.Button btnCheckAll;
+        private System.Windows.Forms.Button btnFullTopo;
+        private System.Windows.Forms.Button btnFullLake;
+        private System.Windows.Forms.Button btnFullHC;
+        private System.Windows.Forms.Button button6;
     }
 }

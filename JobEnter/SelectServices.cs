@@ -18,12 +18,17 @@ namespace JobEnter
 
         #region Variables
 
+        /* New Home
+         * Platt
+         * Lot Split
+         */
+
         private List<String> newHome = new List<String>();
         private List<String> existing = new List<String>();
         private List<String> proposed = new List<String>();
         private string[] newHomeStrings;
         private string[] additionStrings;
-        private string[] proposedStrings;
+        private string[] fullStrings;
 
         private List<String> edinaStrings = new List<string>();
         private List<String> minneapolisStrings = new List<string>();
@@ -35,7 +40,7 @@ namespace JobEnter
                                                     "Two Stake",
                                                     "All Stake",
                                                     "New Home",
-                                                    "Proposed",
+                                                    "Full",
                                                     "Addition" };
         private List<String> cities = new List<String> { "Edina",
                                                     "Minneapolis" };
@@ -49,12 +54,12 @@ namespace JobEnter
             label2.Text = "";
             try
             {
-                newHomeStrings = File.ReadAllLines("Service Files/New Home.txt");
-                additionStrings = File.ReadAllLines("Service Files/Addition.txt");
-                proposedStrings = File.ReadAllLines("Service Files/Existing.txt");
+                newHomeStrings = File.ReadAllLines(Environment.CurrentDirectory + "\\Service Files\\New Home.txt");
+                additionStrings = File.ReadAllLines(Environment.CurrentDirectory + "\\Addition-Full.txt");
+                fullStrings = File.ReadAllLines(Environment.CurrentDirectory + "\\Service Files\\Full.txt");
                 //existingMinneapolis = File.ReadAllLines("Minneapolis-Existing.txt").ToList<String>();
             } catch (System.Exception ex) {
-                Console.WriteLine("Unable to find file.");
+                Console.WriteLine("Unable to find file. " + ex.Message);
             }
 
             foreach (String s in cities)
@@ -80,22 +85,6 @@ namespace JobEnter
 
         #endregion
 
-        public void setCheckedTemplate(String cityIn)
-        {
-            Console.WriteLine("Set Checked Template(1)");
-            switch (cityIn)
-            {
-                case "Minneapolis":
-                    Console.WriteLine(minneapolisStrings.Count);
-                    setSelectedFromList1(minneapolisStrings);
-                    break;
-                case "Edina":
-                    Console.WriteLine(edinaStrings.Count);
-                    setSelectedFromList1(edinaStrings);
-                    break;
-            }
-        }
-
         public void clearSelectedStrings()
         {
             for(int i = 0; i < checkedListBox1.Items.Count; i++)
@@ -106,17 +95,14 @@ namespace JobEnter
         // Temp Method
         public void setCheckedTemplate(String city, String jobType)
         {
-            Console.WriteLine("Job Type: " + jobType);
-
             setBoxesShown(jobType);
             checkedListBox1.Items.Clear();
             this.clearSelectedStrings();
 
             switch (jobType)
             {
-                case "Proposed":
-                    Console.WriteLine("Added Porposed 1");
-                    addToBox(proposedStrings);
+                case "Full":
+                    addToBox(fullStrings);
                     if (city == "Minneapolis")
                     {
                         minneapolisStrings.Clear();
@@ -171,12 +157,20 @@ namespace JobEnter
             }
         }
 
-        public void setShownAndChecked(String jobType, String city)
+        /*
+         * Experimental Method for handling what boxes show up in checklist box 1
+         * Will handle only the boxes, should create a seperate method for setting certain ones to be checked depening on city
+         */
+        public void showBoxes()
         {
-            minneapolisStrings.Clear();
-            edinaStrings.Clear();
-            String fileName = (jobType + "-" + city + ".txt");
-            Console.WriteLine(fileName);
+            if(this.jobType == "Full")
+            {
+                addToBox(fullStrings);
+            }
+            else if(this.jobType == "Addition")
+            {
+                addToBox(additionStrings);
+            }
         }
 
         public void setSelectedFromList1(List<String> listIn)
@@ -201,23 +195,6 @@ namespace JobEnter
                 }
             }
         }
-
-        public void getEdinaStrings()
-        {
-            foreach(String s in edinaStrings)
-            {
-                Console.WriteLine(s);
-            }
-        }
-
-        public void getAllStrings()
-        {
-            foreach(String s in newHomeStrings)
-            {
-                Console.WriteLine(s);
-            }
-        }
-
 
         #endregion
 
@@ -325,6 +302,10 @@ namespace JobEnter
             return selectedIndexes;
         }
 
+        /*
+         * Returns a list of all selected services from the check list box
+         * Note: Excludes titles, only returns selected services
+         */
         public List<String> getSelectedStrings()
         {
             List<String> outList = new List<string>();
@@ -336,9 +317,12 @@ namespace JobEnter
         public void setJobType(String jbIn) { this.jobType = jbIn; }
         public String getJobType() { return this.jobType; }
 
+        /*
+         * Sets what items show up in the checked list box
+         * Note: Only clears and updates the checkboxes if its different that the current one
+         */
         public void setBoxesShown(String s)
         {
-            Console.WriteLine("Set Box List");
             if (currType == s)
             {  }
             else if (currType != s)
@@ -350,6 +334,9 @@ namespace JobEnter
             }
         }
 
+        /*
+         * An old method no longer in use
+         */
         public void updateCheckboxList(String type)
         {
             Console.WriteLine("Update Checkbox List: " + type);
@@ -367,19 +354,76 @@ namespace JobEnter
             }
             else if (type == "Proposed")
             {
-                addToBox(proposedStrings);
+                addToBox(fullStrings);
                 minneapolisStrings = File.ReadAllLines("Service Files/Existing-Minneapolis.txt").ToList<String>();
+            }
+        }
+
+
+        /*
+         * Sets all items from a passed path to checked in checklist box
+         */
+        private void setStringChecked(String templatePath)
+        {
+            foreach (String s in File.ReadLines(templatePath))
+            {
+                if (checkedListBox1.Items.Contains(s))
+                {
+                    checkedListBox1.SetItemChecked(checkedListBox1.Items.IndexOf(s), true);
+                    Console.WriteLine(s);
+                }
             }
         }
 
 
         #endregion
 
+        #region Button Handlers
+
+        /* 
+         * Button Handler
+         * Checks items in checkedListBox1 based off of the Full Topo template text file
+         */
+        private void btnFullTopo_Click(object sender, EventArgs e)
+        {
+            this.uncheckAll();
+
+            String templatePath = Environment.CurrentDirectory + "\\Service Files\\Full topo.txt";
+            setStringChecked(templatePath);
+        }
+
+        private void btnFullLake_Click(object sender, EventArgs e)
+        {
+            this.uncheckAll();
+
+            String templatePath = Environment.CurrentDirectory + "\\Service Files\\Full on lake.txt";
+            setStringChecked(templatePath);
+        }
+
+        private void btnFullHC_Click(object sender, EventArgs e)
+        {
+            this.uncheckAll();
+
+            String templatPath = Environment.CurrentDirectory + "\\Service Files\\Full topo HC.txt";
+            setStringChecked(templatPath);
+        }
+
+
+
+        #endregion
+
+
         #region Other Methods
 
+        /*
+         * Clears all items in the checked list box
+         */
         public void clearBox() { checkedListBox1.Items.Clear(); }
 
-
+        /*
+         * Adds all strings in an array to the checked list box
+         * Note: Does not include Null values and empty Strings
+         */
         public void addToBox(String[] listS)
         {
             if (listS != null)
@@ -405,6 +449,10 @@ namespace JobEnter
 
         #region Experimental
 
+        /*
+         * Selects all the headers based off of weather or not any of the items below it have been selected
+         * 
+         */
         public void selectHeaders()
         {
             List<int> indexes = new List<int>();
@@ -442,23 +490,14 @@ namespace JobEnter
         // Temp Method
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            for (int i = 0; i < checkedListBox1.CheckedItems.Count; i++)
-            {
-                if (checkedListBox1.CheckedItems[i].ToString().StartsWith("-"))
-                {
-                    for (int j = i; j < checkedListBox1.CheckedItems.Count; j++)
-                    {
 
-                    }
-                }
-            }
         }
 
 
 
         #endregion
 
-        private void button1_Click(object sender, EventArgs e)
+        private void uncheckAll()
         {
             for (int i = 0; i < checkedListBox1.Items.Count; i++)
             {
@@ -466,6 +505,17 @@ namespace JobEnter
             }
         }
 
+        /*
+         * Button to check all the items in the list box
+         */
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.uncheckAll();
+        }
+
+        /*
+         * Button to uncheck all the items in the list box
+         */
         private void button2_Click(object sender, EventArgs e)
         {
             for (int i = 0; i < checkedListBox1.Items.Count; i++)

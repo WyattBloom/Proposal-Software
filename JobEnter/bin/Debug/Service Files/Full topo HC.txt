@@ -1,0 +1,20 @@
+-General Property Items:
+Establish the boundary lines of the property per the legal description that you have furnished or verified.
+Show the property boundary and its dimensions, found or set survey monuments, and various other items included here-in on a certificate of survey for your use after you receive a signed copy of said certificate.
+Show easements revealed by client furnished documents and/or shown on record plat, if any. 
+
+-Building & Improvements:
+Show significant and visible existing improvements such as, but not limited to, buildings and driveways. 
+Show any apparent and significant encroachments across boundary lines.
+Show exterior dimensions of the building footprint along with building corner dimensions to the lot line, as measured perpendicular to the lot line.
+Show the first floor elevation of the building on the site.
+Show the floor elevation for the garage on the site.
+Tabulate areas of existing hardcover.  Note: Impervious surface requirements vary city to city.  Be sure to have this tabulation reviewed and approved by the appropriate governmental agency before using this information for any site design or construction.
+
+-Utilities:
+Show visible improvements related to public utilities such as, but not limited to, curbs, roadways, sidewalks, manholes, utility poles, catch basins, and phone/cable pedestals.
+Show visible appurtenances to utilities in adjacent streets and alleys such as, manholes, power poles, catch basins, overhead utility lines or cable/telephone pedestals. 
+
+-Natural Features:
+Show topography over the entire lot and up to the edge of the adjacent roadway at a contour interval of 1 or 2 feet, whichever is more appropriate.  In addition to contours, show critical spot elevations across the property, as needed, to depict vertical relief.
+Establish a project benchmark in relation to the topography shown.  
