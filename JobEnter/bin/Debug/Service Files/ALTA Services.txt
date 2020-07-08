@@ -1,0 +1,25 @@
+1] Monuments placed (or a reference monument or witness to the corner) at all major corners of the boundary of the property, unless already marked or referenced by existing monuments or witnesses in close proximity to the corner.
+2] Address(es) of the surveyed property if disclosed in documents provided to or obtained by the surveyor, or observed while conducting the fieldwork.
+3] Flood zone classification (with proper annotation based on federal Flood Insurance Rate Maps or the state or local equivalent) depicted by scaled map location and graphic plotting only.
+4] Gross land area (and other areas if specified by the client).
+5] Vertical relief with the source of information (e.g., ground survey, aerial map), contour interval, datum, and originating benchmark identified.
+6A] If set forth in a zoning report or letter provided to the surveyor by the client, list the current zoning classification, setback requirements, the height and floor space area restrictions, and parking requirements. Identify the date and source of the report or letter.
+6B] If the zoning setback requirements are set forth in a zoning report or letter provided to the surveyor by the client, and if those requirements do not require an interpretation by the surveyor, graphically depict the building setback requirements. Identify the date and source of the report or letter. 
+7A] Exterior dimensions of all buildings at ground level.
+7B] Square footage of: (1) exterior footprint of all buildings at ground level. (2) other areas as specified by the client.
+7C] Measured height of all buildings above grade at a location specified by the client. If no location is specified, the point of measurement shall be identified.
+8] Substantial features observed in the process of conducting the fieldwork (in addition to the improvements and features required pursuant to Section 5 above) (e.g., parking lots, billboards, signs, swimming pools, landscaped areas, substantial areas of refuse).
+9] Number and type (e.g., disabled, motorcycle, regular and other marked specialized types) of clearly identifiable parking spaces on surface parking areas, lots and in parking structures. Striping of clearly identifiable parking spaces on surface parking areas and lots.
+10A] As designated by the client, a determination of the relationship and location of certain division or party walls with respect to adjoining properties (client to obtain necessary permissions).
+10B] As designated by the client, a determination of whether certain walls are plumb (client to obtain necessary permissions).
+11] Location of utilities existing on or serving the surveyed property as determined by: ...
+12] As specified by the client, Governmental Agency survey-related requirements (e.g., HUD surveys, surveys for leases on Bureau of Land Management managed lands).
+13] Names of adjoining owners according to current tax records. If more than one owner, identify the first owner’s name listed in the tax records followed by “et al.”
+14] As specified by the client, distance to the nearest intersecting street.
+15] Rectified orthophotography, photogrammetric mapping, remote sensing, airborne/mobile laser scanning and other similar products, tools or technologies as the basis for the showing the location of certain features (excluding boundaries) where ground measurements are not otherwise necessary to locate those features to an appropriate and acceptable accuracy relative to a nearby boundary. The surveyor shall (a) discuss the ramifications of such methodologies (e.g., the potential precision and completeness of the data gathered thereby) with the insurer, lender, and client prior to the performance of the survey, and (b) place a note on the face of the survey explaining the source, date, precision, and other relevant qualifications of any such data.
+16] Evidence of recent earth moving work, building construction, or building additions observed in the process of conducting the fieldwork.
+17] Proposed changes in street right of way lines, if such information is made available to the surveyor by the controlling jurisdiction. Evidence of recent street or sidewalk construction or repairs observed in the process of conducting the fieldwork.
+18] If there has been a field delineation of wetlands conducted by a qualified specialist hired by the client, the surveyor shall locate any delineation markers observed in the process of conducting the fieldwork and show them on the face of the plat or map. If no markers were observed, the surveyor shall so state.
+19] Include any plottable offsite (i.e., appurtenant) easements or servitudes disclosed in documents provided to or obtained by the surveyor as a part of the survey pursuant to Sections 5 and 6 (and applicable selected Table A items) (client to obtain necessary permissions).
+20] Professional Liability Insurance policy obtained by the surveyor in the minimum amount of $1,000,000.00 to be in effect throughout the contract term. Certificate of Insurance to be furnished upon request, but this item shall not be addressed on the face of the plat or map.
+21] Other items as negotiated between client.

@@ -16,7 +16,6 @@ namespace JobEnter
         {
             InitializeComponent();
         }
-        private String corner;
 
         private void StakingPage_Load(object sender, EventArgs e)
         {
@@ -26,7 +25,13 @@ namespace JobEnter
         public string Corner
         {
             get { return boxCorner.Text; }   // get method
-            set { corner = value; }          // set method
+            set { boxCorner.Text = value; }          // set method
+        }
+
+        public string STKPRice
+        {
+            get { return boxSTKPrice.Text; }   // get method
+            set { boxSTKPrice.Text = value; }          // set method
         }
     }
 }

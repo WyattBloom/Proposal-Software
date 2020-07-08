@@ -1,16 +1,16 @@
--General Property Items:
+-General Property Items
 Establish the boundary lines of the property per the legal description that you have furnished or verified.
 Show the property boundary and its dimensions, found or set survey monuments, and various other items included here-in on a certificate of survey for your use after you receive a signed copy of said certificate.
-Show easements revealed by client furnished documents and/or shown on record plat, if any. 
+Show easements revealed by client furnished documents and/or shown on record plat, if any.
 
--Building & Improvements:
-Show significant and visible existing improvements such as, but not limited to, buildings and driveways. 
+-Building & Improvements
+Show significant and visible existing improvements such as, but not limited to, buildings and driveways.
 Show any apparent and significant encroachments across boundary lines.
 Show exterior dimensions of the building footprint along with building corner dimensions to the lot line, as measured perpendicular to the lot line.
 
--Utilities:
+-Utilities
 Show visible improvements related to public utilities such as, but not limited to, curbs, roadways, sidewalks, manholes, utility poles, catch basins, and phone/cable pedestals.
 
--Natural Features:
+-Natural Features
 Show approximate shoreline of the body of water at the time of the survey.
 Show the ordinary high water (OHW) contour line as determined by the Minnesota Department of Natural Resources.

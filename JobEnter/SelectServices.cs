@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
+using System.Web.ModelBinding;
 using System.Windows.Forms;
 
 namespace JobEnter
@@ -31,10 +32,13 @@ namespace JobEnter
         private string[] additionStrings;
         private string[] fullStrings;
         private string[] lotSplitStrings;
+        private string[] altaStrings;
+        private string[] platStrings;
 
         private String minniPath;
         private String edinaPath;
         private String stPaulPath;
+        private String currentDir = Environment.CurrentDirectory;
 
         private List<String> edinaStrings = new List<string>();
         private List<String> minneapolisStrings = new List<string>();
@@ -55,10 +59,12 @@ namespace JobEnter
             label2.Text = "";
             try
             {
-                newHomeStrings = File.ReadAllLines(Environment.CurrentDirectory + "\\Service Files\\New Home.txt");
-                additionStrings = File.ReadAllLines(Environment.CurrentDirectory + "\\Addition-Full.txt");
-                fullStrings = File.ReadAllLines(Environment.CurrentDirectory + "\\Service Files\\Full.txt");
-                lotSplitStrings = File.ReadAllLines(Environment.CurrentDirectory + "\\Service Files\\Lot Split.txt");
+                newHomeStrings  = File.ReadAllLines(Path.Combine(currentDir, "Service Files", "New Home.txt"));
+                additionStrings = File.ReadAllLines(Path.Combine(currentDir, "Service Files", "Addition.txt"));
+                fullStrings     = File.ReadAllLines(Path.Combine(currentDir, "Service Files", "Full.txt"));
+                lotSplitStrings = File.ReadAllLines(Path.Combine(currentDir, "Service Files", "Lot Split.txt"));
+                altaStrings     = File.ReadAllLines(Path.Combine(currentDir, "Service Files", "ALTA Services.txt"));
+                platStrings     = File.ReadAllLines(Path.Combine(currentDir, "Service Files", "Plat.txt"));
             } catch (System.Exception ex) {
                 Console.WriteLine("Unable to find file. " + ex.Message);
             }
@@ -100,71 +106,6 @@ namespace JobEnter
             }
         }
 
-        // Temp Method
-        public void setCheckedTemplate(String city, String jobType)
-        {
-            //setBoxesShown(jobType);
-            checkedListBox1.Items.Clear();
-            this.clearSelectedStrings();
-
-            switch (jobType)
-            {
-                case "Full":
-                    addToBox(fullStrings);
-                    if (city == "Minneapolis")
-                    {
-                        minneapolisStrings.Clear();
-                        minneapolisStrings = File.ReadAllLines("Service Files/Existing-Minneapolis.txt").ToList<String>();
-                        setSelectedFromList1(minneapolisStrings);
-                        Console.WriteLine("Proposed Minni");
-                    }
-                    else if (city == "Edina")
-                    {
-                        edinaStrings.Clear();
-                        //edinaStrings = File.ReadAllLines(".txt").ToList<String>();
-                        setSelectedFromList1(edinaStrings);
-                        Console.WriteLine("Proposed Edina");
-                    }
-                    break;
-                case "New Home":
-                    Console.WriteLine("Added New Home 1");
-                    addToBox(newHomeStrings);
-                    if (city == "Minneapolis")
-                    {
-                        minneapolisStrings.Clear();
-                        minneapolisStrings = File.ReadAllLines("Service Files/New Home-Minneapolis.txt").ToList<String>();
-                        setSelectedFromList1(minneapolisStrings);
-                        Console.WriteLine("New Minni");
-                    }
-                    else if (city == "Edina")
-                    {
-                        edinaStrings.Clear();
-                        edinaStrings = File.ReadAllLines("Service Files/New Home-Edina.txt").ToList<String>();
-                        setSelectedFromList1(edinaStrings);
-                        Console.WriteLine("New Edina");
-                    }
-                    break;
-                case "Addition":
-                    Console.WriteLine("Added Addition 1");
-                    addToBox(additionStrings);
-                    if (city == "Minneapolis")
-                    {
-                        minneapolisStrings.Clear();
-                        //minneapolisStrings = File.ReadAllLines(".txt").ToList<String>();
-                        setSelectedFromList1(minneapolisStrings);
-                        Console.WriteLine("Addition Minni");
-                    }
-                    else if (city == "Edina")
-                    {
-                        edinaStrings.Clear();
-                        edinaStrings = File.ReadAllLines("Service Files/Addition-Edina.txt").ToList<String>();
-                        setSelectedFromList1(edinaStrings);
-                        Console.WriteLine("Addition Edina");
-                    }
-                    break;
-            }
-        }
-
         /*
          * Sets what items show up in the checked list box
          * Note: Only clears and updates the checkboxes if its different that the current one
@@ -189,35 +130,27 @@ namespace JobEnter
         public void showBoxes(String jt)
         {
             showButtons(jt);
-            if (jt == "Full")
+            switch (jt)
             {
-                addToBox(fullStrings);
-            }
-            else if(jt == "Addition")
-            {
-                addToBox(additionStrings);
-            }
-            else if(jt == "New Home")
-            {
-                addToBox(newHomeStrings);
-                minniPath = Environment.CurrentDirectory + "\\New Home-Minneapolis";
-                edinaPath = Environment.CurrentDirectory + "\\New Home-Edina";
-            }
-            else if(jt == "Lot Split")
-            {
-                addToBox(lotSplitStrings);
-            }
-        }
-
-        public void selectCityBoxes(String c)
-        {
-            switch (c)
-            {
-                case "Minneapolis":
-                    //setStringChecked(minniPath);
+                case "Full":
+                    addToBox(fullStrings);
                     break;
-                case "Edina":
-                    //setStringChecked(edinaPath);
+                case "Addition":
+                    addToBox(additionStrings);
+                    break;
+                case "New Home":
+                    addToBox(newHomeStrings);
+                    minniPath = Path.Combine(currentDir, "New Home-Minneapolis");
+                    edinaPath = Path.Combine(currentDir, "New Home-Edina");
+                    break;
+                case "Lot Split":
+                    addToBox(lotSplitStrings);
+                    break;
+                case "ALTA":
+                    addToBox(altaStrings);
+                    break;
+                case "Plat":
+                    addToBox(platStrings);
                     break;
             }
         }
@@ -335,24 +268,27 @@ namespace JobEnter
         public List<String> getTitlesAndList()
         {
             List<String> titleService = new List<string>();
-            String temp = "";
+            String servicesString = "";
             foreach(String s in checkedListBox1.Items)
             {
                 if (s.StartsWith("-"))
                 {
-                    titleService.Add(temp);
-                    temp = "";
+                    titleService.Add(servicesString);
+                    servicesString = "";
                     titleService.Add(s);
                 }
                 else
                 {
+                    Console.WriteLine(getIndex(s) + " | " + checkedListBox1.GetItemCheckState(getIndex(s)) + " | " + "S: " + s);
                     if (checkedListBox1.GetItemChecked(getIndex(s)))
                     {
-                        temp = temp += "■" + s + "\n";
+                        servicesString = servicesString += "■" + s + "\n";
                     }
                 }
             }
             
+            titleService.Add(servicesString);
+
             return titleService;
         }
 
@@ -376,33 +312,6 @@ namespace JobEnter
 
         public void setJobType(String jbIn) { this.jobType = jbIn; }
         public String getJobType() { return this.jobType; }
-
-
-        /*
-         * An old method no longer in use
-         */
-        public void updateCheckboxList(String type)
-        {
-            Console.WriteLine("Update Checkbox List: " + type);
-            if (type == "New Home")
-            {
-                addToBox(newHomeStrings);
-                edinaStrings = File.ReadAllLines("Service Files/New Home-Edina.txt").ToList<String>();
-                minneapolisStrings = File.ReadAllLines("Service Files/New Home-Minneapolis.txt").ToList<String>();
-            }
-            else if (type == "Addition")
-            {
-                addToBox(additionStrings);
-                edinaStrings = File.ReadAllLines("Service Files/Addition-Edina.txt").ToList<String>();
-                minneapolisStrings = File.ReadAllLines("Service Files/New Home-Minneapolis.txt").ToList<String>();
-            }
-            else if (type == "Proposed")
-            {
-                addToBox(fullStrings);
-                minneapolisStrings = File.ReadAllLines("Service Files/Existing-Minneapolis.txt").ToList<String>();
-            }
-        }
-
 
         /*
          * Sets all items from a passed path to checked in checklist box
@@ -432,7 +341,7 @@ namespace JobEnter
         {
             this.uncheckAll();
 
-            String templatePath = Environment.CurrentDirectory + "\\Service Files\\Full topo.txt";
+            String templatePath = Path.Combine(currentDir, "Service Files", "Full topo.txt");
             setStringChecked(templatePath);
         }
 
@@ -440,7 +349,7 @@ namespace JobEnter
         {
             this.uncheckAll();
 
-            String templatePath = Environment.CurrentDirectory + "\\Service Files\\Full on lake.txt";
+            String templatePath = Path.Combine(currentDir, "Service Files", "Full on lake.txt");
             setStringChecked(templatePath);
         }
 
@@ -448,16 +357,16 @@ namespace JobEnter
         {
             this.uncheckAll();
 
-            String templatPath = Environment.CurrentDirectory + "\\Service Files\\Full topo HC.txt";
-            setStringChecked(templatPath);
+            String templatePath = Path.Combine(currentDir, "Service Files", "Full Topo HC.txt");
+            setStringChecked(templatePath);
         }
 
         private void btnFullWetland_Click(object sender, EventArgs e)
         {
             this.uncheckAll();
 
-            String templatPath = Environment.CurrentDirectory + "\\Service Files\\Full wetland.txt";
-            setStringChecked(templatPath);
+            String templatePath = Path.Combine(currentDir, "Service Files", "Full wetland.txt");
+            setStringChecked(templatePath);
         }
 
 

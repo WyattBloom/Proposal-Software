@@ -59,9 +59,9 @@
             this.btnClientInfo.FlatAppearance.BorderSize = 0;
             this.btnClientInfo.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClientInfo.Location = new System.Drawing.Point(0, 0);
-            this.btnClientInfo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnClientInfo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnClientInfo.Name = "btnClientInfo";
-            this.btnClientInfo.Size = new System.Drawing.Size(173, 102);
+            this.btnClientInfo.Size = new System.Drawing.Size(231, 126);
             this.btnClientInfo.TabIndex = 0;
             this.btnClientInfo.Text = "Enter Client Info";
             this.btnClientInfo.UseVisualStyleBackColor = false;
@@ -75,10 +75,10 @@
             this.btnSelectServices.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnSelectServices.FlatAppearance.BorderSize = 0;
             this.btnSelectServices.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSelectServices.Location = new System.Drawing.Point(0, 198);
-            this.btnSelectServices.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSelectServices.Location = new System.Drawing.Point(0, 244);
+            this.btnSelectServices.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSelectServices.Name = "btnSelectServices";
-            this.btnSelectServices.Size = new System.Drawing.Size(173, 102);
+            this.btnSelectServices.Size = new System.Drawing.Size(231, 126);
             this.btnSelectServices.TabIndex = 2;
             this.btnSelectServices.Text = "Select Services";
             this.btnSelectServices.UseVisualStyleBackColor = false;
@@ -93,18 +93,18 @@
             this.panel1.Controls.Add(this.btnPricingPage);
             this.panel1.Controls.Add(this.btnSelectServices);
             this.panel1.Controls.Add(this.btnClientInfo);
-            this.panel1.Location = new System.Drawing.Point(0, 25);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Location = new System.Drawing.Point(0, 31);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(173, 525);
+            this.panel1.Size = new System.Drawing.Size(231, 646);
             this.panel1.TabIndex = 21;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(50, 452);
-            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button2.Location = new System.Drawing.Point(67, 556);
+            this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(61, 23);
+            this.button2.Size = new System.Drawing.Size(81, 28);
             this.button2.TabIndex = 6;
             this.button2.Text = "button2";
             this.button2.UseVisualStyleBackColor = true;
@@ -118,10 +118,10 @@
             this.btnJobType.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnJobType.FlatAppearance.BorderSize = 0;
             this.btnJobType.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnJobType.Location = new System.Drawing.Point(0, 99);
-            this.btnJobType.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnJobType.Location = new System.Drawing.Point(0, 122);
+            this.btnJobType.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnJobType.Name = "btnJobType";
-            this.btnJobType.Size = new System.Drawing.Size(173, 102);
+            this.btnJobType.Size = new System.Drawing.Size(231, 126);
             this.btnJobType.TabIndex = 1;
             this.btnJobType.Text = "Select Job Type";
             this.btnJobType.UseVisualStyleBackColor = false;
@@ -129,10 +129,10 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(50, 416);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Location = new System.Drawing.Point(67, 512);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(61, 23);
+            this.button1.Size = new System.Drawing.Size(81, 28);
             this.button1.TabIndex = 4;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
@@ -146,10 +146,10 @@
             this.btnPricingPage.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnPricingPage.FlatAppearance.BorderSize = 0;
             this.btnPricingPage.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPricingPage.Location = new System.Drawing.Point(0, 296);
-            this.btnPricingPage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnPricingPage.Location = new System.Drawing.Point(0, 364);
+            this.btnPricingPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnPricingPage.Name = "btnPricingPage";
-            this.btnPricingPage.Size = new System.Drawing.Size(173, 102);
+            this.btnPricingPage.Size = new System.Drawing.Size(231, 126);
             this.btnPricingPage.TabIndex = 3;
             this.btnPricingPage.Text = "Enter Pricing";
             this.btnPricingPage.UseVisualStyleBackColor = false;
@@ -157,9 +157,10 @@
             // 
             // btnPrev
             // 
-            this.btnPrev.Location = new System.Drawing.Point(298, 506);
+            this.btnPrev.Location = new System.Drawing.Point(397, 623);
+            this.btnPrev.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnPrev.Name = "btnPrev";
-            this.btnPrev.Size = new System.Drawing.Size(160, 38);
+            this.btnPrev.Size = new System.Drawing.Size(213, 47);
             this.btnPrev.TabIndex = 0;
             this.btnPrev.Text = "Previous";
             this.btnPrev.UseVisualStyleBackColor = true;
@@ -167,9 +168,10 @@
             // 
             // btnNext
             // 
-            this.btnNext.Location = new System.Drawing.Point(464, 506);
+            this.btnNext.Location = new System.Drawing.Point(619, 623);
+            this.btnNext.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(160, 38);
+            this.btnNext.Size = new System.Drawing.Size(213, 47);
             this.btnNext.TabIndex = 1;
             this.btnNext.Text = "Next";
             this.btnNext.UseVisualStyleBackColor = true;
@@ -184,8 +186,8 @@
             this.newJobEntryToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1042, 24);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(1389, 28);
             this.menuStrip1.TabIndex = 34;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -194,20 +196,20 @@
             this.smartsheetOptionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.changeAccessTokeToolStripMenuItem});
             this.smartsheetOptionsToolStripMenuItem.Name = "smartsheetOptionsToolStripMenuItem";
-            this.smartsheetOptionsToolStripMenuItem.Size = new System.Drawing.Size(123, 20);
+            this.smartsheetOptionsToolStripMenuItem.Size = new System.Drawing.Size(153, 24);
             this.smartsheetOptionsToolStripMenuItem.Text = "Smartsheet Options";
             // 
             // changeAccessTokeToolStripMenuItem
             // 
             this.changeAccessTokeToolStripMenuItem.Name = "changeAccessTokeToolStripMenuItem";
-            this.changeAccessTokeToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.changeAccessTokeToolStripMenuItem.Size = new System.Drawing.Size(233, 26);
             this.changeAccessTokeToolStripMenuItem.Text = "Change Access Token";
             this.changeAccessTokeToolStripMenuItem.Click += new System.EventHandler(this.changeAccessTokeToolStripMenuItem_Click);
             // 
             // newJobEntryToolStripMenuItem
             // 
             this.newJobEntryToolStripMenuItem.Name = "newJobEntryToolStripMenuItem";
-            this.newJobEntryToolStripMenuItem.Size = new System.Drawing.Size(93, 20);
+            this.newJobEntryToolStripMenuItem.Size = new System.Drawing.Size(116, 24);
             this.newJobEntryToolStripMenuItem.Text = "New job entry";
             this.newJobEntryToolStripMenuItem.Click += new System.EventHandler(this.newJobEntryToolStripMenuItem_Click);
             // 
@@ -217,71 +219,72 @@
             this.clientInfo1.City = "";
             this.clientInfo1.CountyBox = "";
             this.clientInfo1.Email = "";
-            this.clientInfo1.Location = new System.Drawing.Point(178, 27);
-            this.clientInfo1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.clientInfo1.Location = new System.Drawing.Point(237, 33);
+            this.clientInfo1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.clientInfo1.Name = "clientInfo1";
             this.clientInfo1.Number = "";
-            this.clientInfo1.Size = new System.Drawing.Size(607, 474);
+            this.clientInfo1.Size = new System.Drawing.Size(809, 583);
             this.clientInfo1.SpecialInstructions = "";
             this.clientInfo1.TabIndex = 29;
             // 
             // jobType1
             // 
             this.jobType1.BackColor = System.Drawing.SystemColors.Control;
-            this.jobType1.Location = new System.Drawing.Point(232, 59);
-            this.jobType1.Margin = new System.Windows.Forms.Padding(2);
+            this.jobType1.Location = new System.Drawing.Point(309, 73);
+            this.jobType1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.jobType1.Name = "jobType1";
-            this.jobType1.Size = new System.Drawing.Size(273, 266);
+            this.jobType1.Size = new System.Drawing.Size(364, 365);
             this.jobType1.TabIndex = 30;
             this.jobType1.Visible = false;
             // 
             // stakingPage1
             // 
             this.stakingPage1.Corner = "";
-            this.stakingPage1.Location = new System.Drawing.Point(211, 59);
-            this.stakingPage1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.stakingPage1.Location = new System.Drawing.Point(281, 73);
+            this.stakingPage1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.stakingPage1.Name = "stakingPage1";
-            this.stakingPage1.Size = new System.Drawing.Size(352, 146);
+            this.stakingPage1.Size = new System.Drawing.Size(651, 180);
+            this.stakingPage1.STKPRice = "";
             this.stakingPage1.TabIndex = 33;
             this.stakingPage1.Visible = false;
             // 
             // verifyPage
             // 
             this.verifyPage.Days = "";
-            this.verifyPage.Location = new System.Drawing.Point(178, 27);
-            this.verifyPage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.verifyPage.Location = new System.Drawing.Point(237, 33);
+            this.verifyPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.verifyPage.Name = "verifyPage";
             this.verifyPage.Price = "";
-            this.verifyPage.Size = new System.Drawing.Size(853, 467);
+            this.verifyPage.Size = new System.Drawing.Size(1137, 575);
             this.verifyPage.StakePrice = "";
             this.verifyPage.TabIndex = 32;
             this.verifyPage.Visible = false;
             // 
             // selectServices1
             // 
-            this.selectServices1.Location = new System.Drawing.Point(178, 27);
-            this.selectServices1.Margin = new System.Windows.Forms.Padding(2);
+            this.selectServices1.Location = new System.Drawing.Point(235, 33);
+            this.selectServices1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.selectServices1.Name = "selectServices1";
-            this.selectServices1.Size = new System.Drawing.Size(853, 467);
+            this.selectServices1.Size = new System.Drawing.Size(1137, 575);
             this.selectServices1.TabIndex = 31;
             this.selectServices1.Visible = false;
             // 
             // PanelForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1042, 550);
+            this.ClientSize = new System.Drawing.Size(1389, 677);
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.btnPrev);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.jobType1);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.stakingPage1);
             this.Controls.Add(this.verifyPage);
             this.Controls.Add(this.selectServices1);
             this.Controls.Add(this.clientInfo1);
+            this.Controls.Add(this.jobType1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "PanelForm";
             this.Text = "Job Proposal Software";
             this.Load += new System.EventHandler(this.PanelForm_Load);

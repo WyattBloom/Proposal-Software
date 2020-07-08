@@ -334,8 +334,10 @@
     <None Include="Resources\basic-compass-rose-cover-.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="bin\Debug\Addition.txt" />
     <Content Include="icons\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Debug\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

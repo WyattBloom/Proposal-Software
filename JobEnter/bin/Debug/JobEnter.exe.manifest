@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="JobEnter.exe" size="698880">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="JobEnter.exe" size="703488">
       <assemblyIdentity name="JobEnter" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>TpfSP8PaeHyl7eM5jLrYREHrL48ytxCS1wgtntIY8X4=</dsig:DigestValue>
+        <dsig:DigestValue>L/A/21WUlRocy1q9hjN5/g9k2L9mqablZhsmFEOb+1E=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -101,15 +101,6 @@
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="bin\Debug\Addition.txt" size="5559">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>62wSffUezm3LEh9tTqBwMQL6cylHu9QQ1uTBUP/3jRQ=</dsig:DigestValue>
-    </hash>
-  </file>
   <file name="icons\logo.png" size="10465">
     <hash>
       <dsig:Transforms>

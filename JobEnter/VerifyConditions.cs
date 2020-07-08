@@ -137,6 +137,8 @@ namespace JobEnter
                 foreach (Control control in controls)
                     if (control is TextBox)
                         (control as TextBox).Clear();
+                    else if (control is CheckBox)
+                        (control as CheckBox).Checked = false;
                     else
                         func(control.Controls);
             };

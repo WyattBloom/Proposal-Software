@@ -53,7 +53,7 @@
             this.boxInstructions.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.boxInstructions.Name = "boxInstructions";
             this.boxInstructions.Size = new System.Drawing.Size(609, 150);
-            this.boxInstructions.TabIndex = 7;
+            this.boxInstructions.TabIndex = 6;
             this.boxInstructions.Text = "";
             // 
             // label2
@@ -198,7 +198,7 @@
             this.cmbCounty.Location = new System.Drawing.Point(269, 295);
             this.cmbCounty.Name = "cmbCounty";
             this.cmbCounty.Size = new System.Drawing.Size(441, 30);
-            this.cmbCounty.TabIndex = 36;
+            this.cmbCounty.TabIndex = 5;
             // 
             // ClientInfo
             // 
