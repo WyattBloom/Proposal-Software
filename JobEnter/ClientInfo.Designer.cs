@@ -92,6 +92,7 @@
             this.boxCity.Name = "boxCity";
             this.boxCity.Size = new System.Drawing.Size(441, 30);
             this.boxCity.TabIndex = 4;
+            this.boxCity.TextChanged += new System.EventHandler(this.boxCity_TextChanged);
             // 
             // boxAddress
             // 
@@ -183,6 +184,8 @@
             // 
             // cmbCounty
             // 
+            this.cmbCounty.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cmbCounty.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmbCounty.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbCounty.FormattingEnabled = true;
             this.cmbCounty.Items.AddRange(new object[] {
@@ -198,6 +201,7 @@
             this.cmbCounty.Location = new System.Drawing.Point(269, 295);
             this.cmbCounty.Name = "cmbCounty";
             this.cmbCounty.Size = new System.Drawing.Size(441, 30);
+            this.cmbCounty.Sorted = true;
             this.cmbCounty.TabIndex = 5;
             // 
             // ClientInfo

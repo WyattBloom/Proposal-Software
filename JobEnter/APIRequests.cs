@@ -236,6 +236,11 @@ namespace JobEnter
                 },
                 new Cell
                 {
+                    ColumnId = this.getColumnID("County"),
+                    Value = this.county
+                },
+                new Cell
+                {
                     ColumnId = this.getColumnID("Phone No."),
                     Value = this.number
                 },

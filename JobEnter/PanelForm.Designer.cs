@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PanelForm));
             this.btnClientInfo = new System.Windows.Forms.Button();
             this.btnSelectServices = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -41,11 +42,11 @@
             this.smartsheetOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changeAccessTokeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newJobEntryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.clientInfo1 = new JobEnter.ClientInfo();
-            this.jobType1 = new JobEnter.JobType();
             this.stakingPage1 = new JobEnter.StakingPage();
             this.verifyPage = new JobEnter.VerifyConditions();
             this.selectServices1 = new JobEnter.SelectServices();
+            this.clientInfo1 = new JobEnter.ClientInfo();
+            this.jobType1 = new JobEnter.JobType();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -158,7 +159,7 @@
             // btnPrev
             // 
             this.btnPrev.Location = new System.Drawing.Point(397, 623);
-            this.btnPrev.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnPrev.Margin = new System.Windows.Forms.Padding(4);
             this.btnPrev.Name = "btnPrev";
             this.btnPrev.Size = new System.Drawing.Size(213, 47);
             this.btnPrev.TabIndex = 0;
@@ -169,7 +170,7 @@
             // btnNext
             // 
             this.btnNext.Location = new System.Drawing.Point(619, 623);
-            this.btnNext.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnNext.Margin = new System.Windows.Forms.Padding(4);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(213, 47);
             this.btnNext.TabIndex = 1;
@@ -213,30 +214,6 @@
             this.newJobEntryToolStripMenuItem.Text = "New job entry";
             this.newJobEntryToolStripMenuItem.Click += new System.EventHandler(this.newJobEntryToolStripMenuItem_Click);
             // 
-            // clientInfo1
-            // 
-            this.clientInfo1.Address = "";
-            this.clientInfo1.City = "";
-            this.clientInfo1.CountyBox = "";
-            this.clientInfo1.Email = "";
-            this.clientInfo1.Location = new System.Drawing.Point(237, 33);
-            this.clientInfo1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.clientInfo1.Name = "clientInfo1";
-            this.clientInfo1.Number = "";
-            this.clientInfo1.Size = new System.Drawing.Size(809, 583);
-            this.clientInfo1.SpecialInstructions = "";
-            this.clientInfo1.TabIndex = 29;
-            // 
-            // jobType1
-            // 
-            this.jobType1.BackColor = System.Drawing.SystemColors.Control;
-            this.jobType1.Location = new System.Drawing.Point(309, 73);
-            this.jobType1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.jobType1.Name = "jobType1";
-            this.jobType1.Size = new System.Drawing.Size(364, 365);
-            this.jobType1.TabIndex = 30;
-            this.jobType1.Visible = false;
-            // 
             // stakingPage1
             // 
             this.stakingPage1.Corner = "";
@@ -269,6 +246,30 @@
             this.selectServices1.TabIndex = 31;
             this.selectServices1.Visible = false;
             // 
+            // clientInfo1
+            // 
+            this.clientInfo1.Address = "";
+            this.clientInfo1.City = "";
+            this.clientInfo1.CountyBox = "";
+            this.clientInfo1.Email = "";
+            this.clientInfo1.Location = new System.Drawing.Point(237, 33);
+            this.clientInfo1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.clientInfo1.Name = "clientInfo1";
+            this.clientInfo1.Number = "";
+            this.clientInfo1.Size = new System.Drawing.Size(809, 583);
+            this.clientInfo1.SpecialInstructions = "";
+            this.clientInfo1.TabIndex = 29;
+            // 
+            // jobType1
+            // 
+            this.jobType1.BackColor = System.Drawing.SystemColors.Control;
+            this.jobType1.Location = new System.Drawing.Point(309, 73);
+            this.jobType1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.jobType1.Name = "jobType1";
+            this.jobType1.Size = new System.Drawing.Size(364, 365);
+            this.jobType1.TabIndex = 30;
+            this.jobType1.Visible = false;
+            // 
             // PanelForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -283,9 +284,11 @@
             this.Controls.Add(this.selectServices1);
             this.Controls.Add(this.clientInfo1);
             this.Controls.Add(this.jobType1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "PanelForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Job Proposal Software";
             this.Load += new System.EventHandler(this.PanelForm_Load);
             this.panel1.ResumeLayout(false);
