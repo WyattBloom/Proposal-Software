@@ -190,10 +190,10 @@ namespace JobEnter
                     count = 3;
 
                     //-------Make sure all necessary information is filled in-------
-                    //if(verifyConditions() == false)
-                    //{
-                    //    break;
-                    //}
+                    if(verifyConditions() == false)
+                    {
+                        break;
+                    }
                     //========================================================
                     
                     verifyPage.addToBox("Saving...");
@@ -203,6 +203,10 @@ namespace JobEnter
                     String absoluteFilePath   = absoluteFolderPath + "\\Proposal For Services at " + clientInfo1.Address;
                     String pdfPath            = absoluteFilePath + ".pdf";
                     String templateName       = getTemplateName(jobType1.getSelectedButton());
+
+                    Console.WriteLine("Folder Path: " + absoluteFolderPath);
+                    Console.WriteLine("File Path: " + absoluteFilePath);
+                    Console.WriteLine("Template Name: " + templateName);
 
                     if (templateName == null)
                     {
@@ -225,23 +229,26 @@ namespace JobEnter
                                     verifyPage.addToBox("File saved successfully");
                                 break;
                             default:
-                                if (!saveToWord(absoluteFolderPath, templateName, absoluteFilePath))
+                                if (!saveToWord(templateName, absoluteFilePath))
                                     break;
                                 else
                                     verifyPage.addToBox("File saved successfully");
                                 break;
                         }
                     }
-                    
+
                     //=====================================================
 
 
                     //--------------Add CTF Letter to folder--------------
-                    this.addCTFLetter(absoluteFolderPath);
+                    if (!addCTFLetter(absoluteFolderPath))
+                    {
+                        MessageBox.Show("Error adding CTF", "CTF Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                     //====================================================
 
 
-                    //---------------Open File for Editing-------------
+                    //---------------Open File for Editing------------- 
                     openFile(absoluteFilePath + ".docx");
 
                     FileInfo fi1 = new FileInfo(absoluteFilePath + ".docx");
@@ -291,11 +298,15 @@ namespace JobEnter
                     Word.Application ap = new Word.Application();
                     Word.Document document = ap.Documents.Open(fileLocation);
                     ap.Visible = true;
+
+                    //return true;
                 }
+//                return true;
             }
             catch (System.Exception ex)
             {
-                MessageBox.Show("Opening File was did not work: " + ex.Message);
+                MessageBox.Show("Error while opening file: " + ex.Message);
+//                return false;
             }
         }
 
@@ -483,13 +494,18 @@ namespace JobEnter
         }
 
 
-        private Boolean saveToWord(String absoluteFolderPath, String fileType, String filePath)
+        private Boolean saveToWord(String templateName, String filePath)
         {
             try
             {
-                CreateWordDoc doc1 = new CreateWordDoc(Path.Combine(currentDIR, fileType), filePath);
+                CreateWordDoc doc1 = new CreateWordDoc(Path.Combine(currentDIR, templateName), filePath);
                 doc1.CreateDocument();
-                FindAndReplaceTemplate(doc1);
+
+                // Find and replace client info
+                FindAndReplace_ClientInfo(doc1);
+                // Find and replace selected services and titles
+                FindAndReplace_ServicesAndTitles(doc1);
+
                 doc1.closeAndSave();
 
                 //______verifyPage.addToBox("Saved to: " + absoluteFilePath);_____
@@ -502,22 +518,6 @@ namespace JobEnter
             }
         }
 
-
-        private void FindAndReplaceTemplate(CreateWordDoc doc1)
-        {
-            try
-            {
-                // Find and replace client info
-                FindAndReplace_ClientInfo(doc1);
-                // Find and replace selected services and titles
-                FindAndReplace_ServicesAndTitles(doc1);
-            }catch(System.Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message, "F&R Template Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-
         private void FindAndReplace_ClientInfo(CreateWordDoc doc1)
         {
             try
@@ -528,7 +528,7 @@ namespace JobEnter
                 if (clientInfo1.Number    != null) { doc1.FindAndReplace("<phone>",      clientInfo1.Number); }
                 if (clientInfo1.Email     != null) { doc1.FindAndReplace("<email>",      clientInfo1.Email); }
                 if (verifyPage.Price      != null) { doc1.FindAndReplace("<price>",      verifyPage.Price); }
-                if (stakingPage1.STKPRice != null) { doc1.FindAndReplace("<stakePrice>", stakingPage1.STKPRice); }
+                if (stakingPage1.STKPRice != null) { doc1.FindAndReplace("<stakePrice>", verifyPage.StakePrice); }
                 if (verifyPage.Days       != null) { doc1.FindAndReplace("<days>",       verifyPage.Days); }
 
                 if (clientInfo1.SpecialInstructions == "")
@@ -538,7 +538,7 @@ namespace JobEnter
 
             }catch(System.Exception ex)
             {
-                Console.WriteLine("Error 5");
+                Console.WriteLine("Error in Client Info. " + ex.Message);
             }
         }
 
@@ -554,54 +554,18 @@ namespace JobEnter
 
                 for(int i = 0; i <= titlesAndServices.Count -1; i++)
                 {
-                    Console.WriteLine("|" + titlesAndServices[i]);
+                    Console.WriteLine(titlesAndServices[i]);
                     if (titlesAndServices[i].StartsWith("-"))
                     {
                         var result = titlesAndServices[i].Substring(titlesAndServices[i].LastIndexOf("-") + 1);
                         if (titlesAndServices[i + 1] == "")
                         {
                             replaceTitles_All(doc1, result, titlesAndServices[i + 1], "");
-                            /*switch (jobType1.getSelectedButton())
-                            {
-                                case "Plat":
-                                    replaceTitles_Plat(doc1, result, titlesAndServices[i + 1], "");
-                                    break;
-                                case "Addition":
-                                    replaceTitles_Addition(doc1, result, titlesAndServices[i + 1], "");
-                                    break;
-                                case "New Home":
-                                    replaceTitles_NewHome(doc1, result, titlesAndServices[i + 1], "");
-                                    break;
-                                case "Full":
-                                    replaceTitles_Full(doc1, result, titlesAndServices[i + 1], "");
-                                    break;
-                                default:
-                                    replaceTitles(doc1, result, titlesAndServices[i + 1], "");
-                                    break;                     
-                            }*/
                         }
                         else
                         {
                             System.Windows.Forms.Clipboard.SetText(titlesAndServices[i + 1]);
                             replaceTitles_All(doc1, result, "^c^p", result + "^p");
-                            /*switch (jobType1.getSelectedButton())
-                            {
-                                case "Plat":
-                                    replaceTitles_Plat(doc1, result, "^c^p", result + "^p");
-                                    break;
-                                case "Addition":
-                                    replaceTitles_Addition(doc1, result, "^c^p", result + "^p");
-                                    break;
-                                case "New Home":
-                                    replaceTitles_NewHome(doc1, result, "^c^p", result + "^p");
-                                    break;
-                                case "Full":
-                                    replaceTitles_Full(doc1, result, "^c^p", result + "^p");
-                                    break;
-                                default:
-                                    replaceTitles(doc1, result, "^c^p", result + "^p");
-                                    break;
-                            }*/
                         }
                         
                     }
@@ -718,170 +682,6 @@ namespace JobEnter
             }
         }
 
-        private void replaceTitles_Plat(CreateWordDoc doc1, String titleIn,
-                                        String servicesIn, String replaceWith)
-        {
-            switch (titleIn)
-            {
-                case "General Items":
-
-                    break;
-                case "Building & Improvements":
-                    doc1.FindAndReplace("<build/improveHeader>", replaceWith);
-                    doc1.FindAndReplace("<build/improveBody>", servicesIn);
-                    break;
-                case "Utilities":
-                    doc1.FindAndReplace("<utilHeader>", replaceWith);
-                    doc1.FindAndReplace("<utilBody>", servicesIn);
-                    break;
-                case "Natural Features":
-                    doc1.FindAndReplace("<naturalHeader>", replaceWith);
-                    doc1.FindAndReplace("<naturalBody>", servicesIn);
-                    break;
-                case "Proposed Items":
-                    doc1.FindAndReplace("<proposedHeader>", replaceWith);
-                    doc1.FindAndReplace("<proposedBody>", servicesIn);
-                    break;
-                case "Lot Splits":
-                    doc1.FindAndReplace("<lotSplitHeader>", replaceWith);
-                    doc1.FindAndReplace("<lotSplitBody>", servicesIn);
-                    break;
-                case "SCOPE OF SERVICES [FINAL/RECORD PLAT]":
-                    doc1.FindAndReplace("<PlatHeader>", replaceWith);
-                    doc1.FindAndReplace("<PlatBody>", servicesIn);
-                    break;
-            }
-        }
-
-        private void replaceTitles_Addition(CreateWordDoc doc1, String titleIn,
-                                        String servicesIn, String replaceWith)
-        {
-            switch (titleIn)
-            {
-                case "General Items":
-
-                    break;
-                case "Building & Improvements":
-                    doc1.FindAndReplace("<build/improveHeader>", replaceWith);
-                    doc1.FindAndReplace("<build/improveBody>", servicesIn);
-                    break;
-                case "Utilities":
-                    doc1.FindAndReplace("<utilHeader>", replaceWith);
-                    doc1.FindAndReplace("<utilBody>", servicesIn);
-                    break;
-                case "Natural Features":
-                    doc1.FindAndReplace("<naturalHeader>", replaceWith);
-                    doc1.FindAndReplace("<naturalBody>", servicesIn);
-                    break;
-                case "Addition":
-                    doc1.FindAndReplace("<AdditionHeader>", replaceWith);
-                    doc1.FindAndReplace("<AdditionBody>", servicesIn);
-                    break;
-                case "House Staking":
-                    doc1.FindAndReplace("<StakingHeader>", replaceWith);
-                    doc1.FindAndReplace("<StakingBody>", servicesIn);
-                    break;
-                case "Foundation as built":
-                    doc1.FindAndReplace("<FoundationHeader>", replaceWith);
-                    doc1.FindAndReplace("<FoundationBody>", servicesIn);
-                    break;
-                case "Final as built":
-                    doc1.FindAndReplace("<FinalHeader>", replaceWith);
-                    doc1.FindAndReplace("<FinalBody>", servicesIn);
-                    break;
-            }
-        }
-
-        private void replaceTitles_NewHome(CreateWordDoc doc1, String titleIn,
-                                String servicesIn, String replaceWith)
-        {
-            Console.WriteLine("New Home");
-
-            switch (titleIn)
-            {
-                case "General Items":
-
-                    break;
-                case "Building & Improvements":
-                    doc1.FindAndReplace("<build/improveHeader>", replaceWith);
-                    doc1.FindAndReplace("<build/improveBody>", servicesIn);
-                    break;
-                case "Utilities":
-                    doc1.FindAndReplace("<utilHeader>", replaceWith);
-                    doc1.FindAndReplace("<utilBody>", servicesIn);
-                    break;
-                case "Natural Features":
-                    doc1.FindAndReplace("<naturalHeader>", replaceWith);
-                    doc1.FindAndReplace("<naturalBody>", servicesIn);
-                    break;
-                case "New Homes":
-                    doc1.FindAndReplace("<NewHomeHeader>", replaceWith);
-                    doc1.FindAndReplace("<NewHomeBody>", servicesIn);
-                    break;
-                case "House Staking":
-                    doc1.FindAndReplace("<StakingHeader>", replaceWith);
-                    doc1.FindAndReplace("<StakingBody>", servicesIn);
-                    break;
-                case "Foundation as built":
-                    doc1.FindAndReplace("<FoundationHeader>", replaceWith);
-                    doc1.FindAndReplace("<FoundationBody>", servicesIn);
-                    break;
-                case "Final as built":
-                    doc1.FindAndReplace("<FinalHeader>", replaceWith);
-                    doc1.FindAndReplace("<FinalBody>", servicesIn);
-                    break;
-            }
-        }
-
-        private void replaceTitles_LotSplit(CreateWordDoc doc1, String titleIn,
-                                String servicesIn, String replaceWith)
-        {
-            Console.WriteLine("Lot Split");
-
-            switch (titleIn)
-            {
-                case "General Items":
-
-                    break;
-                case "Building & Improvements":
-                    doc1.FindAndReplace("<build/improveHeader>", replaceWith);
-                    doc1.FindAndReplace("<build/improveBody>", servicesIn);
-                    break;
-                case "Utilities":
-                    doc1.FindAndReplace("<utilHeader>", replaceWith);
-                    doc1.FindAndReplace("<utilBody>", servicesIn);
-                    break;
-                case "Lot Splits":
-                    doc1.FindAndReplace("<LotSplitHeader>", replaceWith);
-                    doc1.FindAndReplace("<LotSplitBody>", servicesIn);
-                    break;
-            }
-        }
-
-        private void replaceTitles_Full(CreateWordDoc doc1, String titleIn,
-                                String servicesIn, String replaceWith)
-        {
-            switch (titleIn)
-            {
-                case "General Property Items":
-                    doc1.FindAndReplace("<GeneralHeader>", replaceWith);
-                    doc1.FindAndReplace("<GeneralBody>", servicesIn);
-                    break;
-                case "Building and Improvements":
-                    doc1.FindAndReplace("<build/improveHeader>", replaceWith);
-                    doc1.FindAndReplace("<build/improveBody>", servicesIn);
-                    break;
-                case "Utilities":
-                    doc1.FindAndReplace("<utilHeader>", replaceWith);
-                    doc1.FindAndReplace("<utilBody>", servicesIn);
-                    break;
-                case "Natural Features":
-                    doc1.FindAndReplace("<naturalHeader>", replaceWith);
-                    doc1.FindAndReplace("<naturalBody>", servicesIn);
-                    break;
-            }
-        }
-
 
         /*
          * Addition(Edina)- Existing Condition: $1350
@@ -982,30 +782,37 @@ namespace JobEnter
             return false;
         }
 
-        private void addCTFLetter(String folderPath)
+        private Boolean addCTFLetter(String folderPath)
         {
-            String destFileTom = System.IO.Path.Combine(currentDIR, "Templates", "TomCTF.docx");
-            String destFileWayne = System.IO.Path.Combine(currentDIR, "Templates", "WayneCTF.docx");
+
+            String destFileTom = System.IO.Path.Combine(currentDIR, "Templates", "TomCTFLetter.docx");
+            String destFileWayne = System.IO.Path.Combine(currentDIR, "Templates", "WayneCTFLetter.docx");
+
+            Console.WriteLine("CTF Tom:" + destFileTom);
+            Console.WriteLine("CTF Wayne:" + destFileWayne);
+
             switch (verifyPage.getCTF())
             {
                 case "Tom":
                     if (!FindAndReplace_CTF(destFileTom, "Tom"))
-                        break;
+                    { return false; }
                     else
                         verifyPage.addToBox("Failed to add CTF Letter");
-                    break;
+                    { return true; }
                 case "Wayne":
                     if (!FindAndReplace_CTF(destFileWayne, "Wayne"))
-                        break;
+                    { return false; }
                     else
                         verifyPage.addToBox("Failed to add CTF Letter");
-                    break;
+                    { return true; }
                 case "WayneTom":
                     if (!FindAndReplace_CTF(destFileTom, "Tom") || !FindAndReplace_CTF(destFileWayne, "Wayne"))
-                        break;
+                    { return false; }
                     else
                         verifyPage.addToBox("Failed to add CTF Letter");
-                    break;
+                    { return true; }
+                default:
+                    return true;
             }
         }
 
