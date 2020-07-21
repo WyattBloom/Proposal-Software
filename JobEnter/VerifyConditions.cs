@@ -61,6 +61,11 @@ namespace JobEnter
             return outVal;
         }
 
+        public void setStakePrice(String price)
+        {
+            boxStakePrice.Text = price;
+        }
+
         public String getCTF()
         {
             var list = panel1.Controls.OfType<CheckBox>().Where(x => x.Checked == true);
@@ -94,7 +99,7 @@ namespace JobEnter
             lbox1.Items.Add("Address: " + a);
             lbox1.Items.Add("City: " + s);
             lbox1.Items.Add("County: " + c);
-            lbox1.Items.Add("Special Instructions:" + SI);
+            lbox1.Items.Add("Special Instructions: " + SI);
         }
 
         public string Price

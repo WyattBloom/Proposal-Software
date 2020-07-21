@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using System.IO;
 using Word = Microsoft.Office.Interop.Word;
 using Smartsheet.Api.Models;
+using System.Security.Cryptography;
 
 namespace JobEnter
 {
@@ -171,6 +172,11 @@ namespace JobEnter
                     jobType1.Visible = false;
                     clientInfo1.Visible = false;
 
+                    // Sets the staking price on the verify page to be the value 
+                    // of the staking price on the staking page
+                    if (stakingPage1.STKPRice != "" || stakingPage1.STKPRice != null)
+                        verifyPage.setStakePrice(stakingPage1.STKPRice);
+
                     // Select all neccesary headers
                     selectServices1.selectHeaders();
                     verifyPage.clearBox();          // Clear old input
@@ -215,6 +221,9 @@ namespace JobEnter
                         break;
                     }
 
+                    Console.WriteLine("Job Type: " + jobType1.getSelectedButton());
+
+
                     //--------------Save to File-----------------------------
                     if (absoluteFolderPath == null)
                         break;
@@ -224,6 +233,16 @@ namespace JobEnter
                         {
                             case "ALTA":
                                 if (!FindAndReplace_ALTA(templateName, absoluteFilePath))
+                                    break;
+                                else
+                                    verifyPage.addToBox("File saved successfully");
+                                break;
+                            case "One Stake":
+                                goto case "All Stake";
+                            case "Two Stake":
+                                goto case "All Stake";
+                            case "All Stake":
+                                if (!FindAndReplace_Staking(templateName, absoluteFilePath))
                                     break;
                                 else
                                     verifyPage.addToBox("File saved successfully");
@@ -241,10 +260,7 @@ namespace JobEnter
 
 
                     //--------------Add CTF Letter to folder--------------
-                    if (!addCTFLetter(absoluteFolderPath))
-                    {
-                        MessageBox.Show("Error adding CTF", "CTF Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    addCTFLetter(absoluteFolderPath);
                     //====================================================
 
 
@@ -298,10 +314,11 @@ namespace JobEnter
                     Word.Application ap = new Word.Application();
                     Word.Document document = ap.Documents.Open(fileLocation);
                     ap.Visible = true;
+                    ap.Activate();
+                    ap.WindowState = Word.WdWindowState.wdWindowStateMaximize;
+                    
 
-                    //return true;
                 }
-//                return true;
             }
             catch (System.Exception ex)
             {
@@ -432,30 +449,6 @@ namespace JobEnter
 
         }
 
-        private Boolean FindAndReplace_Staking(String templateName, String filePath)
-        {
-            try
-            {
-                CreateWordDoc doc1 = new CreateWordDoc(Path.Combine(currentDIR, templateName), filePath);
-                doc1.CreateDocument();
-
-                FindAndReplace_ClientInfo(doc1);
-
-                doc1.FindAndReplace("<corner>", stakingPage1.Corner);
-                doc1.FindAndReplace("<stakePrice>", stakingPage1.STKPRice);
-                doc1.FindAndReplace("<CornerSideAll>", stakingPage1.Corner);
-
-                doc1.closeAndSave();
-
-                return true;
-            }catch(System.Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                return false;
-            }
-        }
-
-
 
         private Boolean FindAndReplace_ALTA(String templateName, String filePath)
         {
@@ -488,6 +481,29 @@ namespace JobEnter
                 return true;
 
             }catch(SystemException ex)
+            {
+                return false;
+            }
+        }
+
+        private Boolean FindAndReplace_Staking(String templateName, String filePath)
+        {
+            try
+            {
+                CreateWordDoc doc1 = new CreateWordDoc(Path.Combine(currentDIR, templateName), filePath);
+                doc1.CreateDocument();
+
+                FindAndReplace_ClientInfo(doc1);
+
+                Console.WriteLine("Corner: " + stakingPage1.Corner);
+                doc1.FindAndReplace("<corner>", stakingPage1.Corner);
+                doc1.FindAndReplace("<stakePrice>", verifyPage.StakePrice);
+
+                doc1.closeAndSave();
+
+                return true;
+            }
+            catch (SystemException ex)
             {
                 return false;
             }
@@ -572,7 +588,7 @@ namespace JobEnter
                 }
             }catch(System.Exception ex)
             {
-                Console.WriteLine("Error 4. " + ex.Message);
+                Console.WriteLine("Error 4. Line 575 - " + ex.Message);
             }
         }
 
@@ -590,6 +606,11 @@ namespace JobEnter
             switch (jobType1.getSelectedButton())
             {
                 case "Lot Split":
+                    if(titleIn == "Lot Splits")
+                    {
+                        doc1.FindAndReplace("<LotSplitHeader>", replaceWith);
+                        doc1.FindAndReplace("<LotSplitBody>", servicesIn);
+                    }
                     goto default;
                 case "Full":
                     if(titleIn == "Natural Features")
@@ -782,11 +803,14 @@ namespace JobEnter
             return false;
         }
 
-        private Boolean addCTFLetter(String folderPath)
+        private void addCTFLetter(String folderPath)
         {
 
-            String destFileTom = System.IO.Path.Combine(currentDIR, "Templates", "TomCTFLetter.docx");
-            String destFileWayne = System.IO.Path.Combine(currentDIR, "Templates", "WayneCTFLetter.docx");
+            String templateFileTom = System.IO.Path.Combine(currentDIR, "Templates", "TomCTFLetter.docx");
+            String templateFileWayne = System.IO.Path.Combine(currentDIR, "Templates", "WayneCTFLetter.docx");
+
+            String destFileTom = Path.Combine(folderPath, "TomCTFLetter.docx");
+            String destFileWayne = Path.Combine(folderPath, "WayneCTFLetter.docx");
 
             Console.WriteLine("CTF Tom:" + destFileTom);
             Console.WriteLine("CTF Wayne:" + destFileWayne);
@@ -794,36 +818,26 @@ namespace JobEnter
             switch (verifyPage.getCTF())
             {
                 case "Tom":
-                    if (!FindAndReplace_CTF(destFileTom, "Tom"))
-                    { return false; }
-                    else
-                        verifyPage.addToBox("Failed to add CTF Letter");
-                    { return true; }
+                    FindAndReplace_CTF(templateFileTom, destFileTom, "Tom");
+                    break;
                 case "Wayne":
-                    if (!FindAndReplace_CTF(destFileWayne, "Wayne"))
-                    { return false; }
-                    else
-                        verifyPage.addToBox("Failed to add CTF Letter");
-                    { return true; }
+                    FindAndReplace_CTF(templateFileWayne, destFileWayne, "Wayne");
+                    break;
                 case "WayneTom":
-                    if (!FindAndReplace_CTF(destFileTom, "Tom") || !FindAndReplace_CTF(destFileWayne, "Wayne"))
-                    { return false; }
-                    else
-                        verifyPage.addToBox("Failed to add CTF Letter");
-                    { return true; }
-                default:
-                    return true;
+                    FindAndReplace_CTF(templateFileTom, destFileTom, "Tom");
+                    FindAndReplace_CTF(templateFileWayne, destFileWayne, "Wayne");
+                    break;
             }
         }
 
-        private Boolean FindAndReplace_CTF(String filePath, String surveyor)
+        private void FindAndReplace_CTF(String templateFile, String destinationFile,String surveyor)
         {
             try
             {
                 if (surveyor == "Tom")
                 {
-                    Console.WriteLine("File: " + filePath);
-                    CreateWordDoc docTom = new CreateWordDoc(Directory.GetCurrentDirectory() + "\\TomCTFLetter.docx", filePath);
+                    Console.WriteLine("File: " + destinationFile);
+                    CreateWordDoc docTom = new CreateWordDoc(templateFile, destinationFile);
                     docTom.CreateDocument();
 
                     //Find and replace
@@ -834,8 +848,8 @@ namespace JobEnter
                 }
                 else if (surveyor == "Wayne")
                 {
-                    Console.WriteLine("File: " + filePath);
-                    CreateWordDoc docWayne = new CreateWordDoc(Directory.GetCurrentDirectory() + "\\WayneCTFLetter.docx", filePath);
+                    Console.WriteLine("File: " + destinationFile);
+                    CreateWordDoc docWayne = new CreateWordDoc(templateFile, destinationFile);
                     docWayne.CreateDocument();
 
                     //Find and replace
@@ -844,12 +858,10 @@ namespace JobEnter
 
                     docWayne.closeAndSave();
                 }
-                return true;
             }
             catch (System.Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message, "F&R CTF Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
             }
         }
 

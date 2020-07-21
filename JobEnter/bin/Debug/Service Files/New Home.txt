@@ -21,9 +21,9 @@ Establish a project benchmark in relation to the topography shown.
 -New Homes
 Show footprint of the proposed dwelling and related improvements, per your plans.
 Show proposed elevations for the first floor, low floor, top of foundation, and garage floor.
-Show proposed grading & drainage details by depicting proposed contours, spot elevations, and drainage arrows, as nec-essary, to show the control of storm water runoff.
-Tabulate areas of proposed hardcover.  Note: Impervious surface requirements vary city to city.  Be sure to have this tabulation reviewed and approved by the appropriate governmental agency before using this information for any site de-sign or construction.
-Note: While we show a proposed dwelling, related improvements and grading & drainage details, we are not as familiar with the plan or overall concept for the project as our client, their builder, or their architect is.  Before relying on the sur-vey for construction and design or submitting the provided information to the city, the client is responsible to verify we are depicting their proposed dwelling and improvements correctly.
+Show proposed grading & drainage details by depicting proposed contours, spot elevations, and drainage arrows, as necessary, to show the control of storm water runoff.
+Tabulate areas of proposed hardcover.  Note: Impervious surface requirements vary city to city.  Be sure to have this tabulation reviewed and approved by the appropriate governmental agency before using this information for any site design or construction.
+Note: While we show a proposed dwelling, related improvements and grading & drainage details, we are not as familiar with the plan or overall concept for the project as our client, their builder, or their architect is.  Before relying on the survey for construction and design or submitting the provided information to the city, the client is responsible to verify we are depicting their proposed dwelling and improvements correctly.
 Note: Gaining governmental approvals for your proposed dwelling and improvements is independent of the services we provide.  While we provide the appropriate documents to submit to such governmental agencies, we do not guarantee that your project will be approved at the city or county level.
 
 -House Staking
@@ -34,5 +34,5 @@ Provide staking sheet, after building corner stakes and offsets have been set, s
 Provide a foundation as-built survey showing the location and elevation of the new existing foundation.
 
 -Final as built
-Provide a final as-built survey showing actual existing lot conditions after all construction and grading is complete.  Fi-nal as-built survey will reflect the items included on the proposed new home survey.
-Note: Fees for final as-built survey will be determined based on the size of the proposed dwelling, amount of grading re-quired, and extent of impervious surfaces that need to be shown.  Min. $500 – Max. $1000.
+Provide a final as-built survey showing actual existing lot conditions after all construction and grading is complete.  Final as-built survey will reflect the items included on the proposed new home survey.
+Note: Fees for final as-built survey will be determined based on the size of the proposed dwelling, amount of grading required, and extent of impervious surfaces that need to be shown.  Min. $500 – Max. $1000.

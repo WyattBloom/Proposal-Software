@@ -171,20 +171,16 @@ namespace JobEnter
 
         public void setSelectedFromList1(List<String> listIn)
         {
-            Console.WriteLine("Set Selected");
             for (int i = 0; i < listIn.Count; i++)
             {
                 if (checkedListBox1.Items.Contains(listIn[i]))
                 {
-                    //Console.WriteLine("Contained: " + listIn[i]);
                     checkedListBox1.SetItemChecked(i, true);
-                    //Console.WriteLine("Number " + i + ": " + checkedListBox1.Items[i]);
                 }
                 else
                 {
                     if (listIn[i] != "")
                     {
-                        //Console.WriteLine("Extra: " + listIn[i]);
                         checkedListBox1.Items.Add(listIn[i]);
                         checkedListBox1.SetItemChecked(this.getIndex(listIn[i]), true);
                     }
@@ -318,7 +314,6 @@ namespace JobEnter
                 if (checkedListBox1.Items.Contains(s))
                 {
                     checkedListBox1.SetItemChecked(checkedListBox1.Items.IndexOf(s), true);
-                    Console.WriteLine(s);
                 }
             }
         }
@@ -411,6 +406,8 @@ namespace JobEnter
          */
         public void selectHeaders()
         {
+            if (checkedListBox1.Items.Count == 0)
+                return;
             List<int> indexes = new List<int>();
             for (int i = 0; i < checkedListBox1.Items.Count; i++)
             {
@@ -424,9 +421,6 @@ namespace JobEnter
                 {
                     if (!i.Equals(last))
                     {
-                        //Console.WriteLine("I: " + indexes[i]);
-                        //Console.WriteLine("For Header: " + indexes[i] + " | " + checkedListBox1.Items[indexes[i]].ToString());
-                        //Console.WriteLine("For Header: " + indexes[i + 1] + " | " + checkedListBox1.Items[indexes[i + 1]].ToString());
                         for (int j = indexes[i]; j < indexes[i + 1]; j++)
                         {
                             if (checkedListBox1.GetItemChecked(j))

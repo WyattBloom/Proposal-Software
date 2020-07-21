@@ -62,7 +62,7 @@
             this.btnClientInfo.Location = new System.Drawing.Point(0, 0);
             this.btnClientInfo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnClientInfo.Name = "btnClientInfo";
-            this.btnClientInfo.Size = new System.Drawing.Size(231, 126);
+            this.btnClientInfo.Size = new System.Drawing.Size(231, 125);
             this.btnClientInfo.TabIndex = 0;
             this.btnClientInfo.Text = "Enter Client Info";
             this.btnClientInfo.UseVisualStyleBackColor = false;
@@ -79,7 +79,7 @@
             this.btnSelectServices.Location = new System.Drawing.Point(0, 244);
             this.btnSelectServices.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSelectServices.Name = "btnSelectServices";
-            this.btnSelectServices.Size = new System.Drawing.Size(231, 126);
+            this.btnSelectServices.Size = new System.Drawing.Size(231, 125);
             this.btnSelectServices.TabIndex = 2;
             this.btnSelectServices.Text = "Select Services";
             this.btnSelectServices.UseVisualStyleBackColor = false;
@@ -97,7 +97,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 31);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(231, 646);
+            this.panel1.Size = new System.Drawing.Size(231, 645);
             this.panel1.TabIndex = 21;
             // 
             // button2
@@ -109,6 +109,7 @@
             this.button2.TabIndex = 6;
             this.button2.Text = "button2";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Visible = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // btnJobType
@@ -122,7 +123,7 @@
             this.btnJobType.Location = new System.Drawing.Point(0, 122);
             this.btnJobType.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnJobType.Name = "btnJobType";
-            this.btnJobType.Size = new System.Drawing.Size(231, 126);
+            this.btnJobType.Size = new System.Drawing.Size(231, 125);
             this.btnJobType.TabIndex = 1;
             this.btnJobType.Text = "Select Job Type";
             this.btnJobType.UseVisualStyleBackColor = false;
@@ -137,6 +138,7 @@
             this.button1.TabIndex = 4;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // btnPricingPage
@@ -150,7 +152,7 @@
             this.btnPricingPage.Location = new System.Drawing.Point(0, 364);
             this.btnPricingPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnPricingPage.Name = "btnPricingPage";
-            this.btnPricingPage.Size = new System.Drawing.Size(231, 126);
+            this.btnPricingPage.Size = new System.Drawing.Size(231, 125);
             this.btnPricingPage.TabIndex = 3;
             this.btnPricingPage.Text = "Enter Pricing";
             this.btnPricingPage.UseVisualStyleBackColor = false;
@@ -284,9 +286,11 @@
             this.Controls.Add(this.selectServices1);
             this.Controls.Add(this.clientInfo1);
             this.Controls.Add(this.jobType1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.MaximizeBox = false;
             this.Name = "PanelForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Job Proposal Software";

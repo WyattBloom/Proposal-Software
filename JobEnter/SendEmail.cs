@@ -54,6 +54,7 @@ namespace JobEnter
             if (attach2 != null)
                 oMailItem.Attachments.Add(attach2);
             oMailItem.Display(true);
+            oApp.ActiveWindow();
         }
 
     }

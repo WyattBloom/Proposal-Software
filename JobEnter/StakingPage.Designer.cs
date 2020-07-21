@@ -57,17 +57,17 @@
             // boxCorner
             // 
             this.boxCorner.Font = new System.Drawing.Font("Times New Roman", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.boxCorner.Location = new System.Drawing.Point(223, 22);
+            this.boxCorner.Location = new System.Drawing.Point(241, 22);
             this.boxCorner.Name = "boxCorner";
-            this.boxCorner.Size = new System.Drawing.Size(399, 33);
+            this.boxCorner.Size = new System.Drawing.Size(381, 33);
             this.boxCorner.TabIndex = 2;
             // 
             // boxSTKPrice
             // 
             this.boxSTKPrice.Font = new System.Drawing.Font("Times New Roman", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.boxSTKPrice.Location = new System.Drawing.Point(223, 63);
+            this.boxSTKPrice.Location = new System.Drawing.Point(241, 63);
             this.boxSTKPrice.Name = "boxSTKPrice";
-            this.boxSTKPrice.Size = new System.Drawing.Size(399, 33);
+            this.boxSTKPrice.Size = new System.Drawing.Size(381, 33);
             this.boxSTKPrice.TabIndex = 3;
             // 
             // StakingPage
