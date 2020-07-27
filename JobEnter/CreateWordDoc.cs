@@ -106,7 +106,6 @@ namespace JobEnter
                 MessageBox.Show("Error in find and replace. \n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
     }
 
 }

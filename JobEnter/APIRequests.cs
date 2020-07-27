@@ -26,6 +26,7 @@ namespace JobEnter
         private String SI;
         private String price;
         private DateTime date;
+        private String jobType;
 
         public void setGISLink(String gisIn) { this.gisLink = gisIn; }
 
@@ -56,35 +57,12 @@ namespace JobEnter
             sheetID = this.getSheetID(sheetName);
         }
 
-        // Does not include email authentication
-        /*public APIRequests(String sheetName, string accessTokenIn,
-                    String name, String email, String address,
-                    String city, String county, String state,
-                    String price, String phoneNum, DateTime date)
-        {
-            accessToken = accessTokenIn;
-            smartsheet = new SmartsheetBuilder()
-                            .SetAccessToken(accessToken)
-                            .Build();
-            sheetID = this.getSheetID(sheetName);
-
-            if (name != null) { this.name = name; }
-            if (address != null) { this.address = address; }
-            if (email != null) { this.email = email; }
-            if (phoneNum != null) { this.number = phoneNum; }
-            if (city != null) { this.city = city; }
-            if (county != null) { this.county = county; }
-            if (state != null) { this.state = state; }
-            if (price != null) { this.price = price; }
-            this.date = date;
-        }*/
-
         // Includes GIS Link
         public APIRequests(String sheetName, string accessTokenIn,
-                    String gisIn, String name, String email, 
-                    String address, String city, String county, 
+                    String gisIn, String name, String email,
+                    String address, String city, String county,
                     String price, String phoneNum, String SI,
-                    DateTime date)
+                    DateTime date, String jobType)
         {
             accessToken = accessTokenIn;
             smartsheet = new SmartsheetBuilder()
@@ -93,17 +71,19 @@ namespace JobEnter
             sheetID = this.getSheetID(sheetName);
             try
             {
-                if (gisIn    != null) { this.gisLink = gisIn; }
-                if (name     != null) { this.name    = name; }
-                if (address  != null) { this.address = address; }
-                if (email    != null) { this.email   = email; }
-                if (phoneNum != null) { this.number  = phoneNum; }
-                if (city     != null) { this.city    = city; }
-                if (county   != null) { this.county  = county; }
-                if (SI       != null) { this.SI      = SI; }
-                if (price    != null) { this.price   = price; }
+                if (gisIn != null) { this.gisLink = gisIn; }
+                if (name != null) { this.name = name; }
+                if (address != null) { this.address = address; }
+                if (email != null) { this.email = email; }
+                if (phoneNum != null) { this.number = phoneNum; }
+                if (city != null) { this.city = city; }
+                if (county != null) { this.county = county; }
+                if (jobType != null) { this.jobType = jobType; }
+                if (SI != null) { this.SI = SI; }
+                if (price != null) { this.price = price; }
                 this.date = date;
-            }catch(System.Exception ex)
+            }
+            catch (System.Exception ex)
             {
                 Console.WriteLine("Error in API 1. " + ex.Message);
             }
@@ -241,6 +221,11 @@ namespace JobEnter
                 },
                 new Cell
                 {
+                    ColumnId = this.getColumnID("Type"),
+                    Value = this.jobType
+                },
+                new Cell
+                {
                     ColumnId = this.getColumnID("Phone No."),
                     Value = this.number
                 },
@@ -257,7 +242,7 @@ namespace JobEnter
                 new Cell
                 {
                     ColumnId = this.getColumnID("Fee"),
-                    Value = this.price
+                    Value = Int32.Parse(price)
                 }
             };
 

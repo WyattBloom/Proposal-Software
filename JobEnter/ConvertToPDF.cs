@@ -21,7 +21,7 @@ namespace JobEnter
 
         public ConvertToPDF(string fileToConvert, string pdfPath, string saveLocation)
         {
-            this.fileToConvert = fileToConvert + ".docx";
+            this.fileToConvert = fileToConvert;
             this.saveLocation = saveLocation;
             saveToPath = pdfPath;
         }

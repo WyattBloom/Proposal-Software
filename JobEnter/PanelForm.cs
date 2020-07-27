@@ -4,8 +4,7 @@ using System.Linq;
 using System.Windows.Forms;
 using System.IO;
 using Word = Microsoft.Office.Interop.Word;
-using Smartsheet.Api.Models;
-using System.Security.Cryptography;
+using Microsoft.Office.Interop.Outlook;
 
 namespace JobEnter
 {
@@ -48,7 +47,15 @@ namespace JobEnter
             count = 0;
         }
 
-
+        /*
+         * Prompts the user to select a location on their computer create the folder at
+         * 
+         * Note: -After getting the save to location, calls "CreateFolder" 
+         *        Method to create a folder at the specified location
+         *       -If user cancels and does not select save to location, return null
+         * Returns: Absolute path of the folder that was created at the 
+         *          specified location selected by the user
+         */
         public String getSaveDialog(String address)
         {
             string folderPath = "";
@@ -71,7 +78,16 @@ namespace JobEnter
             }
         }
 
-
+        /* S
+         * Create a folder at a specified path
+         * 
+         * Input: -Path: Location on the users computer to save the folder to
+         *        -FolderName: A String value used to name the folder at the saved location
+         *        
+         * Output: Returns the String path of the folder, including the foldername appended 
+         *         to the end of it
+         *         If the Folder already exists at the specified location, returns null
+         */
         public String createFolder(String path, String folderName)
         {
             if (!Directory.Exists(path + "\\" + folderName))
@@ -92,6 +108,8 @@ namespace JobEnter
 
         #region Button Click Methods
 
+        // Variable "Count" is used to decide which pages will be visible and which will not,
+        // and because there are only 4 pages, the maximum is set at 4
         private int countMax = 4;
 
         private void btnClientInfo_Click(object sender, EventArgs e)
@@ -104,8 +122,6 @@ namespace JobEnter
         {
             count = 1;
             showHide(count);
-
-            //jobType1.setSelectedButton(selectServices1.getJobType());
         }
 
         private void btnSelectServices_Click(object sender, EventArgs e)
@@ -120,6 +136,13 @@ namespace JobEnter
             showHide(count);
         }
 
+        /*
+         * Sets pages to either visible or not visible depedning on the "num" input
+         * 
+         * Input:
+         *      Num: Used to change the current visibility of certain pages.
+         *          Eg. Num = 1, set client info page to be visible, all others to be not
+         */
         private void showHide(int num)
         {
             this.jobType = jobType1.getSelectedButton();
@@ -258,7 +281,7 @@ namespace JobEnter
 
                     //=====================================================
 
-
+                    
                     //--------------Add CTF Letter to folder--------------
                     addCTFLetter(absoluteFolderPath);
                     //====================================================
@@ -274,7 +297,7 @@ namespace JobEnter
                     
 
                     //--------------Convert Word document to PDF----------
-                    ConvertToPDF converter = new ConvertToPDF(absoluteFilePath, pdfPath, absoluteFolderPath);
+                    ConvertToPDF converter = new ConvertToPDF(absoluteFilePath + ".docx", pdfPath, absoluteFolderPath);
                     converter.convertToPDF();
                     //====================================================
 
@@ -290,21 +313,17 @@ namespace JobEnter
                     updateAPI();
                     verifyPage.addToBox("Successfully added to Smartsheet");
                     //======================================================
-                    
+                      
                     break;
             }
         }
 
-        private void getALTAStrings()
-        {
-            foreach(String s in selectServices1.getSelectedServices())
-            {
-                String[] outStr = s.Split(']');
-                Console.WriteLine(outStr.First());
-            }
-        }
-
-
+        /*
+         * Opens a specified word file in a new file
+         * 
+         * Input:
+         *      -File Location: Specifies the file to be opened
+         */
         private void openFile(string fileLocation)
         {
             try
@@ -316,17 +335,21 @@ namespace JobEnter
                     ap.Visible = true;
                     ap.Activate();
                     ap.WindowState = Word.WdWindowState.wdWindowStateMaximize;
-                    
-
                 }
             }
-            catch (System.Exception ex)
-            {
+            catch (System.Exception ex){
                 MessageBox.Show("Error while opening file: " + ex.Message);
-//                return false;
             }
         }
 
+        /*
+         * In order to create the new file/folder, there needs to be an email address 
+         * and a City provided to ensure proper naming conventions, and this methods checks
+         * to ensure that both of those boxes are filled in.
+         * 
+         * Output: Returns false if any of the specified boxes are empty, otherwise it returns
+         *         true
+         */
         public Boolean verifyConditions()
         {
             if (clientInfo1.Address == "")
@@ -356,6 +379,12 @@ namespace JobEnter
             }
         }
 
+        /*
+         * When next is clicked, this count goes up by one so long as it doesnt exceed the
+         * maximun count.
+         * 
+         * Note: "ShowHide" is called after the count is upped
+         */
         private void btnNext_Click(object sender, EventArgs e) 
         {
             if (!(count + 1 > countMax))
@@ -366,6 +395,12 @@ namespace JobEnter
             showHide(count);
         }
 
+        /*
+        * When previous is clicked, this count goes down by one so long as it doesnt exceed
+        * the maximun count.
+        * 
+        * Note: "ShowHide" is called after the count is dropped
+        */
         private void btnPrev_Click(object sender, EventArgs e)
         {
             if (!(count - 1 < 0))
@@ -375,11 +410,11 @@ namespace JobEnter
             showHide(count);
         }
 
-        private void btnSaved()
-        {
-
-        }
-
+        /* 
+         * Output: Returns the path for the specified template depending 
+         * on what job type is selected
+         *  -If no job type is selected, returns null
+         */
         private String getTemplateName(String selected)
         {
             switch (selected)
@@ -449,18 +484,29 @@ namespace JobEnter
 
         }
 
-
+        /*
+         * Since an Alta template is so different from a normal template, this method is
+         * responsible for replacing all neccessary information on the Alta template
+         * 
+         * Input:
+         *      -Template Name: String value for the path of the template the method will 
+         *                      create a copy of
+         *      -File Path: String path of the location to save the file to
+         * 
+         * Output: Returns false if the file fails, true if it doesn't
+         */
         private Boolean FindAndReplace_ALTA(String templateName, String filePath)
         {
             try
             {
+                String cityAddress = clientInfo1.Address + ", " + clientInfo1.City;
                 CreateWordDoc doc1 = new CreateWordDoc(Path.Combine(currentDIR, templateName), filePath);
                 String[] numbers = new String[] { "1", "2", "3", "4", "5", "6A", "6B", "7A", "7B", "7C", "8",
                                               "9", "10A", "10B", "11", "12", "13", "14", "15", "16", "17",
                                               "18", "19", "20", "21" };
                 doc1.CreateDocument();
 
-                doc1.FindAndReplace("<address>", clientInfo1.Address);
+                doc1.FindAndReplace("<address>", cityAddress);
                 doc1.FindAndReplace("<name>", clientInfo1.Name);
                 doc1.FindAndReplace("<daysEST>", verifyPage.Days);
                 doc1.FindAndReplace("<sumTotal>", verifyPage.Price);
@@ -486,6 +532,16 @@ namespace JobEnter
             }
         }
 
+        /*
+         * Because Staking doesnt have any selectable services, a seperate find and replace method is 
+         * required to ensure that the extra information is replaced.
+         * 
+         * Inputs:
+         *      -Template Name: String path of the template to be copied
+         *      -File Path: String path of where to save the new file to
+         *      
+         * Output: If the method fails, return false. If it does not, return true
+         */
         private Boolean FindAndReplace_Staking(String templateName, String filePath)
         {
             try
@@ -509,7 +565,16 @@ namespace JobEnter
             }
         }
 
-
+        /*
+         * Responsible for creating a new word document and calling all find and replace methods on it,
+         * and then closing and saving the word document
+         * 
+         * Inputs:
+         *      -Template Name: String path of the template to create a copy of
+         *      -File Path: String path to save the new file to
+         * 
+         * Output: Returns true if the method runs correctly, and false if it encounters any errors
+         */
         private Boolean saveToWord(String templateName, String filePath)
         {
             try
@@ -524,7 +589,6 @@ namespace JobEnter
 
                 doc1.closeAndSave();
 
-                //______verifyPage.addToBox("Saved to: " + absoluteFilePath);_____
                 return true;
             }
             catch (System.Exception ex)
@@ -534,13 +598,22 @@ namespace JobEnter
             }
         }
 
+        /*
+         * Replaces all the information in a word document related to the clinet information,
+         * including name, phone number, email address, etc..
+         * 
+         * Input: 
+         *      -Doc 1: Word document that the find and replace will be called on
+         * 
+         */
         private void FindAndReplace_ClientInfo(CreateWordDoc doc1)
         {
+            String cityAddress = clientInfo1.Address + ", " + clientInfo1.City;
             try
             {
                 //Find and replace
                 if (clientInfo1.Name      != null) { doc1.FindAndReplace("<name>",       clientInfo1.Name); }
-                if (clientInfo1.Address   != null) { doc1.FindAndReplace("<address>",    clientInfo1.Address); }
+                if (clientInfo1.Address   != null) { doc1.FindAndReplace("<address>",    cityAddress); }
                 if (clientInfo1.Number    != null) { doc1.FindAndReplace("<phone>",      clientInfo1.Number); }
                 if (clientInfo1.Email     != null) { doc1.FindAndReplace("<email>",      clientInfo1.Email); }
                 if (verifyPage.Price      != null) { doc1.FindAndReplace("<price>",      verifyPage.Price); }
@@ -558,6 +631,19 @@ namespace JobEnter
             }
         }
 
+        /*
+         * Finds and replaces everything in the word document based on what services 
+         * are selected
+         * 
+         * Input:
+         *      -Doc 1: Word document that the find and replace will be called on
+         * Note: Gets all titles and lists as selected, stored in "Titles and services"
+         *       -Stored as [-Title, Services, -Title, Services, etc..]
+         *       -Services: "■ Service..\n ■ Service..\n"
+         *       When it encounters a title, it replaces the Header on the word document 
+         *       with the title, and then gets the string of services at one position after
+         *       and replaces that with the related body on the work document
+         */
         private void FindAndReplace_ServicesAndTitles(CreateWordDoc doc1)
         {
             try
@@ -592,14 +678,20 @@ namespace JobEnter
             }
         }
 
-        public String getPrice(String cityIn)
-        {
-
-
-
-            return "";
-        }
-
+        /*
+         * Replaces all titles and services in a word document. All different job types 
+         * have different Headers and Bodys, and this method helps to ensure there aren't
+         * any replacable strings left in the word document
+         * 
+         * Inputs:
+         *      -Doc 1: 
+         *      -Title In: The title selected that will decide what services are replaced
+         *      -Services In: The services string passed to replace the "<servicesBody>"
+         *                    from the word document
+         *      -Replace With: The title that string passed to replace the "<ServicesHeader>"
+         *                     in the word document
+         * 
+         */
         private void replaceTitles_All(CreateWordDoc doc1, String titleIn,
                                         String servicesIn, String replaceWith)
         {
@@ -703,88 +795,15 @@ namespace JobEnter
             }
         }
 
-
         /*
-         * Addition(Edina)- Existing Condition: $1350
-         * New Home(Edina)- Existing Condition: $1350
-         * New Home 
-         *      New Home: 
-         *          Edina       - $900
-         *          Minneapolis - $1000
-         *      Final: 
-         *          Edina - 
-         *          Minneapolis - $600 
-         *      Staking: 
-         *          Edina        - $400
-         *          Minneapolis  - $400
-         *      Foundation: 
-         *          Edina     - $300 
-         *          Minneapolis - $300
-         * Addition
-         *      House Staking: $400
-         *      Foundation: $350
-         *      Final: $ 
-         *      Edina:
-         *          Stormwater: %600 - $1200
-        */
-        private void replaceTitles(CreateWordDoc doc1, String titleIn, 
-                                String servicesIn, String replaceWith)
-        {
-            Console.WriteLine(titleIn);
-
-            switch (titleIn)
-            {
-                case "Building and Improvements":
-                    doc1.FindAndReplace("<build/improveHeader>", replaceWith);
-                    doc1.FindAndReplace("<build/improveBody>", servicesIn);
-                    break;
-                case "Utilities":
-                    doc1.FindAndReplace("<utilHeader>", replaceWith);
-                    doc1.FindAndReplace("<utilBody>", servicesIn);
-                    break;
-                case "Natural Features":
-                    doc1.FindAndReplace("<naturalHeader>", replaceWith);
-                    doc1.FindAndReplace("<naturalBody>", servicesIn);
-                    break;
-                case "New Home":
-                    doc1.FindAndReplace("<homesHeader>", replaceWith);
-                    doc1.FindAndReplace("<homesBody>", servicesIn);
-                    break;
-                case "Additions":
-                    doc1.FindAndReplace("<additionHeader>", replaceWith);
-                    doc1.FindAndReplace("<additionBody>", servicesIn);
-                    break;
-                case "Edina Stuff":
-                    doc1.FindAndReplace("<edinaHeader>", replaceWith);
-                    doc1.FindAndReplace("<edinaBody>", servicesIn);
-                    break;
-                case "House Staking":
-                    doc1.FindAndReplace("<stakingHeader>", replaceWith);
-                    doc1.FindAndReplace("<stakingBody>", servicesIn);
-                    break;
-                case "Foundation as Built":
-                    doc1.FindAndReplace("<foundationHeader>", replaceWith);
-                    doc1.FindAndReplace("<foundationBody>", servicesIn);
-                    break;
-                case "Final as Built":
-                    doc1.FindAndReplace("<finalHeader>", replaceWith);
-                    doc1.FindAndReplace("<finalBody>", servicesIn);
-                    break;
-                case "Hardcover Note":
-                    doc1.FindAndReplace("<hardnoteHeader>", replaceWith);
-                    doc1.FindAndReplace("<hardnoteBody>", servicesIn);
-                    break;
-                case "DESIGN/DEVELOPMENT FOR A STORMWATER MANAGEMENT PLAN: $600 - $1200":
-                    // Edina Specific
-                    // DESIGN/DEVELOPMENT FOR A STORMWATER MANAGEMENT PLAN: $600 - $1200
-                    doc1.FindAndReplace("<stormWaterHeader>", replaceWith);
-                    doc1.FindAndReplace("<stormWaterBody>", servicesIn);
-                    break;
-                case "":
-                    break;
-            }
-        }
-
+         * Checks weather or not a specified file is open
+         * 
+         * Inputs:
+         *      -File Name: The path of the file that will be checked if its open
+         * 
+         * Output: True if the file is in use, false if it is not
+         * 
+         */
         public bool checkFileStatus(FileInfo fileName)
         {
             FileStream streamInput = null;
@@ -803,6 +822,18 @@ namespace JobEnter
             return false;
         }
 
+        /*
+         * Method for determining which CTF letters to add to the main job folder
+         * 
+         * Inputs:
+         *      -String path for the folder to which the CTF letter(s) will be added to
+         * 
+         * Note: Methods call FindAndReplace_CTF() method depending on which CTF letter is to be addedd
+         * 
+         * Variable:
+         *  -TemplateFile__: String path of the file to copy for ___ CTF Letter
+         *  -DestFile___: String path of where the ___ CTF Letter will be saved to
+         */
         private void addCTFLetter(String folderPath)
         {
 
@@ -812,6 +843,12 @@ namespace JobEnter
             String destFileTom = Path.Combine(folderPath, "TomCTFLetter.docx");
             String destFileWayne = Path.Combine(folderPath, "WayneCTFLetter.docx");
 
+            String pdfTom = Path.Combine(folderPath, "TomCTFLetter.pdf");
+            String pdfWayne = Path.Combine(folderPath, "WayneCTFLetter.pdf");
+
+            ConvertToPDF converterTom = new ConvertToPDF(destFileTom, pdfTom, folderPath);
+            ConvertToPDF converterWayne = new ConvertToPDF(destFileWayne, pdfWayne, folderPath);
+
             Console.WriteLine("CTF Tom:" + destFileTom);
             Console.WriteLine("CTF Wayne:" + destFileWayne);
 
@@ -819,19 +856,35 @@ namespace JobEnter
             {
                 case "Tom":
                     FindAndReplace_CTF(templateFileTom, destFileTom, "Tom");
+                    converterTom.convertToPDF();
                     break;
                 case "Wayne":
                     FindAndReplace_CTF(templateFileWayne, destFileWayne, "Wayne");
+                    converterWayne.convertToPDF();
                     break;
                 case "WayneTom":
                     FindAndReplace_CTF(templateFileTom, destFileTom, "Tom");
                     FindAndReplace_CTF(templateFileWayne, destFileWayne, "Wayne");
+
+                    // Convert to PDF
+                    converterTom.convertToPDF();
+                    converterWayne.convertToPDF();
                     break;
             }
         }
 
+        /*
+         * Method used to find and replace all the neccessary information from the CTF Letter template
+         * 
+         * Inputs:
+         *      -Template File: String path of the Template to be copied 
+         *      -Destination File: String path to save the new File to
+         *      -Surveyor: Decides which CTF template will be copied and which surveyors information 
+         *                 will be applied to it
+         */
         private void FindAndReplace_CTF(String templateFile, String destinationFile,String surveyor)
         {
+            String cityAddress = clientInfo1.Address + ", " + clientInfo1.City;
             try
             {
                 if (surveyor == "Tom")
@@ -841,7 +894,7 @@ namespace JobEnter
                     docTom.CreateDocument();
 
                     //Find and replace
-                    if (clientInfo1.Address != null) { docTom.FindAndReplace("<address>", clientInfo1.Address); }
+                    if (clientInfo1.Address != null) { docTom.FindAndReplace("<address>", cityAddress); }
                     if (this.jobType        != null) { docTom.FindAndReplace("<jobType>", jobType); }
 
                     docTom.closeAndSave();
@@ -853,7 +906,7 @@ namespace JobEnter
                     docWayne.CreateDocument();
 
                     //Find and replace
-                    if (clientInfo1.Address != null) { docWayne.FindAndReplace("<address>", clientInfo1.Address); }
+                    if (clientInfo1.Address != null) { docWayne.FindAndReplace("<address>", cityAddress); }
                     if (this.jobType        != null) { docWayne.FindAndReplace("<jobType>", jobType); }
 
                     docWayne.closeAndSave();
@@ -887,6 +940,9 @@ namespace JobEnter
         //======================================================================//
         #region API Methods
 
+        /*
+         * Adds a new row to smartsheet using the smartsheet API
+         */
         private void updateAPI()
         {
             try
@@ -894,7 +950,7 @@ namespace JobEnter
                 APIRequests apiInstance = new APIRequests(set1.SheetName, set1.AccessToken,
                     verifyPage.getGIS(clientInfo1.CountyBox), clientInfo1.Name, clientInfo1.Email, 
                     clientInfo1.Address, clientInfo1.City, clientInfo1.CountyBox, verifyPage.Price, 
-                    clientInfo1.Number, clientInfo1.SpecialInstructions, DateTime.Today);
+                    clientInfo1.Number, clientInfo1.SpecialInstructions, DateTime.Today, jobType1.getSelectedButton());
 
                 if (apiInstance.addRow())
                     MessageBox.Show("Row successfully added to smartsheet", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -911,46 +967,13 @@ namespace JobEnter
 
         private void button1_Click(object sender, EventArgs e)
         {
-            updateAPI();
+
         }
 
-        public String getGIS(String county)
-        {
-            String outVal = "";
-            switch (county)
-            {
-                case "Hennepin":
-                    outVal = "https://gis.hennepin.us/property/map/";
-                    break;
-                case "Ramsey":
-                    outVal = "https://beacon.schneidercorp.com/application.aspx?app=RamseyCountyMN&PageType=Search";
-                    break;
-                case "Anoka":
-                    outVal = "http://gis.anokacountymn.gov/webgis/#<http://gis.anokacountymn.gov/webgis";
-                    break;
-                case "Carver":
-                    outVal = "https://gis.co.carver.mn.us/publicparcel/";
-                    break;
-                case "Washington":
-                    outVal = "https://wcmn.maps.arcgis.com/apps/webappviewer/index.html?id=5c2fe2b598e744afbc07cc0550162984";
-                    break;
-                case "Dakota":
-                    outVal = "https://gis.co.dakota.mn.us/DCGIS/";
-                    break;
-                case "Scott":
-                    outVal = "https://gis.co.scott.mn.us/sg3/";
-                    break;
-                case "Sherburne":
-                    outVal = "https://beacon.schneidercorp.com/?site=SherburneCountyMN";
-                    break;
-                case "Wright":
-                    outVal = "https://beacon.schneidercorp.com/Application.aspx?App=WrightCountyMN";
-                    break;
-            }
-            return outVal;
-        }
-
-
+        /*
+         * Clears all text boxes in the application and focuses on the first page so the user can 
+         * start creating a new job template
+         */
         private void newJobEntryToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // Update Count

@@ -30,7 +30,7 @@ namespace JobEnter
             String outVal = "";
             switch (city)
             {
-                case "Rogers":
+                case "Hennepin":
                     outVal = "https://gis.hennepin.us/property/map/";
                     break;
                 case "Ramsey":

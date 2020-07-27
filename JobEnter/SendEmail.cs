@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Word = Microsoft.Office.Interop.Word;
 using Microsoft.Office.Interop.Word;
 using Outlook = Microsoft.Office.Interop.Outlook;
-
+using System.Windows.Forms;
 
 namespace JobEnter
 {
@@ -43,18 +43,26 @@ namespace JobEnter
         */
         public void openOutlookWindow()
         {
-            Outlook.Application oApp = new Outlook.Application();
-            Outlook._MailItem oMailItem = (Outlook._MailItem)oApp.CreateItem(Outlook.OlItemType.olMailItem);
-            oMailItem.To = toAddress;
-            oMailItem.Subject = subject;
-            oMailItem.Body = body;
-            oMailItem.CC = cc;
-            if (attach1 != null)
-                oMailItem.Attachments.Add(attach1);
-            if (attach2 != null)
-                oMailItem.Attachments.Add(attach2);
-            oMailItem.Display(true);
-            oApp.ActiveWindow();
+            try
+            {
+
+                Outlook.Application oApp = new Outlook.Application();
+                Outlook._MailItem oMailItem = (Outlook._MailItem)oApp.CreateItem(Outlook.OlItemType.olMailItem);
+                oMailItem.To = toAddress;
+                oMailItem.Subject = subject;
+                oMailItem.Body = body;
+                oMailItem.CC = cc;
+                if (attach1 != null)
+                    oMailItem.Attachments.Add(attach1);
+                if (attach2 != null)
+                    oMailItem.Attachments.Add(attach2);
+                oMailItem.Display(true);
+                oApp.ActiveWindow();
+            }catch(System.Exception ex)
+            {
+                MessageBox.Show("Outlook Error: " + ex.Message, "Error with outlook window", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Console.WriteLine("Error with outlook." + ex.Message);
+            }
         }
 
     }
