@@ -155,18 +155,34 @@ namespace JobEnter
             switch (btn)
             {
                 case "Full":
+                    btnBasic.Visible = true;
                     btnFullHC.Visible = true;
                     btnFullLake.Visible = true;
                     btnFullTopo.Visible = true;
                     btnFullWetland.Visible = true;
+                    hideALTA();
+                    break;
+                case "ALTA":
+                    btnTypAlta.Visible = true;
+                    hideFull();
                     break;
                 default:
-                    btnFullHC.Visible = false;
-                    btnFullLake.Visible = false;
-                    btnFullTopo.Visible = false;
-                    btnFullWetland.Visible = false;
+                    hideFull();
+                    hideALTA();
                     break;
             }
+        }
+        public void hideFull()
+        {
+            btnBasic.Visible = false;
+            btnFullHC.Visible = false;
+            btnFullLake.Visible = false;
+            btnFullTopo.Visible = false;
+            btnFullWetland.Visible = false;
+        }
+        public void hideALTA()
+        {
+            btnTypAlta.Visible = false;
         }
 
         public void setSelectedFromList1(List<String> listIn)
@@ -327,6 +343,15 @@ namespace JobEnter
          * Button Handler
          * Checks items in checkedListBox1 based off of the Full Topo template text file
          */
+        private void btnBasic_Click(object sender, EventArgs e)
+        {
+            this.uncheckAll();
+
+            String templatePath = Path.Combine(currentDir, "Service Files", "Basic Full.txt");
+            setStringChecked(templatePath);
+        }
+
+
         private void btnFullTopo_Click(object sender, EventArgs e)
         {
             this.uncheckAll();
@@ -359,6 +384,14 @@ namespace JobEnter
             setStringChecked(templatePath);
         }
 
+
+        private void btnTypAlta_Click(object sender, EventArgs e)
+        {
+            this.uncheckAll();
+
+            String templatePath = Path.Combine(currentDir, "Service Files", "Typical ALTA.txt");
+            setStringChecked(templatePath);
+        }
 
 
         #endregion
@@ -465,6 +498,5 @@ namespace JobEnter
         {
             checkAll();
         }
-
     }
 }

@@ -983,6 +983,7 @@ namespace JobEnter
             clientInfo1.clearAll();
             jobType1.setSelectedButton("");
             selectServices1.clearAll();
+            stakingPage1.clearAll();
             verifyPage.clearAll();
             // Code to clear everything for a new job entry
         }

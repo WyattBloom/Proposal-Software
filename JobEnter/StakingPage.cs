@@ -22,6 +22,12 @@ namespace JobEnter
 
         }
 
+        public void clearAll()
+        {
+            boxCorner.Text = "";
+            boxSTKPrice.Text = "";
+        }
+
         public string Corner
         {
             get { return boxCorner.Text; }   // get method

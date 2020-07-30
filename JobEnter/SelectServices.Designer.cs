@@ -39,6 +39,8 @@
             this.btnFullLake = new System.Windows.Forms.Button();
             this.btnFullHC = new System.Windows.Forms.Button();
             this.btnFullWetland = new System.Windows.Forms.Button();
+            this.btnBasic = new System.Windows.Forms.Button();
+            this.btnTypAlta = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // checkedListBox1
@@ -88,7 +90,7 @@
             this.comboBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(713, 11);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(303, 24);
             this.comboBox1.TabIndex = 4;
@@ -108,7 +110,7 @@
             // btnUncheckAll
             // 
             this.btnUncheckAll.Location = new System.Drawing.Point(917, 543);
-            this.btnUncheckAll.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnUncheckAll.Margin = new System.Windows.Forms.Padding(4);
             this.btnUncheckAll.Name = "btnUncheckAll";
             this.btnUncheckAll.Size = new System.Drawing.Size(100, 28);
             this.btnUncheckAll.TabIndex = 7;
@@ -119,7 +121,7 @@
             // btnCheckAll
             // 
             this.btnCheckAll.Location = new System.Drawing.Point(12, 543);
-            this.btnCheckAll.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCheckAll.Margin = new System.Windows.Forms.Padding(4);
             this.btnCheckAll.Name = "btnCheckAll";
             this.btnCheckAll.Size = new System.Drawing.Size(100, 28);
             this.btnCheckAll.TabIndex = 8;
@@ -129,8 +131,8 @@
             // 
             // btnFullTopo
             // 
-            this.btnFullTopo.Location = new System.Drawing.Point(1024, 71);
-            this.btnFullTopo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnFullTopo.Location = new System.Drawing.Point(1024, 73);
+            this.btnFullTopo.Margin = new System.Windows.Forms.Padding(4);
             this.btnFullTopo.Name = "btnFullTopo";
             this.btnFullTopo.Size = new System.Drawing.Size(100, 28);
             this.btnFullTopo.TabIndex = 9;
@@ -141,7 +143,7 @@
             // btnFullLake
             // 
             this.btnFullLake.Location = new System.Drawing.Point(1024, 107);
-            this.btnFullLake.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnFullLake.Margin = new System.Windows.Forms.Padding(4);
             this.btnFullLake.Name = "btnFullLake";
             this.btnFullLake.Size = new System.Drawing.Size(100, 28);
             this.btnFullLake.TabIndex = 10;
@@ -151,8 +153,8 @@
             // 
             // btnFullHC
             // 
-            this.btnFullHC.Location = new System.Drawing.Point(1024, 143);
-            this.btnFullHC.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnFullHC.Location = new System.Drawing.Point(1024, 141);
+            this.btnFullHC.Margin = new System.Windows.Forms.Padding(4);
             this.btnFullHC.Name = "btnFullHC";
             this.btnFullHC.Size = new System.Drawing.Size(100, 28);
             this.btnFullHC.TabIndex = 11;
@@ -162,8 +164,8 @@
             // 
             // btnFullWetland
             // 
-            this.btnFullWetland.Location = new System.Drawing.Point(1024, 178);
-            this.btnFullWetland.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnFullWetland.Location = new System.Drawing.Point(1024, 175);
+            this.btnFullWetland.Margin = new System.Windows.Forms.Padding(4);
             this.btnFullWetland.Name = "btnFullWetland";
             this.btnFullWetland.Size = new System.Drawing.Size(100, 28);
             this.btnFullWetland.TabIndex = 12;
@@ -171,10 +173,34 @@
             this.btnFullWetland.UseVisualStyleBackColor = true;
             this.btnFullWetland.Click += new System.EventHandler(this.btnFullWetland_Click);
             // 
+            // btnBasic
+            // 
+            this.btnBasic.Location = new System.Drawing.Point(1024, 39);
+            this.btnBasic.Margin = new System.Windows.Forms.Padding(4);
+            this.btnBasic.Name = "btnBasic";
+            this.btnBasic.Size = new System.Drawing.Size(100, 28);
+            this.btnBasic.TabIndex = 13;
+            this.btnBasic.Text = "Basic Full";
+            this.btnBasic.UseVisualStyleBackColor = true;
+            this.btnBasic.Click += new System.EventHandler(this.btnBasic_Click);
+            // 
+            // btnTypAlta
+            // 
+            this.btnTypAlta.Location = new System.Drawing.Point(1024, 73);
+            this.btnTypAlta.Margin = new System.Windows.Forms.Padding(4);
+            this.btnTypAlta.Name = "btnTypAlta";
+            this.btnTypAlta.Size = new System.Drawing.Size(100, 60);
+            this.btnTypAlta.TabIndex = 14;
+            this.btnTypAlta.Text = "Typical ALTA";
+            this.btnTypAlta.UseVisualStyleBackColor = true;
+            this.btnTypAlta.Click += new System.EventHandler(this.btnTypAlta_Click);
+            // 
             // SelectServices
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnTypAlta);
+            this.Controls.Add(this.btnBasic);
             this.Controls.Add(this.btnFullWetland);
             this.Controls.Add(this.btnFullHC);
             this.Controls.Add(this.btnFullLake);
@@ -207,5 +233,7 @@
         private System.Windows.Forms.Button btnFullLake;
         private System.Windows.Forms.Button btnFullHC;
         private System.Windows.Forms.Button btnFullWetland;
+        private System.Windows.Forms.Button btnBasic;
+        private System.Windows.Forms.Button btnTypAlta;
     }
 }
