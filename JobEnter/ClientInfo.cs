@@ -88,137 +88,143 @@ namespace JobEnter
 
         private void boxCity_TextChanged(object sender, EventArgs e)
         {
-            switch (boxCity.Text)
+            switch (boxCity.Text.ToLower())
             {
-                case "Anoka":
-                case "Andover":
-                case "Fridley":
-                case "Bethel":
-                case "Columbus":
-                case "Circle Pines":
-                case "Ham Lake":
-                case "Coon Rapids":
-                case "Oak Grove":
-                case "Lino Lakes":
+                case "anoka":
+                case "andover":
+                case "fridley":
+                case "bethel":
+                case "columbus":
+                case "circle pines":
+                case "ham lake":
+                case "coon rapids":
+                case "oak grove":
+                case "lino lakes":
                     cmbCounty.Text = "Anoka";
                     break;
-                case "Rogers":
-                case "Minneapolis":
-                case "Bloomington":
-                case "Richfield":
-                case "Golden Valley":
-                case "Robbinsdale":
-                case "Minnetonka":
-                case "St. Louis Park":
-                case "Maple Grove":
-                case "Hopkins":
-                case "Crystal":
-                case "Orono":
-                case "Brooklyn Center":
-                case "Champlin":
-                case "Excelsior":
-                case "Brooklyn Park":
-                case "Wayzata":
-                case "Osseo":
-                case "Mound":
-                case "Plymouth":
-                case "Minnetrista":
-                case "New Hope":
-                case "Edina":
-                case "Dayton":
-                case "Maple Plain":
+                case "rogers":
+                case "minneapolis":
+                case "bloomington":
+                case "richfield":
+                case "golden valley":
+                case "robbinsdale":
+                case "minnetonka":
+                case "st. louis park":
+                case "st louis park":
+                case "maple grove":
+                case "hopkins":
+                case "crystal":
+                case "orono":
+                case "brooklyn center":
+                case "champlin":
+                case "excelsior":
+                case "brooklyn park":
+                case "wayzata":
+                case "osseo":
+                case "mound":
+                case "plymouth":
+                case "minnetrista":
+                case "new hope":
+                case "edina":
+                case "dayton":
+                case "maple plain":
                     cmbCounty.Text = "Hennepin";
                     break;
-                case "Carver":
-                case "New Germany":
-                case "Chaska":
-                case "Waconia":
-                case "Victoria":
-                case "Hamburg":
-                case "Mayer":
-                case "Watertown":
-                case "Cologne":
+                case "carver":
+                case "new germany":
+                case "chaska":
+                case "waconia":
+                case "victoria":
+                case "hamburg":
+                case "mayer":
+                case "watertown":
+                case "cologne":
                     cmbCounty.Text = "Carver";
                     break;
-                case "Apple Valley":
-                case "Rosemount":
-                case "South St. Paul":
-                case "Lilydale":
-                case "Vermillion":
-                case "Eagan":
-                case "Farmington":
-                case "Mendota Heights":
-                case "Hampton":
-                case "Lakeville":
-                case "Inner Grove Heights":
-                case "Randolph":
-                case "Burnsville":
-                case "West St. Paul":
-                case "Mendota":
+                case "apple valley":
+                case "rosemount":
+                case "south st. paul":
+                case "south st paul":
+                case "lilydale":
+                case "vermillion":
+                case "eagan":
+                case "farmington":
+                case "mendota heights":
+                case "hampton":
+                case "lakeville":
+                case "inner grove heights":
+                case "randolph":
+                case "burnsville":
+                case "west st. paul":
+                case "west st paul":
+                case "mendota":
                     cmbCounty.Text = "Dakota";
                     break;
-                case "St. Paul":
-                case "Shoreview":
-                case "Little Canada":
-                case "Vadnais Heights":
-                case "Gem Lake":
-                case "Maplewood":
-                case "New Brighton":
-                case "North St. Paul":
-                case "Falcon Heights":
-                case "Lauderdale":
-                case "Roseville":
-                case "Arden Heights":
-                case "Mounds View":
-                case "North Heights":
+                case "st. paul":
+                case "st paul":
+                case "shoreview":
+                case "little canada":
+                case "vadnais heights":
+                case "gem lake":
+                case "maplewood":
+                case "new brighton":
+                case "north st. paul":
+                case "north st paul":
+                case "falcon heights":
+                case "lauderdale":
+                case "roseville":
+                case "arden heights":
+                case "mounds view":
+                case "north heights":
                     cmbCounty.Text = "Ramsey";
                     break;
-                case "Shakopee":
-                case "Savage":
-                case "Belle Plaine":
-                case "Jordan":
-                case "Elko New Market":
-                case "Prior Lake":
+                case "shakopee":
+                case "savage":
+                case "belle plaine":
+                case "jordan":
+                case "elko new market":
+                case "prior lake":
                     cmbCounty.Text = "Scott";
                     break;
-                case "Elk River":
-                case "Big Lake":
-                case "Zimmerman":
-                case "Becker":
-                case "Clear Lake":
+                case "elk river":
+                case "big lake":
+                case "zimmerman":
+                case "becker":
+                case "clear lake":
                     cmbCounty.Text = "Sherburne";
                     break;
-                case "Woodbury":
-                case "Oakdale":
-                case "Scandia":
-                case "Dellwood":
-                case "Landfall":
-                case "Stillwater":
-                case "Hugo":
-                case "Bayport":
-                case "Grant":
-                case "Cottage Grove":
-                case "Lake Elmo":
-                case "Newport":
-                case "Afton":
-                case "Lakeland":
-                case "Forest Lake":
-                case "Lakeland Shores":
+                case "woodbury":
+                case "oakdale":
+                case "scandia":
+                case "dellwood":
+                case "landfall":
+                case "stillwater":
+                case "hugo":
+                case "bayport":
+                case "grant":
+                case "cottage Grove":
+                case "lake Elmo":
+                case "newport":
+                case "afton":
+                case "lakeland":
+                case "forest lake":
+                case "lakeland Shores":
                     cmbCounty.Text = "Washington";
                     break;
-                case "Buffalo":
-                case "Maple Lake":
-                case "Monticello":
-                case "Cokato":
-                case "Annandale":
-                case "Howard Lake":
-                case "Otsego":
-                case "Albertville":
-                case "Silver Creek":
-                case "Delano":
-                case "Waverly":
-                case "St. Michael":
-                case "Montrose":
+                case "buffalo":
+                case "maple lake":
+                case "monticello":
+                case "cokato":
+                case "annandale":
+                case "howard lake":
+                case "otsego":
+                case "albertville":
+                case "silver creek":
+                case "delano":
+                case "waverly":
+                case "st. michael":
+                case "st michael":
+                case "montrose":
                     cmbCounty.Text = "Wright";
                     break;
                 default:

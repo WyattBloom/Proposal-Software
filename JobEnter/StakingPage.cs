@@ -28,6 +28,19 @@ namespace JobEnter
             boxSTKPrice.Text = "";
         }
 
+        public void setStake()
+        {
+            if(boxCorner.Text != "")
+            {
+                boxCorner.Text = "";
+            }
+        }
+
+        public void setAll()
+        {
+            boxCorner.Text = "All";
+        }
+
         public string Corner
         {
             get { return boxCorner.Text; }   // get method

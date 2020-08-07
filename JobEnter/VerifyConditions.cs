@@ -25,6 +25,36 @@ namespace JobEnter
 
         }
 
+        public void hideCTFBoxes(Boolean hide)
+        {
+            if(hide == true)
+            {
+                checkTom.Visible   = false;
+                checkWayne.Visible = false;
+                lblCTF.Visible     = false;
+            }
+            else
+            {
+                checkWayne.Visible = true;
+                checkTom.Visible   = true;
+                lblCTF.Visible     = true;
+            }
+        }
+
+        public void hideStakePrice(Boolean hide)
+        {
+            if (hide == true)
+            {
+                boxStakePrice.Visible = false;
+                lblStakePrice.Visible = false;
+            }
+            else
+            {
+                boxStakePrice.Visible = true;
+                lblStakePrice.Visible = true;
+            }
+        }
+
         public String getGIS(String city)
         {
             String outVal = "";

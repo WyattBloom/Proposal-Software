@@ -7,6 +7,7 @@ Show easements revealed by client furnished documents and/or shown on record pla
 Show significant and visible existing improvements such as, but not limited to, buildings and driveways.
 Show any apparent and significant encroachments across boundary lines.
 Show front and nearest side (front to back) of the adjacent homes.
+Show exterior dimensions of the building footprint along with building corner dimensions to the lot line, as measured perpendicular to the lot line.
 Show minimum building setback lines.  Note: While we show minimum building setbacks lines per our interpretation of the city’s code, be sure to gain verification from city that they are correct before proceeding with any site design or construction.
 Show exterior dimensions of the building footprint along with building corner dimensions to the lot line, as measured perpendicular to the lot line.
 Show the first floor elevation of the building on the site.

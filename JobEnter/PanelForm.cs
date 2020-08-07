@@ -58,23 +58,33 @@ namespace JobEnter
          */
         public String getSaveDialog(String address)
         {
-            string folderPath = "";
-            FolderBrowserDialog folderBrowserDialog1 = new FolderBrowserDialog();
-            folderBrowserDialog1.ShowNewFolderButton = false;
-            folderBrowserDialog1.Description = "Select folder to save to";
-            if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+            try
             {
-                folderPath = folderBrowserDialog1.SelectedPath;
-                //String folderName = "Proposal for Services at " + address;
-                String folderName = clientInfo1.Address + " " + clientInfo1.City;
-                Console.WriteLine("Folder: " + folderName);
-                String finalFolderPath = createFolder(folderPath, folderName);
-                return finalFolderPath;
+                string folderPath = "";
+                FolderBrowserDialog folderBrowserDialog1 = new FolderBrowserDialog();
+                folderBrowserDialog1.ShowNewFolderButton = false;
+                folderBrowserDialog1.Description = "Select folder to save to";
+                if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    folderPath = folderBrowserDialog1.SelectedPath;
+                    //String folderName = "Proposal for Services at " + address;
+                    String folderName = clientInfo1.Address + " " + clientInfo1.City;
+                    Console.WriteLine("Folder: " + folderName);
+                    String finalFolderPath = createFolder(folderPath, folderName);
+                    return finalFolderPath;
+                }
+                else
+                {
+                    Console.WriteLine("Unable to save to file");
+                    return null;
+                }
+            }catch(System.ArgumentException ex)
+            {
+                throw new System.ArgumentException(ex.Message);
             }
-            else
+            catch(System.Exception ex)
             {
-                Console.WriteLine("Unable to save to file");
-                return null;
+                throw new System.Exception("Error in creating folder. " + ex.Message);
             }
         }
 
@@ -168,10 +178,15 @@ namespace JobEnter
                     break;
                 case 2:
                     if (jobType1.getSelectedButton() == "One Stake" ||
-                        jobType1.getSelectedButton() == "Two Stake" ||
-                        jobType1.getSelectedButton() == "All Stake")
+                        jobType1.getSelectedButton() == "Two Stake")
                     {
                         stakingPage1.Visible = true;
+                        stakingPage1.setStake();
+                    }
+                    else if(jobType1.getSelectedButton() == "All Stake")
+                    {
+                        stakingPage1.Visible = true;
+                        stakingPage1.setAll();
                     }
                     else
                     {
@@ -200,6 +215,19 @@ namespace JobEnter
                     if (stakingPage1.STKPRice != "" || stakingPage1.STKPRice != null)
                         verifyPage.setStakePrice(stakingPage1.STKPRice);
 
+                    // Do not show the stake price or CTF Letters if its an ALTA
+                    if(jobType1.getSelectedButton() == "ALTA")
+                    {
+                        verifyPage.hideCTFBoxes(true);
+                        verifyPage.hideStakePrice(true);
+                    }
+                    else
+                    {
+                        verifyPage.hideCTFBoxes(false);
+                        verifyPage.hideStakePrice(false);
+                    }
+
+
                     // Select all neccesary headers
                     selectServices1.selectHeaders();
                     verifyPage.clearBox();          // Clear old input
@@ -218,103 +246,125 @@ namespace JobEnter
                 case 4:
                     count = 3;
 
-                    //-------Make sure all necessary information is filled in-------
-                    if(verifyConditions() == false)
+                    try
                     {
-                        break;
-                    }
-                    //========================================================
-                    
-                    verifyPage.addToBox("Saving...");
-                    
-                    // Location Strings
-                    String absoluteFolderPath = getSaveDialog(clientInfo1.Address);
-                    String absoluteFilePath   = absoluteFolderPath + "\\Proposal For Services at " + clientInfo1.Address;
-                    String pdfPath            = absoluteFilePath + ".pdf";
-                    String templateName       = getTemplateName(jobType1.getSelectedButton());
-
-                    Console.WriteLine("Folder Path: " + absoluteFolderPath);
-                    Console.WriteLine("File Path: " + absoluteFilePath);
-                    Console.WriteLine("Template Name: " + templateName);
-
-                    if (templateName == null)
-                    {
-                        MessageBox.Show("Could not find template file", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        verifyPage.addToBox("Error");
-                        break;
-                    }
-
-                    Console.WriteLine("Job Type: " + jobType1.getSelectedButton());
-
-
-                    //--------------Save to File-----------------------------
-                    if (absoluteFolderPath == null)
-                        break;
-                    else
-                    {
-                        switch (jobType1.getSelectedButton())
+                        //-------Make sure all necessary information is filled in-------
+                        if(verifyConditions() == false)
                         {
-                            case "ALTA":
-                                if (!FindAndReplace_ALTA(templateName, absoluteFilePath))
-                                    break;
-                                else
-                                    verifyPage.addToBox("File saved successfully");
-                                break;
-                            case "One Stake":
-                                goto case "All Stake";
-                            case "Two Stake":
-                                goto case "All Stake";
-                            case "All Stake":
-                                if (!FindAndReplace_Staking(templateName, absoluteFilePath))
-                                    break;
-                                else
-                                    verifyPage.addToBox("File saved successfully");
-                                break;
-                            default:
-                                if (!saveToWord(templateName, absoluteFilePath))
-                                    break;
-                                else
-                                    verifyPage.addToBox("File saved successfully");
-                                break;
+                            break;
                         }
+                        //========================================================
+
+                        verifyPage.addToBox("Saving...");
+
+                        // Location Strings
+                        String absoluteFolderPath = getSaveDialog(clientInfo1.Address);
+                        String absoluteFilePath = absoluteFolderPath + "\\Proposal For Services at " + clientInfo1.Address;
+                        String pdfPath = absoluteFilePath + ".pdf";
+                        String templateName = getTemplateName(jobType1.getSelectedButton());
+
+                        Console.WriteLine("Folder Path: " + absoluteFolderPath);
+                        Console.WriteLine("File Path: " + absoluteFilePath);
+                        Console.WriteLine("Template Name: " + templateName);
+
+                        if (templateName == null)
+                        {
+                            MessageBox.Show("Could not find template file", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            verifyPage.addToBox("Error");
+                            break;
+                        }
+
+                        Console.WriteLine("Job Type: " + jobType1.getSelectedButton());
+
+
+                        //--------------Save to File-----------------------------
+                        if (absoluteFolderPath == null)
+                            break;
+                        else
+                        {
+                            switch (jobType1.getSelectedButton())
+                            {
+                                case "ALTA":
+                                    if (!FindAndReplace_ALTA(templateName, absoluteFilePath))
+                                        break;
+                                    else
+                                        verifyPage.addToBox("File saved successfully");
+                                    break;
+                                case "One Stake":
+                                    goto case "All Stake";
+                                case "Two Stake":
+                                    goto case "All Stake";
+                                case "All Stake":
+                                    if (!FindAndReplace_Staking(templateName, absoluteFilePath))
+                                        break;
+                                    else
+                                        verifyPage.addToBox("File saved successfully");
+                                    break;
+                                default:
+                                    if (!saveToWord(templateName, absoluteFilePath))
+                                        break;
+                                    else
+                                        verifyPage.addToBox("File saved successfully");
+                                    break;
+                            }
+                        }
+
+                        //=====================================================
+
+
+                        //--------------Add CTF Letter to folder--------------
+                        addCTFLetter(absoluteFolderPath);
+                        //====================================================
+
+
+                        //---------------Open File for Editing------------- 
+                        openFile(absoluteFilePath + ".docx");
+
+                        FileInfo fi1 = new FileInfo(absoluteFilePath + ".docx");
+                        while (checkFileStatus(fi1))
+                        { }
+                        //=================================================
+
+
+                        //--------------Convert Word document to PDF----------
+                        ConvertToPDF converter = new ConvertToPDF(absoluteFilePath + ".docx", pdfPath, absoluteFolderPath);
+                        converter.convertToPDF();
+                        //====================================================
+
+
+                        //-------------------Open Draft in Outlook--------------
+                        string[] name = clientInfo1.Name.Split(' ');
+                        SendEmail sendEmail = new SendEmail(clientInfo1.Email, "info@advsur.com", clientInfo1.Address, "Hi " + name[0] + "-\nAttached is the proposal you requested.  Please let me know if you have any questions or if you would like to be added to our schedule. \n\nThank you for the opportunity.\n", pdfPath, null);
+                        sendEmail.openOutlookWindow();
+                        //======================================================
+
+                        //----------------Add row to Smartsheet-----------------
+                        verifyPage.addToBox("Adding to Smartsheet...");
+                        try
+                        {
+                            updateAPI();
+                        }
+                        catch (SystemException ex)
+                        {
+                            MessageBox.Show(ex.Message, "Smartsheet Error", MessageBoxButtons.OK);
+                            verifyPage.addToBox("Error");
+                            break;
+                        }
+                        verifyPage.addToBox("Successfully added to Smartsheet");
+                        //======================================================
+
+                        break;
                     }
-
-                    //=====================================================
-
-                    
-                    //--------------Add CTF Letter to folder--------------
-                    addCTFLetter(absoluteFolderPath);
-                    //====================================================
-
-
-                    //---------------Open File for Editing------------- 
-                    openFile(absoluteFilePath + ".docx");
-
-                    FileInfo fi1 = new FileInfo(absoluteFilePath + ".docx");
-                    while (checkFileStatus(fi1))
-                    { }
-                    //=================================================
-                    
-
-                    //--------------Convert Word document to PDF----------
-                    ConvertToPDF converter = new ConvertToPDF(absoluteFilePath + ".docx", pdfPath, absoluteFolderPath);
-                    converter.convertToPDF();
-                    //====================================================
-
-
-                    //-------------------Open Draft in Outlook--------------
-                    string[] name = clientInfo1.Name.Split(' ');
-                    SendEmail sendEmail = new SendEmail(clientInfo1.Email, "info@advsur.com", clientInfo1.Address, "Hi " + name[0] + "-\nAttached is the proposal you requested.  Please let me know if you have any questions or if you would like to be added to our schedule. \n\nThank you for the opportunity.\n", pdfPath, null);
-                    sendEmail.openOutlookWindow();
-                    //======================================================
-
-                    //----------------Add row to Smartsheet-----------------
-                    verifyPage.addToBox("Adding to Smartsheet...");
-                    updateAPI();
-                    verifyPage.addToBox("Successfully added to Smartsheet");
-                    //======================================================
-                      
-                    break;
+                    catch(System.ArgumentException ex)
+                    {
+                        MessageBox.Show("Error creating folder. Argument Exception- " + ex.Message, "Argument Exception Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
+                    }
+                    catch (System.Exception ex)
+                    {
+                        MessageBox.Show("System.Exception- " + ex.Message, "File Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
+                    }
             }
         }
 
@@ -352,6 +402,9 @@ namespace JobEnter
          */
         public Boolean verifyConditions()
         {
+            int temp;
+            bool canParsePrice = int.TryParse(verifyPage.Price, out temp);
+
             if (clientInfo1.Address == "")
             {
                 count = 0;
@@ -371,6 +424,16 @@ namespace JobEnter
                 count = 1;
                 showHide(count);
                 MessageBox.Show("Please Select a Job Type", "Job Type Null", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            else if (verifyPage.Price.Contains("$"))
+            {
+                MessageBox.Show("Price cannot contain the '$' symbol", "Price not int", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            else if (canParsePrice == false)
+            {
+                MessageBox.Show("Price must be a number", "Price not int", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
             else
@@ -952,14 +1015,19 @@ namespace JobEnter
                     clientInfo1.Address, clientInfo1.City, clientInfo1.CountyBox, verifyPage.Price, 
                     clientInfo1.Number, clientInfo1.SpecialInstructions, DateTime.Today, jobType1.getSelectedButton());
 
-                if (apiInstance.addRow())
-                    MessageBox.Show("Row successfully added to smartsheet", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                else
-                    MessageBox.Show("Error in adding row to smartsheet.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                apiInstance.addRow();
+ 
+                MessageBox.Show("Row successfully added to smartsheet", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch(System.InvalidCastException ex)
+            {
+                MessageBox.Show("Error in adding row to smartsheet. Price must be a number.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Console.WriteLine("Error message caught. " + ex.Message);
             }
             catch (System.Exception ex)
             {
-                MessageBox.Show("Unable to update Smartsheet: \n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error in adding row to smartsheet. " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+//                throw new System.ArgumentException("Error adding new row to smartsheet-2. " + ex.Message);
             }
         }
 
@@ -967,7 +1035,7 @@ namespace JobEnter
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            updateAPI();
         }
 
         /*

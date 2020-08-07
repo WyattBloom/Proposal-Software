@@ -7,6 +7,8 @@ Show easements revealed by client furnished documents and/or shown on record pla
 Show significant and visible existing improvements such as, but not limited to, buildings and driveways.
 Show any apparent and significant encroachments across boundary lines.
 Show exterior dimensions of the building footprint along with building corner dimensions to the lot line, as measured perpendicular to the lot line.
+Show front and nearest side (front to back) of the homes on the adjacent lots that front the same street as the subject property.
+Show exterior dimensions of the building footprint along with building corner dimensions to the lot line, as measured perpendicular to the lot line.
 Show the first floor elevation of the building on the site.
 Show the floor elevation for the garage on the site.
 Tabulate areas of existing hardcover.  Note: Impervious surface requirements vary city to city.  Be sure to have this tabulation reviewed and approved by the appropriate governmental agency before using this information for any site design or construction.

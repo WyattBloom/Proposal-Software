@@ -16,17 +16,17 @@ namespace JobEnter
 
         private long sheetID;
 
-        private String gisLink;
-        private String name;
-        private String email;
-        private String address;
-        private String city;
-        private String county;
-        private String number;
-        private String SI;
-        private String price;
-        private DateTime date;
-        private String jobType;
+        private String gisLink = "GIS Link";
+        private String name = "";
+        private String email = "";
+        private String address = "";
+        private String city = "";
+        private String county = "";
+        private String number = "";
+        private String SI = "";
+        private String price = "";
+        private DateTime date = new DateTime();
+        private String jobType = "";
 
         public void setGISLink(String gisIn) { this.gisLink = gisIn; }
 
@@ -169,21 +169,27 @@ namespace JobEnter
             return 0;
         }
 
-        public bool addRow()
+        public void addRow()
         {
             if (gisLink == null)
                 gisLink = "";
+
+            int priceVal;
+            bool canConvert = int.TryParse(price, out priceVal);
+            if (canConvert == false)
+                throw new System.InvalidCastException("Error converting price to an Integer");
+            
             try
             {
                 Console.WriteLine("Sheet ID: " + this.sheetID + "| Access Token: " + this.accessToken);
-                Console.WriteLine(this.getColumnID("Project Stage") + "\n" +
-                                  this.getColumnID("GIS Link") + "\n" +
-                                  this.getColumnID("Client") + "\n" +
-                                  this.getColumnID("Client Email") + "\n" + 
-                                  this.getColumnID("Phone No.") + "\n" +
-                                  this.getColumnID("Address") + "\n" +
-                                  this.getColumnID("City") + "\n" +
-                                  this.getColumnID("County"));
+                Console.WriteLine(this.getColumnID("Project Stage: ") + "Sent" + "\n" +
+                                  this.getColumnID("GIS Link: ") + gisLink + "\n" +
+                                  this.getColumnID("Client: ") + name + "\n" +
+                                  this.getColumnID("Client Email: ") + email + "\n" + 
+                                  this.getColumnID("Phone No.: ") + number + "\n" +
+                                  this.getColumnID("Address: ") + address + "\n" +
+                                  this.getColumnID("City: ") + city + "\n" +
+                                  this.getColumnID("County: ") + county);
                 // Specify cell values of row
                 Cell[] cellsA = new Cell[] {
                 new Cell
@@ -260,11 +266,9 @@ namespace JobEnter
                   this.sheetID,                  // sheetId
                   new Row[] { rowA }             // IEnumerable<Row> rowsToAdd
                 );
-                return true;
             }catch(System.Exception ex)
             {
-                Console.WriteLine("Error in API 2. " + ex.Message);
-                return false;
+                throw new System.Exception(ex.Message);
             }
         }
 

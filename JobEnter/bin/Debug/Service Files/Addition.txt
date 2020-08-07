@@ -18,7 +18,6 @@ Show public utilities from plans or markings, combined with visible evidence of 
 -Natural Features
 Show location of trees larger than 6”+/- inches in diameter, unless otherwise specified by client. Species not determined by surveyor.
 Show significant or isolated bushes and or shrubs.
-Show significant or isolated bushes and or shrubs.
 Show topography over the entire lot and up to the edge of the adjacent roadway at a contour interval of 1 or 2 feet, whichever is more appropriate. In addition to contours, show critical spot elevations across the property, as needed, to depict vertical relief.
 Establish a project benchmark in relation to the topography shown.
 Show approximate shoreline of the body of water at the time of the survey.

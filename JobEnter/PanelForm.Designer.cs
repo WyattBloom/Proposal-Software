@@ -190,7 +190,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1389, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1389, 30);
             this.menuStrip1.TabIndex = 34;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -199,7 +199,7 @@
             this.smartsheetOptionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.changeAccessTokeToolStripMenuItem});
             this.smartsheetOptionsToolStripMenuItem.Name = "smartsheetOptionsToolStripMenuItem";
-            this.smartsheetOptionsToolStripMenuItem.Size = new System.Drawing.Size(153, 24);
+            this.smartsheetOptionsToolStripMenuItem.Size = new System.Drawing.Size(153, 26);
             this.smartsheetOptionsToolStripMenuItem.Text = "Smartsheet Options";
             // 
             // changeAccessTokeToolStripMenuItem
@@ -212,7 +212,7 @@
             // newJobEntryToolStripMenuItem
             // 
             this.newJobEntryToolStripMenuItem.Name = "newJobEntryToolStripMenuItem";
-            this.newJobEntryToolStripMenuItem.Size = new System.Drawing.Size(116, 24);
+            this.newJobEntryToolStripMenuItem.Size = new System.Drawing.Size(116, 26);
             this.newJobEntryToolStripMenuItem.Text = "New job entry";
             this.newJobEntryToolStripMenuItem.Click += new System.EventHandler(this.newJobEntryToolStripMenuItem_Click);
             // 
