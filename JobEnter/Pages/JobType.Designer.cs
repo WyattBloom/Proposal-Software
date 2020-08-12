@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.rbtnALTA = new System.Windows.Forms.RadioButton();
             this.rbtnPlatt = new System.Windows.Forms.RadioButton();
             this.rbtnSplit = new System.Windows.Forms.RadioButton();
             this.rbtnNewHome = new System.Windows.Forms.RadioButton();
@@ -38,7 +39,6 @@
             this.rbtnTwoStake = new System.Windows.Forms.RadioButton();
             this.rbtnSingle = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
-            this.rbtnALTA = new System.Windows.Forms.RadioButton();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,11 +54,24 @@
             this.panel1.Controls.Add(this.rbtnAllStake);
             this.panel1.Controls.Add(this.rbtnTwoStake);
             this.panel1.Controls.Add(this.rbtnSingle);
-            this.panel1.Location = new System.Drawing.Point(3, 53);
+            this.panel1.Location = new System.Drawing.Point(3, 37);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(355, 275);
             this.panel1.TabIndex = 0;
+            // 
+            // rbtnALTA
+            // 
+            this.rbtnALTA.AutoSize = true;
+            this.rbtnALTA.Font = new System.Drawing.Font("Times New Roman", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbtnALTA.Location = new System.Drawing.Point(241, 12);
+            this.rbtnALTA.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.rbtnALTA.Name = "rbtnALTA";
+            this.rbtnALTA.Size = new System.Drawing.Size(95, 33);
+            this.rbtnALTA.TabIndex = 8;
+            this.rbtnALTA.TabStop = true;
+            this.rbtnALTA.Text = "ALTA";
+            this.rbtnALTA.UseVisualStyleBackColor = true;
             // 
             // rbtnPlatt
             // 
@@ -168,25 +181,12 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 17.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(4, 22);
+            this.label1.Location = new System.Drawing.Point(4, 3);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(205, 32);
             this.label1.TabIndex = 1;
             this.label1.Text = "Select Job Type";
-            // 
-            // rbtnALTA
-            // 
-            this.rbtnALTA.AutoSize = true;
-            this.rbtnALTA.Font = new System.Drawing.Font("Times New Roman", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnALTA.Location = new System.Drawing.Point(241, 12);
-            this.rbtnALTA.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.rbtnALTA.Name = "rbtnALTA";
-            this.rbtnALTA.Size = new System.Drawing.Size(95, 33);
-            this.rbtnALTA.TabIndex = 8;
-            this.rbtnALTA.TabStop = true;
-            this.rbtnALTA.Text = "ALTA";
-            this.rbtnALTA.UseVisualStyleBackColor = true;
             // 
             // JobType
             // 
@@ -197,7 +197,7 @@
             this.Controls.Add(this.panel1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "JobType";
-            this.Size = new System.Drawing.Size(364, 333);
+            this.Size = new System.Drawing.Size(364, 320);
             this.Load += new System.EventHandler(this.JobType_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

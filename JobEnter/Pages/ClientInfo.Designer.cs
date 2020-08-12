@@ -49,7 +49,7 @@
             // 
             this.boxInstructions.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.boxInstructions.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.boxInstructions.Location = new System.Drawing.Point(101, 379);
+            this.boxInstructions.Location = new System.Drawing.Point(16, 361);
             this.boxInstructions.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.boxInstructions.Name = "boxInstructions";
             this.boxInstructions.Size = new System.Drawing.Size(609, 150);
@@ -60,7 +60,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(96, 347);
+            this.label2.Location = new System.Drawing.Point(11, 329);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(216, 29);
             this.label2.TabIndex = 33;
@@ -69,7 +69,7 @@
             // boxNumber
             // 
             this.boxNumber.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.boxNumber.Location = new System.Drawing.Point(269, 114);
+            this.boxNumber.Location = new System.Drawing.Point(184, 96);
             this.boxNumber.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.boxNumber.Name = "boxNumber";
             this.boxNumber.Size = new System.Drawing.Size(441, 30);
@@ -78,7 +78,7 @@
             // boxEmail
             // 
             this.boxEmail.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.boxEmail.Location = new System.Drawing.Point(269, 160);
+            this.boxEmail.Location = new System.Drawing.Point(184, 142);
             this.boxEmail.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.boxEmail.Name = "boxEmail";
             this.boxEmail.Size = new System.Drawing.Size(441, 30);
@@ -87,7 +87,7 @@
             // boxCity
             // 
             this.boxCity.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.boxCity.Location = new System.Drawing.Point(269, 250);
+            this.boxCity.Location = new System.Drawing.Point(184, 232);
             this.boxCity.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.boxCity.Name = "boxCity";
             this.boxCity.Size = new System.Drawing.Size(441, 30);
@@ -97,7 +97,7 @@
             // boxAddress
             // 
             this.boxAddress.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.boxAddress.Location = new System.Drawing.Point(269, 206);
+            this.boxAddress.Location = new System.Drawing.Point(184, 188);
             this.boxAddress.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.boxAddress.Name = "boxAddress";
             this.boxAddress.Size = new System.Drawing.Size(441, 30);
@@ -106,7 +106,7 @@
             // boxName
             // 
             this.boxName.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.boxName.Location = new System.Drawing.Point(269, 70);
+            this.boxName.Location = new System.Drawing.Point(184, 52);
             this.boxName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.boxName.Name = "boxName";
             this.boxName.Size = new System.Drawing.Size(441, 30);
@@ -116,7 +116,7 @@
             // 
             this.lblCity.AutoSize = true;
             this.lblCity.Font = new System.Drawing.Font("Times New Roman", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCity.Location = new System.Drawing.Point(96, 247);
+            this.lblCity.Location = new System.Drawing.Point(11, 229);
             this.lblCity.Name = "lblCity";
             this.lblCity.Size = new System.Drawing.Size(62, 29);
             this.lblCity.TabIndex = 24;
@@ -126,7 +126,7 @@
             // 
             this.lblNumber.AutoSize = true;
             this.lblNumber.Font = new System.Drawing.Font("Times New Roman", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNumber.Location = new System.Drawing.Point(96, 112);
+            this.lblNumber.Location = new System.Drawing.Point(11, 94);
             this.lblNumber.Name = "lblNumber";
             this.lblNumber.Size = new System.Drawing.Size(172, 29);
             this.lblNumber.TabIndex = 22;
@@ -136,7 +136,7 @@
             // 
             this.lblEmail.AutoSize = true;
             this.lblEmail.Font = new System.Drawing.Font("Times New Roman", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmail.Location = new System.Drawing.Point(96, 158);
+            this.lblEmail.Location = new System.Drawing.Point(11, 140);
             this.lblEmail.Name = "lblEmail";
             this.lblEmail.Size = new System.Drawing.Size(77, 29);
             this.lblEmail.TabIndex = 21;
@@ -146,7 +146,7 @@
             // 
             this.lblAddress.AutoSize = true;
             this.lblAddress.Font = new System.Drawing.Font("Times New Roman", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAddress.Location = new System.Drawing.Point(96, 202);
+            this.lblAddress.Location = new System.Drawing.Point(11, 184);
             this.lblAddress.Name = "lblAddress";
             this.lblAddress.Size = new System.Drawing.Size(102, 29);
             this.lblAddress.TabIndex = 20;
@@ -156,7 +156,7 @@
             // 
             this.lblName.AutoSize = true;
             this.lblName.Font = new System.Drawing.Font("Times New Roman", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblName.Location = new System.Drawing.Point(96, 66);
+            this.lblName.Location = new System.Drawing.Point(11, 48);
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(79, 29);
             this.lblName.TabIndex = 19;
@@ -166,7 +166,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 16.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(96, 25);
+            this.label1.Location = new System.Drawing.Point(11, 7);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(227, 32);
             this.label1.TabIndex = 35;
@@ -176,7 +176,7 @@
             // 
             this.lblState.AutoSize = true;
             this.lblState.Font = new System.Drawing.Font("Times New Roman", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblState.Location = new System.Drawing.Point(96, 292);
+            this.lblState.Location = new System.Drawing.Point(11, 274);
             this.lblState.Name = "lblState";
             this.lblState.Size = new System.Drawing.Size(95, 29);
             this.lblState.TabIndex = 23;
@@ -198,7 +198,7 @@
             "Sherburne",
             "Washington",
             "Wright"});
-            this.cmbCounty.Location = new System.Drawing.Point(269, 295);
+            this.cmbCounty.Location = new System.Drawing.Point(184, 277);
             this.cmbCounty.Name = "cmbCounty";
             this.cmbCounty.Size = new System.Drawing.Size(441, 30);
             this.cmbCounty.Sorted = true;
@@ -225,7 +225,7 @@
             this.Controls.Add(this.boxName);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "ClientInfo";
-            this.Size = new System.Drawing.Size(813, 620);
+            this.Size = new System.Drawing.Size(643, 525);
             this.Load += new System.EventHandler(this.ClientInfo_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

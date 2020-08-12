@@ -2,17 +2,33 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using System.Drawing;
 using System.IO;
+using System.Runtime.InteropServices;
 using Word = Microsoft.Office.Interop.Word;
 using Microsoft.Office.Interop.Outlook;
+using FontAwesome.Sharp;
+using Application = System.Windows.Forms.Application;
 
 namespace JobEnter
 {
     public partial class PanelForm : Form
     {
+        //Fields
+        private IconButton currentBtn;
+        private Panel leftBorderBtn;
+
         public PanelForm()
         {
             InitializeComponent();
+            leftBorderBtn = new Panel();
+            leftBorderBtn.Size = new Size(7, 80);
+            panelMenu.Controls.Add(leftBorderBtn);
+
+            //Form
+            this.Text = string.Empty;
+            this.ControlBox = false;
+            this.DoubleBuffered = true;
         }
 
         #region Variables
@@ -45,7 +61,64 @@ namespace JobEnter
             set1.AccessToken = "b2j1a696p2uyqw8apn44s3vpiq";
             set1.SheetName = "Landing Page 2020";
             count = 0;
+            ActivateButton(btnClientInfo, RGBColors.color1);
         }
+
+        private struct RGBColors
+        {
+            //            ColorTranslator.FromHtml("#4a4e4d");
+            //            ColorTranslator.FromHtml("#0e9aa7");
+            //            ColorTranslator.FromHtml("#fe8a71");
+            //            ColorTranslator.FromHtml("#f6cd61");
+
+            public static Color color1 = Color.FromArgb(205, 223, 236);
+            public static Color color2 = Color.FromArgb(122, 196, 198);
+            public static Color color3 = Color.FromArgb(95, 170, 194);
+            public static Color color4 = Color.FromArgb(136, 156, 200);
+        }
+
+
+        private void ActivateButton(object senderBtn, Color color)
+        {
+            if (senderBtn != null)
+            {
+                DisableButton();
+                //Button
+                currentBtn = (IconButton)senderBtn;
+                currentBtn.BackColor = Color.FromArgb(37, 36, 81);
+                currentBtn.ForeColor = color;
+                currentBtn.TextAlign = ContentAlignment.MiddleCenter;
+                currentBtn.IconColor = color;
+                currentBtn.TextImageRelation = TextImageRelation.TextBeforeImage;
+                currentBtn.ImageAlign = ContentAlignment.MiddleRight;
+                currentBtn.Padding = new Padding(0, 0, 5, 0);
+
+                //Left Border Button
+                leftBorderBtn.BackColor = color;
+                leftBorderBtn.Location = new System.Drawing.Point(0, currentBtn.Location.Y);
+                leftBorderBtn.Visible = true;
+                leftBorderBtn.BringToFront();
+
+                //Current Page
+                icoCurrentBox.IconChar = currentBtn.IconChar;
+                icoCurrentBox.IconColor = currentBtn.IconColor;
+                lblCurrentPage.Text = currentBtn.Text;
+            }
+        }
+
+        private void DisableButton()
+        {
+            if (currentBtn != null)
+            {
+                currentBtn.BackColor = Color.FromArgb(0, 123, 191);
+                currentBtn.ForeColor = Color.White;
+                currentBtn.TextAlign = ContentAlignment.MiddleLeft;
+                currentBtn.IconColor = Color.White;
+                currentBtn.TextImageRelation = TextImageRelation.ImageBeforeText;
+                currentBtn.ImageAlign = ContentAlignment.MiddleLeft;
+            }
+        }
+
 
         /*
          * Prompts the user to select a location on their computer create the folder at
@@ -159,6 +232,8 @@ namespace JobEnter
             switch (num)
             {
                 case 0:
+                    ActivateButton(btnClientInfo, RGBColors.color1);
+
                     clientInfo1.Visible = true;
                     selectServices1.Visible = false;
                     verifyPage.Visible = false;
@@ -168,6 +243,8 @@ namespace JobEnter
                     btnNext.Text = "Next";
                     break;
                 case 1:
+                    ActivateButton(btnJobType, RGBColors.color2);
+
                     jobType1.Visible = true;
                     clientInfo1.Visible = false;
                     verifyPage.Visible = false;
@@ -177,6 +254,8 @@ namespace JobEnter
                     btnNext.Text = "Next";
                     break;
                 case 2:
+                    ActivateButton(btnSelectServices, RGBColors.color3);
+
                     if (jobType1.getSelectedButton() == "One Stake" ||
                         jobType1.getSelectedButton() == "Two Stake")
                     {
@@ -204,6 +283,8 @@ namespace JobEnter
                     btnNext.Text = "Next";
                     break;
                 case 3:
+                    ActivateButton(btnPricingPage, RGBColors.color4);
+
                     verifyPage.Visible = true;
                     selectServices1.Visible = false;
                     stakingPage1.Visible = false;
@@ -1059,6 +1140,29 @@ namespace JobEnter
         private void changeAccessTokeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             set1.Show();
+        }
+
+        //Drag Form
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private extern static void ReleaseCapture();
+
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
+
+        private void panelCurrentHeader_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void btnMinimize_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Minimized;
         }
     }
 }

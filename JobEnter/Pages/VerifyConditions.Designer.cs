@@ -39,6 +39,7 @@
             this.checkTom = new System.Windows.Forms.CheckBox();
             this.checkWayne = new System.Windows.Forms.CheckBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -47,7 +48,7 @@
             this.lbox1.Font = new System.Drawing.Font("Times New Roman", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbox1.FormattingEnabled = true;
             this.lbox1.ItemHeight = 25;
-            this.lbox1.Location = new System.Drawing.Point(3, 38);
+            this.lbox1.Location = new System.Drawing.Point(3, 42);
             this.lbox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lbox1.Name = "lbox1";
             this.lbox1.Size = new System.Drawing.Size(1100, 304);
@@ -57,7 +58,7 @@
             // 
             this.lblPrice.AutoSize = true;
             this.lblPrice.Font = new System.Drawing.Font("Times New Roman", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrice.Location = new System.Drawing.Point(3, 478);
+            this.lblPrice.Location = new System.Drawing.Point(3, 451);
             this.lblPrice.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPrice.Name = "lblPrice";
             this.lblPrice.Size = new System.Drawing.Size(136, 29);
@@ -67,8 +68,8 @@
             // boxPrice
             // 
             this.boxPrice.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.boxPrice.Location = new System.Drawing.Point(196, 477);
-            this.boxPrice.Margin = new System.Windows.Forms.Padding(4);
+            this.boxPrice.Location = new System.Drawing.Point(196, 450);
+            this.boxPrice.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.boxPrice.Name = "boxPrice";
             this.boxPrice.Size = new System.Drawing.Size(363, 30);
             this.boxPrice.TabIndex = 2;
@@ -76,8 +77,8 @@
             // boxStakePrice
             // 
             this.boxStakePrice.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.boxStakePrice.Location = new System.Drawing.Point(196, 389);
-            this.boxStakePrice.Margin = new System.Windows.Forms.Padding(4);
+            this.boxStakePrice.Location = new System.Drawing.Point(196, 362);
+            this.boxStakePrice.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.boxStakePrice.Name = "boxStakePrice";
             this.boxStakePrice.Size = new System.Drawing.Size(363, 30);
             this.boxStakePrice.TabIndex = 1;
@@ -86,7 +87,7 @@
             // 
             this.lblStakePrice.AutoSize = true;
             this.lblStakePrice.Font = new System.Drawing.Font("Times New Roman", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStakePrice.Location = new System.Drawing.Point(3, 393);
+            this.lblStakePrice.Location = new System.Drawing.Point(3, 366);
             this.lblStakePrice.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblStakePrice.Name = "lblStakePrice";
             this.lblStakePrice.Size = new System.Drawing.Size(142, 29);
@@ -96,8 +97,8 @@
             // boxDays
             // 
             this.boxDays.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.boxDays.Location = new System.Drawing.Point(196, 433);
-            this.boxDays.Margin = new System.Windows.Forms.Padding(4);
+            this.boxDays.Location = new System.Drawing.Point(196, 406);
+            this.boxDays.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.boxDays.Name = "boxDays";
             this.boxDays.Size = new System.Drawing.Size(363, 30);
             this.boxDays.TabIndex = 0;
@@ -106,7 +107,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(3, 434);
+            this.label2.Location = new System.Drawing.Point(3, 407);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(175, 29);
@@ -129,7 +130,7 @@
             this.checkTom.AutoSize = true;
             this.checkTom.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkTom.Location = new System.Drawing.Point(9, 39);
-            this.checkTom.Margin = new System.Windows.Forms.Padding(4);
+            this.checkTom.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.checkTom.Name = "checkTom";
             this.checkTom.Size = new System.Drawing.Size(67, 26);
             this.checkTom.TabIndex = 1;
@@ -141,7 +142,7 @@
             this.checkWayne.AutoSize = true;
             this.checkWayne.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkWayne.Location = new System.Drawing.Point(9, 75);
-            this.checkWayne.Margin = new System.Windows.Forms.Padding(4);
+            this.checkWayne.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.checkWayne.Name = "checkWayne";
             this.checkWayne.Size = new System.Drawing.Size(84, 26);
             this.checkWayne.TabIndex = 2;
@@ -153,16 +154,27 @@
             this.panel1.Controls.Add(this.lblCTF);
             this.panel1.Controls.Add(this.checkWayne);
             this.panel1.Controls.Add(this.checkTom);
-            this.panel1.Location = new System.Drawing.Point(681, 389);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4);
+            this.panel1.Location = new System.Drawing.Point(660, 357);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(267, 123);
             this.panel1.TabIndex = 3;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 16.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(-1, 2);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(161, 32);
+            this.label1.TabIndex = 36;
+            this.label1.Text = "Verify Page:";
             // 
             // VerifyConditions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.boxDays);
             this.Controls.Add(this.label2);
@@ -173,7 +185,7 @@
             this.Controls.Add(this.lbox1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "VerifyConditions";
-            this.Size = new System.Drawing.Size(1205, 544);
+            this.Size = new System.Drawing.Size(1126, 495);
             this.Load += new System.EventHandler(this.VerifyConditions_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -194,5 +206,6 @@
         private System.Windows.Forms.CheckBox checkTom;
         private System.Windows.Forms.CheckBox checkWayne;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label1;
     }
 }

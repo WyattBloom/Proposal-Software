@@ -65,7 +65,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 16.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label1.Location = new System.Drawing.Point(12, 6);
+            this.label1.Location = new System.Drawing.Point(12, 2);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(197, 32);
             this.label1.TabIndex = 3;
@@ -90,7 +90,7 @@
             this.comboBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(713, 11);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(303, 24);
             this.comboBox1.TabIndex = 4;
@@ -110,7 +110,7 @@
             // btnUncheckAll
             // 
             this.btnUncheckAll.Location = new System.Drawing.Point(917, 543);
-            this.btnUncheckAll.Margin = new System.Windows.Forms.Padding(4);
+            this.btnUncheckAll.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnUncheckAll.Name = "btnUncheckAll";
             this.btnUncheckAll.Size = new System.Drawing.Size(100, 28);
             this.btnUncheckAll.TabIndex = 7;
@@ -121,7 +121,7 @@
             // btnCheckAll
             // 
             this.btnCheckAll.Location = new System.Drawing.Point(12, 543);
-            this.btnCheckAll.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCheckAll.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnCheckAll.Name = "btnCheckAll";
             this.btnCheckAll.Size = new System.Drawing.Size(100, 28);
             this.btnCheckAll.TabIndex = 8;
@@ -132,7 +132,7 @@
             // btnFullTopo
             // 
             this.btnFullTopo.Location = new System.Drawing.Point(1024, 73);
-            this.btnFullTopo.Margin = new System.Windows.Forms.Padding(4);
+            this.btnFullTopo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnFullTopo.Name = "btnFullTopo";
             this.btnFullTopo.Size = new System.Drawing.Size(100, 28);
             this.btnFullTopo.TabIndex = 9;
@@ -143,7 +143,7 @@
             // btnFullLake
             // 
             this.btnFullLake.Location = new System.Drawing.Point(1024, 107);
-            this.btnFullLake.Margin = new System.Windows.Forms.Padding(4);
+            this.btnFullLake.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnFullLake.Name = "btnFullLake";
             this.btnFullLake.Size = new System.Drawing.Size(100, 28);
             this.btnFullLake.TabIndex = 10;
@@ -154,7 +154,7 @@
             // btnFullHC
             // 
             this.btnFullHC.Location = new System.Drawing.Point(1024, 141);
-            this.btnFullHC.Margin = new System.Windows.Forms.Padding(4);
+            this.btnFullHC.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnFullHC.Name = "btnFullHC";
             this.btnFullHC.Size = new System.Drawing.Size(100, 28);
             this.btnFullHC.TabIndex = 11;
@@ -165,7 +165,7 @@
             // btnFullWetland
             // 
             this.btnFullWetland.Location = new System.Drawing.Point(1024, 175);
-            this.btnFullWetland.Margin = new System.Windows.Forms.Padding(4);
+            this.btnFullWetland.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnFullWetland.Name = "btnFullWetland";
             this.btnFullWetland.Size = new System.Drawing.Size(100, 28);
             this.btnFullWetland.TabIndex = 12;
@@ -176,7 +176,7 @@
             // btnBasic
             // 
             this.btnBasic.Location = new System.Drawing.Point(1024, 39);
-            this.btnBasic.Margin = new System.Windows.Forms.Padding(4);
+            this.btnBasic.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnBasic.Name = "btnBasic";
             this.btnBasic.Size = new System.Drawing.Size(100, 28);
             this.btnBasic.TabIndex = 13;
@@ -187,7 +187,7 @@
             // btnTypAlta
             // 
             this.btnTypAlta.Location = new System.Drawing.Point(1024, 73);
-            this.btnTypAlta.Margin = new System.Windows.Forms.Padding(4);
+            this.btnTypAlta.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnTypAlta.Name = "btnTypAlta";
             this.btnTypAlta.Size = new System.Drawing.Size(100, 60);
             this.btnTypAlta.TabIndex = 14;

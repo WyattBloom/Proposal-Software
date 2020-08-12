@@ -70,6 +70,9 @@
     <ApplicationIcon>windrose_6sb_icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FontAwesome.Sharp, Version=5.14.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FontAwesome.Sharp.5.14.0\lib\net45\FontAwesome.Sharp.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -103,63 +106,69 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="APIRequests.cs" />
-    <Compile Include="Class1.cs" />
-    <Compile Include="ClientInfo.cs">
+    <Compile Include="Classes\APIRequests.cs" />
+    <Compile Include="Classes\Class1.cs" />
+    <Compile Include="Pages\ClientInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ClientInfo.Designer.cs">
+    <Compile Include="Pages\ClientInfo.Designer.cs">
       <DependentUpon>ClientInfo.cs</DependentUpon>
     </Compile>
-    <Compile Include="ConvertToPDF.cs" />
-    <Compile Include="Create Folder.cs" />
-    <Compile Include="CreateWordDoc.cs" />
-    <Compile Include="JobType.cs">
+    <Compile Include="Classes\ConvertToPDF.cs" />
+    <Compile Include="Classes\Create Folder.cs" />
+    <Compile Include="Classes\CreateWordDoc.cs" />
+    <Compile Include="Pages\JobType.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="JobType.Designer.cs">
+    <Compile Include="Pages\JobType.Designer.cs">
       <DependentUpon>JobType.cs</DependentUpon>
     </Compile>
-    <Compile Include="PanelForm.cs">
+    <Compile Include="Pages\PanelForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PanelForm.Designer.cs">
+    <Compile Include="Pages\PanelForm.Designer.cs">
       <DependentUpon>PanelForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="SelectServices.cs">
+    <Compile Include="Pages\SelectServices.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="SelectServices.Designer.cs">
+    <Compile Include="Pages\SelectServices.Designer.cs">
       <DependentUpon>SelectServices.cs</DependentUpon>
     </Compile>
-    <Compile Include="SendEmail.cs" />
+    <Compile Include="Classes\SendEmail.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Settings.cs">
+    <Compile Include="Pages\Settings.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Settings.Designer.cs">
+    <Compile Include="Pages\Settings.Designer.cs">
       <DependentUpon>Settings.cs</DependentUpon>
     </Compile>
-    <Compile Include="StakingPage.cs">
+    <Compile Include="Pages\StakingPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="StakingPage.Designer.cs">
+    <Compile Include="Pages\StakingPage.Designer.cs">
       <DependentUpon>StakingPage.cs</DependentUpon>
     </Compile>
-    <Compile Include="VerifyConditions.cs">
+    <Compile Include="Pages\TestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pages\TestForm.Designer.cs">
+      <DependentUpon>TestForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\VerifyConditions.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="VerifyConditions.Designer.cs">
+    <Compile Include="Pages\VerifyConditions.Designer.cs">
       <DependentUpon>VerifyConditions.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="ClientInfo.resx">
+    <EmbeddedResource Include="Pages\ClientInfo.resx">
       <DependentUpon>ClientInfo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="JobType.resx">
+    <EmbeddedResource Include="Pages\JobType.resx">
       <DependentUpon>JobType.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PanelForm.resx">
+    <EmbeddedResource Include="Pages\PanelForm.resx">
       <DependentUpon>PanelForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -167,16 +176,19 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="SelectServices.resx">
+    <EmbeddedResource Include="Pages\SelectServices.resx">
       <DependentUpon>SelectServices.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Settings.resx">
+    <EmbeddedResource Include="Pages\Settings.resx">
       <DependentUpon>Settings.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="StakingPage.resx">
+    <EmbeddedResource Include="Pages\StakingPage.resx">
       <DependentUpon>StakingPage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="VerifyConditions.resx">
+    <EmbeddedResource Include="Pages\TestForm.resx">
+      <DependentUpon>TestForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\VerifyConditions.resx">
       <DependentUpon>VerifyConditions.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="JobEnter_TemporaryKey.pfx" />
