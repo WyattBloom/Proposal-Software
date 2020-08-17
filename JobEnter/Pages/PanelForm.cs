@@ -267,8 +267,15 @@ namespace JobEnter
                         stakingPage1.Visible = true;
                         stakingPage1.setAll();
                     }
+                    else if(jobType1.getSelectedButton() == "Full" 
+                        || jobType1.getSelectedButton() == "ALTA")
+                    {
+                        selectServices1.setSize(842, 500);//842
+                        selectServices1.Visible = true;
+                    }
                     else
                     {
+                        selectServices1.setSize(1015, 500);//1015
                         selectServices1.Visible = true;
                     }
                     verifyPage.Visible  = false;

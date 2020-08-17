@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using System.Linq;
 using System.Windows.Forms;
+
 
 namespace JobEnter
 {
@@ -11,6 +13,16 @@ namespace JobEnter
         public SelectServices()
         {
             InitializeComponent();
+
+            /*var heightField = typeof(CheckedListBox).GetField(
+                "scaledListItemBordersHeight",
+                BindingFlags.NonPublic | BindingFlags.Instance
+                );
+
+            var addedHeight = 10; // Some appropriate value, greater than the field's default of 2
+
+            heightField.SetValue(comboBox1, addedHeight); // Where "clb" is your CheckedListBox
+            */
         }
 
         #region Variables
@@ -66,6 +78,11 @@ namespace JobEnter
 
             foreach (String s in cities)
                 comboBox1.Items.Add(s);
+        }
+
+        public void setSize(int width, int height)
+        {
+            checkedListBox1.Size = new System.Drawing.Size(width, height);
         }
 
         public void clearAll()

@@ -120,7 +120,7 @@
             this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelMenu.Location = new System.Drawing.Point(0, 0);
             this.panelMenu.Name = "panelMenu";
-            this.panelMenu.Size = new System.Drawing.Size(220, 677);
+            this.panelMenu.Size = new System.Drawing.Size(220, 696);
             this.panelMenu.TabIndex = 35;
             // 
             // pictureBox1
@@ -256,7 +256,7 @@
             this.panelCurrentHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelCurrentHeader.Location = new System.Drawing.Point(220, 0);
             this.panelCurrentHeader.Name = "panelCurrentHeader";
-            this.panelCurrentHeader.Size = new System.Drawing.Size(1169, 70);
+            this.panelCurrentHeader.Size = new System.Drawing.Size(1049, 70);
             this.panelCurrentHeader.TabIndex = 36;
             this.panelCurrentHeader.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelCurrentHeader_MouseDown);
             // 
@@ -270,7 +270,7 @@
             this.btnMaximize.IconChar = FontAwesome.Sharp.IconChar.WindowMaximize;
             this.btnMaximize.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(92)))), ((int)(((byte)(122)))));
             this.btnMaximize.IconSize = 20;
-            this.btnMaximize.Location = new System.Drawing.Point(1073, 3);
+            this.btnMaximize.Location = new System.Drawing.Point(953, 3);
             this.btnMaximize.Name = "btnMaximize";
             this.btnMaximize.Rotation = 0D;
             this.btnMaximize.Size = new System.Drawing.Size(45, 27);
@@ -287,7 +287,7 @@
             this.btnMinimize.IconChar = FontAwesome.Sharp.IconChar.WindowMinimize;
             this.btnMinimize.IconColor = System.Drawing.Color.Black;
             this.btnMinimize.IconSize = 20;
-            this.btnMinimize.Location = new System.Drawing.Point(1028, 3);
+            this.btnMinimize.Location = new System.Drawing.Point(908, 3);
             this.btnMinimize.Name = "btnMinimize";
             this.btnMinimize.Rotation = 0D;
             this.btnMinimize.Size = new System.Drawing.Size(45, 27);
@@ -305,7 +305,7 @@
             this.btnClose.IconChar = FontAwesome.Sharp.IconChar.Times;
             this.btnClose.IconColor = System.Drawing.Color.Black;
             this.btnClose.IconSize = 20;
-            this.btnClose.Location = new System.Drawing.Point(1118, 3);
+            this.btnClose.Location = new System.Drawing.Point(998, 3);
             this.btnClose.Name = "btnClose";
             this.btnClose.Rotation = 0D;
             this.btnClose.Size = new System.Drawing.Size(45, 27);
@@ -344,9 +344,9 @@
             this.panel2.Controls.Add(this.button2);
             this.panel2.Controls.Add(this.button1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(220, 607);
+            this.panel2.Location = new System.Drawing.Point(220, 631);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1169, 70);
+            this.panel2.Size = new System.Drawing.Size(1049, 65);
             this.panel2.TabIndex = 37;
             // 
             // jobType1
@@ -356,23 +356,23 @@
             this.jobType1.Location = new System.Drawing.Point(10, 10);
             this.jobType1.Margin = new System.Windows.Forms.Padding(7, 8, 2, 2);
             this.jobType1.Name = "jobType1";
-            this.jobType1.Size = new System.Drawing.Size(1159, 527);
+            this.jobType1.Size = new System.Drawing.Size(1039, 551);
             this.jobType1.TabIndex = 30;
             this.jobType1.Visible = false;
             // 
             // clientInfo1
             // 
             this.clientInfo1.Address = "";
-            this.clientInfo1.AutoSize = true;
+            this.clientInfo1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.clientInfo1.City = "";
             this.clientInfo1.CountyBox = "";
             this.clientInfo1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.clientInfo1.Email = "";
             this.clientInfo1.Location = new System.Drawing.Point(10, 10);
-            this.clientInfo1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.clientInfo1.Margin = new System.Windows.Forms.Padding(2);
             this.clientInfo1.Name = "clientInfo1";
             this.clientInfo1.Number = "";
-            this.clientInfo1.Size = new System.Drawing.Size(1159, 527);
+            this.clientInfo1.Size = new System.Drawing.Size(1039, 551);
             this.clientInfo1.SpecialInstructions = "";
             this.clientInfo1.TabIndex = 29;
             // 
@@ -382,21 +382,21 @@
             this.stakingPage1.Corner = "";
             this.stakingPage1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.stakingPage1.Location = new System.Drawing.Point(10, 10);
-            this.stakingPage1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.stakingPage1.Margin = new System.Windows.Forms.Padding(2);
             this.stakingPage1.Name = "stakingPage1";
-            this.stakingPage1.Size = new System.Drawing.Size(1159, 527);
+            this.stakingPage1.Size = new System.Drawing.Size(1039, 551);
             this.stakingPage1.STKPRice = "";
             this.stakingPage1.TabIndex = 33;
             this.stakingPage1.Visible = false;
             // 
             // selectServices1
             // 
-            this.selectServices1.AutoSize = true;
             this.selectServices1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.selectServices1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.selectServices1.Location = new System.Drawing.Point(10, 10);
-            this.selectServices1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.selectServices1.Margin = new System.Windows.Forms.Padding(2);
             this.selectServices1.Name = "selectServices1";
-            this.selectServices1.Size = new System.Drawing.Size(1159, 527);
+            this.selectServices1.Size = new System.Drawing.Size(1039, 551);
             this.selectServices1.TabIndex = 31;
             this.selectServices1.Visible = false;
             // 
@@ -406,10 +406,10 @@
             this.verifyPage.Days = "";
             this.verifyPage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.verifyPage.Location = new System.Drawing.Point(10, 10);
-            this.verifyPage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.verifyPage.Margin = new System.Windows.Forms.Padding(2);
             this.verifyPage.Name = "verifyPage";
             this.verifyPage.Price = "";
-            this.verifyPage.Size = new System.Drawing.Size(1159, 527);
+            this.verifyPage.Size = new System.Drawing.Size(1039, 551);
             this.verifyPage.StakePrice = "";
             this.verifyPage.TabIndex = 32;
             this.verifyPage.Visible = false;
@@ -417,28 +417,27 @@
             // panel1
             // 
             this.panel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panel1.Controls.Add(this.selectServices1);
+            this.panel1.Controls.Add(this.stakingPage1);
             this.panel1.Controls.Add(this.clientInfo1);
             this.panel1.Controls.Add(this.verifyPage);
             this.panel1.Controls.Add(this.jobType1);
-            this.panel1.Controls.Add(this.selectServices1);
-            this.panel1.Controls.Add(this.stakingPage1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(220, 70);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(10, 10, 0, 0);
-            this.panel1.Size = new System.Drawing.Size(1169, 537);
+            this.panel1.Size = new System.Drawing.Size(1049, 561);
             this.panel1.TabIndex = 38;
             // 
             // PanelForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1389, 677);
+            this.ClientSize = new System.Drawing.Size(1269, 696);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panelCurrentHeader);
             this.Controls.Add(this.panelMenu);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;
@@ -454,7 +453,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.icoCurrentBox)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
