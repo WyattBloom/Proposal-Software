@@ -240,7 +240,7 @@ namespace JobEnter
                     verifyPage.Visible = false;
                     jobType1.Visible = false;
                     stakingPage1.Visible = false;
-
+                    
                     btnNext.Text = "Next";
                     break;
                 case 1:
@@ -269,15 +269,11 @@ namespace JobEnter
                         case "All Stake":
                             stakingPage1.Visible = true;
                             stakingPage1.setAll();
-                            verifyPage.setBoxSizes(563, 34);
-                            verifyPage.hideUnhide(false);
                             break;
                         case "Full":
                         case "ALTA":
                             selectServices1.setSize(842, 500);//842
                             selectServices1.Visible = true;
-                            verifyPage.setBoxSizes(563, 34);
-                            verifyPage.hideUnhide(false);
                             break;
                         default:
                             selectServices1.setSize(1015, 500);//1015
@@ -304,13 +300,15 @@ namespace JobEnter
                     {
                         case "New Home":
                         case "Addition":
+                            verifyPage.listBoxSize(636, 283);
                             verifyPage.setPriceLabel(jobType1.getSelectedButton() + " Price:");
-                            verifyPage.setBoxSizes(155, 34);
-                            verifyPage.hideUnhide(true);
+                            //verifyPage.setBoxSizes(155, 34);
+                            verifyPage.hideGroupBox(true);
                             break;
                         default:
-                            verifyPage.setBoxSizes(563, 34);
-                            verifyPage.hideUnhide(false);
+                            verifyPage.listBoxSize(1009, 283);
+                            //verifyPage.setBoxSizes(563, 34);
+                            verifyPage.hideGroupBox(false);
                             break;
                     }
 
@@ -657,7 +655,7 @@ namespace JobEnter
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            Console.WriteLine(getFolderLink());
         }
 
         /*
@@ -1138,14 +1136,30 @@ namespace JobEnter
         //======================================================================//
         #region API Methods
 
+        private String getFolderLink()
+        {
+            String[] address = clientInfo1.Address.Split( );
+            String currentYear = DateTime.Now.Year.ToString();
+            String outVal = "https://advsur.egnyte.com/SimpleUI/home.do#Files/0/Shared/JOBS/"
+                                + currentYear + "/";
+            foreach(String s in address)
+            {
+                outVal = outVal + s + "%20";
+            }
+            outVal = outVal + clientInfo1.City;
+            return outVal;
+        }
+
         /*
          * Adds a new row to smartsheet using the smartsheet API
          */
         private void updateAPI()
         {
+            String folderLink = "https://advsur.egnyte.com/SimpleUI/home.do#Files/0/Shared/JOBS/2020/" 
+                                   + clientInfo1.Address + "%20" + clientInfo1.City + "%20";
             try
             {
-                APIRequests apiInstance = new APIRequests(set1.SheetName, set1.AccessToken,
+                APIRequests apiInstance = new APIRequests(set1.SheetName, set1.AccessToken, folderLink,
                     verifyPage.getGIS(clientInfo1.CountyBox), clientInfo1.Name, clientInfo1.Email, 
                     clientInfo1.Address, clientInfo1.City, clientInfo1.CountyBox, finalPrice.ToString(), 
                     clientInfo1.Number, clientInfo1.SpecialInstructions, DateTime.Today, jobType1.getSelectedButton());

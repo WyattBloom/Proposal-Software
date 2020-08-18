@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using Smartsheet.Api;
@@ -58,7 +59,7 @@ namespace JobEnter
         }
 
         // Includes GIS Link
-        public APIRequests(String sheetName, string accessTokenIn,
+        public APIRequests(String sheetName, string accessTokenIn, String folderLink,
                     String gisIn, String name, String email,
                     String address, String city, String county,
                     String price, String phoneNum, String SI,
@@ -200,6 +201,10 @@ namespace JobEnter
                 {
                     ColumnId = this.getColumnID("GIS Link"),
                     Value = this.gisLink
+                },new Cell
+                {
+                    ColumnId = this.getColumnID("Job Folder"),
+                    Value = "www.reddit.com",
                 },new Cell
                 {
                     ColumnId = this.getColumnID("Client"),

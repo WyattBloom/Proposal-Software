@@ -142,9 +142,10 @@ namespace JobEnter
                 return "Itemized";
         }
 
-        public void hideUnhide(Boolean TF)
+        public void hideGroupBox(Boolean TF)
         {
-            boxExistingPrice.Visible = TF;
+            groupBox1.Visible = TF;
+/*            boxExistingPrice.Visible = TF;
             boxStakingPrice.Visible = TF;
             boxTypePrice.Visible = TF;
             boxFoundationPrice.Visible = TF;
@@ -155,13 +156,18 @@ namespace JobEnter
             lblTypePrice.Visible = TF;
             lblFinalPrice.Visible = TF;
             lblFoundationPrice.Visible = TF;
-        }
+*/        }
 
         public void setBoxSizes(int width, int height)
         {
             boxDays.Size        = new System.Drawing.Size(width, height);
             boxPrice.Size       = new System.Drawing.Size(width, height);
             boxStakePrice.Size  = new System.Drawing.Size(width, height);
+        }
+
+        public void listBoxSize(int width, int height)
+        {
+            lbox1.Size = new System.Drawing.Size(width, height);
         }
 
         public int getPrice()

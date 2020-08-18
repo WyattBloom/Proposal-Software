@@ -381,6 +381,7 @@
             this.stakingPage1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.stakingPage1.Corner = "";
             this.stakingPage1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.stakingPage1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.stakingPage1.Location = new System.Drawing.Point(10, 10);
             this.stakingPage1.Margin = new System.Windows.Forms.Padding(2);
             this.stakingPage1.Name = "stakingPage1";
@@ -405,6 +406,7 @@
             this.verifyPage.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.verifyPage.Days = "";
             this.verifyPage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.verifyPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.verifyPage.Location = new System.Drawing.Point(10, 10);
             this.verifyPage.Margin = new System.Windows.Forms.Padding(2);
             this.verifyPage.Name = "verifyPage";
@@ -417,11 +419,11 @@
             // panel1
             // 
             this.panel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.panel1.Controls.Add(this.selectServices1);
-            this.panel1.Controls.Add(this.stakingPage1);
             this.panel1.Controls.Add(this.clientInfo1);
             this.panel1.Controls.Add(this.verifyPage);
             this.panel1.Controls.Add(this.jobType1);
+            this.panel1.Controls.Add(this.selectServices1);
+            this.panel1.Controls.Add(this.stakingPage1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(220, 70);
             this.panel1.Name = "panel1";
