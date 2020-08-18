@@ -132,6 +132,66 @@ namespace JobEnter
             lbox1.Items.Add("Special Instructions: " + SI);
         }
 
+        public String getItemizedvsPrice()
+        {
+            if (boxPrice.Text != "")
+            {
+                return "Lump";
+            }
+            else
+                return "Itemized";
+        }
+
+        public void hideUnhide(Boolean TF)
+        {
+            boxExistingPrice.Visible = TF;
+            boxStakingPrice.Visible = TF;
+            boxTypePrice.Visible = TF;
+            boxFoundationPrice.Visible = TF;
+            boxFinalPrice.Visible = TF;
+
+            lblExistingPrice.Visible = TF;
+            lblStakingPrice.Visible = TF;
+            lblTypePrice.Visible = TF;
+            lblFinalPrice.Visible = TF;
+            lblFoundationPrice.Visible = TF;
+        }
+
+        public void setBoxSizes(int width, int height)
+        {
+            boxDays.Size        = new System.Drawing.Size(width, height);
+            boxPrice.Size       = new System.Drawing.Size(width, height);
+            boxStakePrice.Size  = new System.Drawing.Size(width, height);
+        }
+
+        public int getPrice()
+        {
+            if (boxPrice.Text == "")
+            {
+                int typePrice = 0;
+                int stakingPrice = 0;
+                int finalPrice = 0;
+                int foundationPrice = 0;
+                int existingPrice = 0;
+                if (Int32.TryParse(boxTypePrice.Text, out typePrice)
+                    && Int32.TryParse(boxStakingPrice.Text, out stakingPrice)
+                    && Int32.TryParse(boxFinalPrice.Text, out finalPrice)
+                    && Int32.TryParse(boxFoundationPrice.Text, out foundationPrice)
+                    && Int32.TryParse(boxExistingPrice.Text, out existingPrice))
+                    return typePrice + stakingPrice + finalPrice + foundationPrice + existingPrice;
+                else
+                {
+                    throw new System.InvalidCastException("All price boxes must be numbers. Cannot contain letters or symbols");
+                }
+            }else
+            {
+                int price = 0;
+                Int32.TryParse(boxPrice.Text, out price);
+                return price;
+            }
+        }
+
+
         public string Price
         {
             get { return boxPrice.Text; }   // get method
@@ -150,6 +210,44 @@ namespace JobEnter
             set { boxDays.Text = value; }
         }
 
+        public String ExistingPrice
+        {
+            get { return "$" + boxExistingPrice.Text; }
+            set { boxExistingPrice.Text = value; }
+        }
+
+        public String stakePrice2()
+        {
+            if(boxStakingPrice.Text != "")
+                return " ($" + boxStakingPrice.Text + "):";
+            else
+                return ":";
+        }
+
+        public String typePrice()
+        {
+            if(boxTypePrice.Text != "")
+                return " ($" + boxTypePrice.Text + "):";
+            else
+                return ":";
+        }
+
+        public String foundationPrice()
+        {
+            if (boxFoundationPrice.Text != "")
+                return " ($" + boxFoundationPrice.Text + "):";
+            else
+                return ":";
+        }
+
+        public String finalPrice()
+        {
+            if(boxFinalPrice.Text != "")
+                return " ($" + boxFinalPrice.Text + "):";
+            else
+                return ":";
+        }
+
         public List<String> getTextFromBox()
         {
             List<String> returnList = new List<String>();
@@ -160,6 +258,11 @@ namespace JobEnter
             }
 
             return returnList;
+        }
+
+        public void setPriceLabel(String s)
+        {
+            lblTypePrice.Text = s;
         }
 
         public void clearAll()

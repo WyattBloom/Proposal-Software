@@ -17,6 +17,7 @@ namespace JobEnter
         //Fields
         private IconButton currentBtn;
         private Panel leftBorderBtn;
+        private int finalPrice;
 
         public PanelForm()
         {
@@ -256,28 +257,35 @@ namespace JobEnter
                 case 2:
                     ActivateButton(btnSelectServices, RGBColors.color3);
 
-                    if (jobType1.getSelectedButton() == "One Stake" ||
-                        jobType1.getSelectedButton() == "Two Stake")
+                    switch (jobType1.getSelectedButton())
                     {
-                        stakingPage1.Visible = true;
-                        stakingPage1.setStake();
+                        case "One Stake":
+                        case "Two Stake":
+                            stakingPage1.Visible = true;
+                            stakingPage1.setStake();
+                            verifyPage.setBoxSizes(563, 34);
+                            //verifyPage.hideUnhide(false);
+                            break;
+                        case "All Stake":
+                            stakingPage1.Visible = true;
+                            stakingPage1.setAll();
+                            verifyPage.setBoxSizes(563, 34);
+                            verifyPage.hideUnhide(false);
+                            break;
+                        case "Full":
+                        case "ALTA":
+                            selectServices1.setSize(842, 500);//842
+                            selectServices1.Visible = true;
+                            verifyPage.setBoxSizes(563, 34);
+                            verifyPage.hideUnhide(false);
+                            break;
+                        default:
+                            selectServices1.setSize(1015, 500);//1015
+                            selectServices1.Visible = true;
+                            break;
                     }
-                    else if(jobType1.getSelectedButton() == "All Stake")
-                    {
-                        stakingPage1.Visible = true;
-                        stakingPage1.setAll();
-                    }
-                    else if(jobType1.getSelectedButton() == "Full" 
-                        || jobType1.getSelectedButton() == "ALTA")
-                    {
-                        selectServices1.setSize(842, 500);//842
-                        selectServices1.Visible = true;
-                    }
-                    else
-                    {
-                        selectServices1.setSize(1015, 500);//1015
-                        selectServices1.Visible = true;
-                    }
+
+                    // Hide all other pages
                     verifyPage.Visible  = false;
                     clientInfo1.Visible = false;
                     jobType1.Visible    = false;
@@ -291,6 +299,20 @@ namespace JobEnter
                     break;
                 case 3:
                     ActivateButton(btnPricingPage, RGBColors.color4);
+
+                    switch (jobType1.getSelectedButton())
+                    {
+                        case "New Home":
+                        case "Addition":
+                            verifyPage.setPriceLabel(jobType1.getSelectedButton() + " Price:");
+                            verifyPage.setBoxSizes(155, 34);
+                            verifyPage.hideUnhide(true);
+                            break;
+                        default:
+                            verifyPage.setBoxSizes(563, 34);
+                            verifyPage.hideUnhide(false);
+                            break;
+                    }
 
                     verifyPage.Visible = true;
                     selectServices1.Visible = false;
@@ -342,6 +364,9 @@ namespace JobEnter
                             break;
                         }
                         //========================================================
+
+                        // Get the price from the verify page
+                        this.finalPrice = verifyPage.getPrice();
 
                         verifyPage.addToBox("Saving...");
 
@@ -443,7 +468,12 @@ namespace JobEnter
 
                         break;
                     }
-                    catch(System.ArgumentException ex)
+                    catch (System.InvalidCastException ex)
+                    {
+                        MessageBox.Show(ex.Message, "Illegal Cast Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
+                    }
+                    catch (System.ArgumentException ex)
                     {
                         MessageBox.Show("Error creating folder. Argument Exception- " + ex.Message, "Argument Exception Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         break;
@@ -517,11 +547,6 @@ namespace JobEnter
             else if (verifyPage.Price.Contains("$"))
             {
                 MessageBox.Show("Price cannot contain the '$' symbol", "Price not int", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-            else if (canParsePrice == false)
-            {
-                MessageBox.Show("Price must be a number", "Price not int", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
             else
@@ -818,7 +843,7 @@ namespace JobEnter
                         else
                         {
                             System.Windows.Forms.Clipboard.SetText(titlesAndServices[i + 1]);
-                            replaceTitles_All(doc1, result, "^c^p", result + "^p");
+                            replaceTitles_All(doc1, result, "^c^p", result);
                         }
                         
                     }
@@ -851,55 +876,77 @@ namespace JobEnter
                 case "Lot Split":
                     if(titleIn == "Lot Splits")
                     {
-                        doc1.FindAndReplace("<LotSplitHeader>", replaceWith);
+                        doc1.FindAndReplace("<LotSplitHeader>", replaceWith + "^p");
                         doc1.FindAndReplace("<LotSplitBody>", servicesIn);
                     }
                     goto default;
                 case "Full":
                     if(titleIn == "Natural Features")
                     {
-                        doc1.FindAndReplace("<naturalHeader>", replaceWith);
+                        doc1.FindAndReplace("<naturalHeader>", replaceWith + "^p");
                         doc1.FindAndReplace("<naturalBody>", servicesIn);
                     }
                     goto default;
                 case "Addition":
+                    if (verifyPage.getItemizedvsPrice() == "Lump"){
+                        doc1.FindAndReplace("<priceType>", "We propose a lump sum fee of $<price> for the services listed below");
+                        doc1.FindAndReplace("<price>", verifyPage.Price);
+                        doc1.FindAndReplace("<existingPrice>", "");
+                    }
+                    else{
+                        doc1.FindAndReplace("<existingPrice>", verifyPage.ExistingPrice);
+                        doc1.FindAndReplace("<priceType>", "Please see below for itemized pricing for the services listed below");
+                    }
+
                     switch (titleIn)
                     {
                         case "Addition":
-                            doc1.FindAndReplace("<additionHeader>", replaceWith);
+                            doc1.FindAndReplace("<additionHeader>", replaceWith + verifyPage.typePrice() + "^p");
                             doc1.FindAndReplace("<additionBody>", servicesIn);
                             break;
                         case "House Staking":
-                            doc1.FindAndReplace("<StakingHeader>", replaceWith);
+                            doc1.FindAndReplace("<StakingHeader>", replaceWith + verifyPage.stakePrice2() + "^p");
                             doc1.FindAndReplace("<StakingBody>", servicesIn);
                             break;
                         case "Foundation as built":
-                            doc1.FindAndReplace("<FoundationHeader>", replaceWith);
+                            doc1.FindAndReplace("<FoundationHeader>", replaceWith + verifyPage.foundationPrice() + "^p");
                             doc1.FindAndReplace("<FoundationBody>", servicesIn);
                             break;
                         case "Final as built":
-                            doc1.FindAndReplace("<FinalHeader>", replaceWith);
+                            doc1.FindAndReplace("<FinalHeader>", replaceWith + verifyPage.finalPrice() + "^p");
                             doc1.FindAndReplace("<FinalBody>", servicesIn);
                             break;
                     }
                     goto default;
                 case "New Home":
+                    if (verifyPage.getItemizedvsPrice() == "Lump")
+                    {
+                        doc1.FindAndReplace("<priceType>", "We propose a lump sum fee of $<price> for the services listed below");
+                        doc1.FindAndReplace("<price>", verifyPage.Price);
+                        doc1.FindAndReplace("<existingPrice>", "");
+                    }
+                    else
+                    {
+                        doc1.FindAndReplace("<existingPrice>", verifyPage.ExistingPrice);
+                        doc1.FindAndReplace("<priceType>", "Please see below for itemized pricing for the services listed below");
+                    }
+
                     switch (titleIn)
                     {
                         case "New Homes":
-                            doc1.FindAndReplace("<NewHomeHeader>", replaceWith);
+                            doc1.FindAndReplace("<NewHomeHeader>", replaceWith + verifyPage.typePrice() + "^p");
                             doc1.FindAndReplace("<NewHomeBody>", servicesIn);
                             break;
                         case "House Staking":
-                            doc1.FindAndReplace("<StakingHeader>", replaceWith);
+                            doc1.FindAndReplace("<StakingHeader>", replaceWith + verifyPage.stakePrice2() + "^p");
                             doc1.FindAndReplace("<StakingBody>", servicesIn);
                             break;
                         case "Foundation as built":
-                            doc1.FindAndReplace("<FoundationHeader>", replaceWith);
+                            doc1.FindAndReplace("<FoundationHeader>", replaceWith + verifyPage.foundationPrice() + "^p");
                             doc1.FindAndReplace("<FoundationBody>", servicesIn);
                             break;
                         case "Final as built":
-                            doc1.FindAndReplace("<FinalHeader>", replaceWith);
+                            doc1.FindAndReplace("<FinalHeader>", replaceWith + verifyPage.finalPrice() + "^p");
                             doc1.FindAndReplace("<FinalBody>", servicesIn);
                             break;
                     }
@@ -908,15 +955,15 @@ namespace JobEnter
                     switch (titleIn)
                     {
                         case "Proposed Items":
-                            doc1.FindAndReplace("<proposedHeader>", replaceWith);
+                            doc1.FindAndReplace("<proposedHeader>", replaceWith + "^p");
                             doc1.FindAndReplace("<proposedBody>", servicesIn);
                             break;
                         case "Lot Splits":
-                            doc1.FindAndReplace("<lotSplitHeader>", replaceWith);
+                            doc1.FindAndReplace("<lotSplitHeader>", replaceWith + "^p");
                             doc1.FindAndReplace("<lotSplitBody>", servicesIn);
                             break;
                         case "SCOPE OF SERVICES [FINAL/RECORD PLAT]":
-                            doc1.FindAndReplace("<PlatHeader>", replaceWith);
+                            doc1.FindAndReplace("<PlatHeader>", replaceWith + "^p");
                             doc1.FindAndReplace("<PlatBody>", servicesIn);
                             break;
                     }
@@ -926,19 +973,19 @@ namespace JobEnter
                     switch (titleIn)
                     {
                         case "General Property Items":
-                            doc1.FindAndReplace("<GeneralHeader>", replaceWith);
+                            doc1.FindAndReplace("<GeneralHeader>", replaceWith + "^p");
                             doc1.FindAndReplace("<GeneralBody>", servicesIn);
                             break;
                         case "Building and Improvements":
-                            doc1.FindAndReplace("<build/improveHeader>", replaceWith);
+                            doc1.FindAndReplace("<build/improveHeader>", replaceWith + "^p");
                             doc1.FindAndReplace("<build/improveBody>", servicesIn);
                             break;
                         case "Utilities":
-                            doc1.FindAndReplace("<utilHeader>", replaceWith);
+                            doc1.FindAndReplace("<utilHeader>", replaceWith + "^p");
                             doc1.FindAndReplace("<utilBody>", servicesIn);
                             break;
                         case "Natural Features":
-                            doc1.FindAndReplace("<naturalHeader>", replaceWith);
+                            doc1.FindAndReplace("<naturalHeader>", replaceWith + "^p");
                             doc1.FindAndReplace("<naturalBody>", servicesIn);
                             break;
                     }
@@ -1100,7 +1147,7 @@ namespace JobEnter
             {
                 APIRequests apiInstance = new APIRequests(set1.SheetName, set1.AccessToken,
                     verifyPage.getGIS(clientInfo1.CountyBox), clientInfo1.Name, clientInfo1.Email, 
-                    clientInfo1.Address, clientInfo1.City, clientInfo1.CountyBox, verifyPage.Price, 
+                    clientInfo1.Address, clientInfo1.City, clientInfo1.CountyBox, finalPrice.ToString(), 
                     clientInfo1.Number, clientInfo1.SpecialInstructions, DateTime.Today, jobType1.getSelectedButton());
 
                 apiInstance.addRow();
