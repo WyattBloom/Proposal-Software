@@ -299,15 +299,26 @@ namespace JobEnter
                     switch (jobType1.getSelectedButton())
                     {
                         case "New Home":
+                            verifyPage.hideAsBuilt(true);
+                            goto case "Other";
                         case "Addition":
-                            verifyPage.listBoxSize(636, 283);
-                            verifyPage.setPriceLabel(jobType1.getSelectedButton() + " Price:");
-                            //verifyPage.setBoxSizes(155, 34);
-                            verifyPage.hideGroupBox(true);
+                            verifyPage.hideAsBuilt(false);
+                            goto case "Other";
+                        case "Other":
+                            verifyPage.setTotalPriceLabel("Lump Sum:");
+                            if (jobType1.getSelectedPrice() == "Itemized Pricing")
+                            {
+                                verifyPage.listBoxSize(636, 283);
+                                verifyPage.setPriceLabel(jobType1.getSelectedButton() + " Price:");
+                                verifyPage.hideGroupBox(true);
+                                verifyPage.hidePrice(true);
+                            }
+                            else
+                                goto default;
                             break;
                         default:
+                            verifyPage.hidePrice(false);
                             verifyPage.listBoxSize(1009, 283);
-                            //verifyPage.setBoxSizes(563, 34);
                             verifyPage.hideGroupBox(false);
                             break;
                     }
@@ -406,16 +417,12 @@ namespace JobEnter
                                 case "Two Stake":
                                     goto case "All Stake";
                                 case "All Stake":
-                                    if (!FindAndReplace_Staking(templateName, absoluteFilePath))
-                                        break;
-                                    else
-                                        verifyPage.addToBox("File saved successfully");
+                                    FindAndReplace_Staking(templateName, absoluteFilePath);
+                                    verifyPage.addToBox("File saved successfully");
                                     break;
                                 default:
-                                    if (!saveToWord(templateName, absoluteFilePath))
-                                        break;
-                                    else
-                                        verifyPage.addToBox("File saved successfully");
+                                    saveToWord(templateName, absoluteFilePath);
+                                    verifyPage.addToBox("File saved successfully");
                                     break;
                             }
                         }
@@ -469,16 +476,19 @@ namespace JobEnter
                     catch (System.InvalidCastException ex)
                     {
                         MessageBox.Show(ex.Message, "Illegal Cast Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        verifyPage.addToBox("Failed");
                         break;
                     }
                     catch (System.ArgumentException ex)
                     {
                         MessageBox.Show("Error creating folder. Argument Exception- " + ex.Message, "Argument Exception Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        verifyPage.addToBox("Failed");
                         break;
                     }
                     catch (System.Exception ex)
                     {
                         MessageBox.Show("System.Exception- " + ex.Message, "File Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        verifyPage.addToBox("Failed");
                         break;
                     }
             }
@@ -683,7 +693,7 @@ namespace JobEnter
                 doc1.FindAndReplace("<address>", cityAddress);
                 doc1.FindAndReplace("<name>", clientInfo1.Name);
                 doc1.FindAndReplace("<daysEST>", verifyPage.Days);
-                doc1.FindAndReplace("<sumTotal>", verifyPage.Price);
+                doc1.FindAndReplace("<sumTotal>", "$" + verifyPage.Price);
 
                 foreach (String s in selectServices1.getSelectedServices())
                 {
@@ -716,11 +726,11 @@ namespace JobEnter
          *      
          * Output: If the method fails, return false. If it does not, return true
          */
-        private Boolean FindAndReplace_Staking(String templateName, String filePath)
+        private void FindAndReplace_Staking(String templateName, String filePath)
         {
+            CreateWordDoc doc1 = new CreateWordDoc(Path.Combine(currentDIR, templateName), filePath);
             try
             {
-                CreateWordDoc doc1 = new CreateWordDoc(Path.Combine(currentDIR, templateName), filePath);
                 doc1.CreateDocument();
 
                 FindAndReplace_ClientInfo(doc1);
@@ -730,12 +740,11 @@ namespace JobEnter
                 doc1.FindAndReplace("<stakePrice>", verifyPage.StakePrice);
 
                 doc1.closeAndSave();
-
-                return true;
             }
             catch (SystemException ex)
             {
-                return false;
+                doc1.closeAndSave();
+                throw new System.SystemException(ex.Message);
             }
         }
 
@@ -749,11 +758,11 @@ namespace JobEnter
          * 
          * Output: Returns true if the method runs correctly, and false if it encounters any errors
          */
-        private Boolean saveToWord(String templateName, String filePath)
+        private void saveToWord(String templateName, String filePath)
         {
+            CreateWordDoc doc1 = new CreateWordDoc(Path.Combine(currentDIR, templateName), filePath);
             try
             {
-                CreateWordDoc doc1 = new CreateWordDoc(Path.Combine(currentDIR, templateName), filePath);
                 doc1.CreateDocument();
 
                 // Find and replace client info
@@ -762,13 +771,11 @@ namespace JobEnter
                 FindAndReplace_ServicesAndTitles(doc1);
 
                 doc1.closeAndSave();
-
-                return true;
             }
             catch (System.Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message, "Save to Word Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
+                doc1.closeAndSave();
+                throw new System.Exception(ex.Message);
             }
         }
 
@@ -778,7 +785,6 @@ namespace JobEnter
          * 
          * Input: 
          *      -Doc 1: Word document that the find and replace will be called on
-         * 
          */
         private void FindAndReplace_ClientInfo(CreateWordDoc doc1)
         {
@@ -892,7 +898,7 @@ namespace JobEnter
                         doc1.FindAndReplace("<existingPrice>", "");
                     }
                     else{
-                        doc1.FindAndReplace("<existingPrice>", verifyPage.ExistingPrice);
+                        doc1.FindAndReplace("<existingPrice>", verifyPage.existingPrice());
                         doc1.FindAndReplace("<priceType>", "Please see below for itemized pricing for the services listed below");
                     }
 
@@ -925,7 +931,7 @@ namespace JobEnter
                     }
                     else
                     {
-                        doc1.FindAndReplace("<existingPrice>", verifyPage.ExistingPrice);
+                        doc1.FindAndReplace("<existingPrice>", verifyPage.existingPrice());
                         doc1.FindAndReplace("<priceType>", "Please see below for itemized pricing for the services listed below");
                     }
 

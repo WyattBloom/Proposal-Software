@@ -1,15 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
 using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO;
-using Smartsheet.Api.Models;
-using System.Security.Cryptography.X509Certificates;
+using Microsoft.Office.Interop.Word;
 
 namespace JobEnter
 {
@@ -98,9 +92,9 @@ namespace JobEnter
 
         public String getCTF()
         {
-            var list = panel1.Controls.OfType<CheckBox>().Where(x => x.Checked == true);
+            var list = panel1.Controls.OfType<System.Windows.Forms.CheckBox>().Where(x => x.Checked == true);
             String output = "";
-            foreach(CheckBox s in list)
+            foreach(System.Windows.Forms.CheckBox s in list)
             {
                 output = output + s.Text;
             }
@@ -174,7 +168,7 @@ namespace JobEnter
         {
             if (boxPrice.Text == "")
             {
-                int typePrice = 0;
+                /*int typePrice = 0;
                 int stakingPrice = 0;
                 int finalPrice = 0;
                 int foundationPrice = 0;
@@ -185,6 +179,12 @@ namespace JobEnter
                     && Int32.TryParse(boxFoundationPrice.Text, out foundationPrice)
                     && Int32.TryParse(boxExistingPrice.Text, out existingPrice))
                     return typePrice + stakingPrice + finalPrice + foundationPrice + existingPrice;
+                */
+                int existingPrice = 0;
+                if (Int32.TryParse(boxExistingPrice.Text, out existingPrice))
+                {
+                    return existingPrice;
+                }
                 else
                 {
                     throw new System.InvalidCastException("All price boxes must be numbers. Cannot contain letters or symbols");
@@ -192,8 +192,10 @@ namespace JobEnter
             }else
             {
                 int price = 0;
-                Int32.TryParse(boxPrice.Text, out price);
-                return price;
+                if (Int32.TryParse(boxPrice.Text, out price))
+                    return price;
+                else
+                    throw new System.InvalidCastException("All price boxes must be numbers. Cannot contain letters or symbols");
             }
         }
 
@@ -202,6 +204,12 @@ namespace JobEnter
         {
             get { return boxPrice.Text; }   // get method
             set { boxPrice.Text = value; }  // set method
+        }
+
+        public void hidePrice(Boolean tf)
+        {
+            boxPrice.Visible = !tf;
+            lblPrice.Visible = !tf;
         }
 
         public String StakePrice
@@ -216,10 +224,12 @@ namespace JobEnter
             set { boxDays.Text = value; }
         }
 
-        public String ExistingPrice
+        public String existingPrice()
         {
-            get { return "$" + boxExistingPrice.Text; }
-            set { boxExistingPrice.Text = value; }
+            if (boxExistingPrice.Text != "")
+                return "$" + boxExistingPrice.Text;
+            else
+                return "";
         }
 
         public String stakePrice2()
@@ -271,6 +281,20 @@ namespace JobEnter
             lblTypePrice.Text = s;
         }
 
+        public void setTotalPriceLabel(String s)
+        {
+            lblPrice.Text = s;
+        }
+
+        public void hideAsBuilt(Boolean TF)
+        {
+            lblFoundationPrice.Visible = TF;
+            lblFinalPrice.Visible = TF;
+
+            boxFoundationPrice.Visible = TF;
+            boxFinalPrice.Visible = TF;
+        }
+
         public void clearAll()
         {
             clearBox();
@@ -281,8 +305,8 @@ namespace JobEnter
                 foreach (Control control in controls)
                     if (control is TextBox)
                         (control as TextBox).Clear();
-                    else if (control is CheckBox)
-                        (control as CheckBox).Checked = false;
+                    else if (control is System.Windows.Forms.CheckBox)
+                        (control as System.Windows.Forms.CheckBox).Checked = false;
                     else
                         func(control.Controls);
             };

@@ -101,7 +101,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 15F);
-            this.label2.Location = new System.Drawing.Point(211, 17);
+            this.label2.Location = new System.Drawing.Point(212, 16);
             this.label2.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(72, 29);
@@ -114,7 +114,7 @@
             this.btnUncheckAll.Location = new System.Drawing.Point(628, 6);
             this.btnUncheckAll.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.btnUncheckAll.Name = "btnUncheckAll";
-            this.btnUncheckAll.Size = new System.Drawing.Size(207, 55);
+            this.btnUncheckAll.Size = new System.Drawing.Size(179, 52);
             this.btnUncheckAll.TabIndex = 7;
             this.btnUncheckAll.Text = "Uncheck All";
             this.btnUncheckAll.UseVisualStyleBackColor = true;
@@ -123,10 +123,10 @@
             // btnCheckAll
             // 
             this.btnCheckAll.Font = new System.Drawing.Font("Times New Roman", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCheckAll.Location = new System.Drawing.Point(405, 6);
+            this.btnCheckAll.Location = new System.Drawing.Point(433, 6);
             this.btnCheckAll.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.btnCheckAll.Name = "btnCheckAll";
-            this.btnCheckAll.Size = new System.Drawing.Size(207, 55);
+            this.btnCheckAll.Size = new System.Drawing.Size(179, 52);
             this.btnCheckAll.TabIndex = 8;
             this.btnCheckAll.Text = "Check All";
             this.btnCheckAll.UseVisualStyleBackColor = true;

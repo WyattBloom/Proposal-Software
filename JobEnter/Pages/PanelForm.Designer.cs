@@ -419,11 +419,11 @@
             // panel1
             // 
             this.panel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.panel1.Controls.Add(this.clientInfo1);
-            this.panel1.Controls.Add(this.verifyPage);
             this.panel1.Controls.Add(this.jobType1);
             this.panel1.Controls.Add(this.selectServices1);
             this.panel1.Controls.Add(this.stakingPage1);
+            this.panel1.Controls.Add(this.clientInfo1);
+            this.panel1.Controls.Add(this.verifyPage);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(220, 70);
             this.panel1.Name = "panel1";
@@ -434,12 +434,14 @@
             // PanelForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1269, 696);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panelCurrentHeader);
             this.Controls.Add(this.panelMenu);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;

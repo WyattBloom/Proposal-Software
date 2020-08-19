@@ -49,8 +49,8 @@
             this.lblFoundationPrice = new System.Windows.Forms.Label();
             this.lblFinalPrice = new System.Windows.Forms.Label();
             this.lblExistingPrice = new System.Windows.Forms.Label();
-            this.boxExistingPrice = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.boxExistingPrice = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -141,7 +141,7 @@
             // 
             this.checkTom.AutoSize = true;
             this.checkTom.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkTom.Location = new System.Drawing.Point(12, 52);
+            this.checkTom.Location = new System.Drawing.Point(12, 41);
             this.checkTom.Margin = new System.Windows.Forms.Padding(7);
             this.checkTom.Name = "checkTom";
             this.checkTom.Size = new System.Drawing.Size(76, 31);
@@ -153,7 +153,7 @@
             // 
             this.checkWayne.AutoSize = true;
             this.checkWayne.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkWayne.Location = new System.Drawing.Point(12, 95);
+            this.checkWayne.Location = new System.Drawing.Point(12, 77);
             this.checkWayne.Margin = new System.Windows.Forms.Padding(7);
             this.checkWayne.Name = "checkWayne";
             this.checkWayne.Size = new System.Drawing.Size(101, 31);
@@ -169,7 +169,7 @@
             this.panel1.Location = new System.Drawing.Point(782, 344);
             this.panel1.Margin = new System.Windows.Forms.Padding(7);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(239, 150);
+            this.panel1.Size = new System.Drawing.Size(239, 126);
             this.panel1.TabIndex = 4;
             // 
             // label1
@@ -186,44 +186,44 @@
             // boxTypePrice
             // 
             this.boxTypePrice.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.boxTypePrice.Location = new System.Drawing.Point(216, 33);
+            this.boxTypePrice.Location = new System.Drawing.Point(241, 85);
             this.boxTypePrice.Margin = new System.Windows.Forms.Padding(7);
             this.boxTypePrice.Name = "boxTypePrice";
-            this.boxTypePrice.Size = new System.Drawing.Size(147, 34);
+            this.boxTypePrice.Size = new System.Drawing.Size(124, 34);
             this.boxTypePrice.TabIndex = 0;
             // 
             // boxStakingPrice
             // 
             this.boxStakingPrice.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.boxStakingPrice.Location = new System.Drawing.Point(216, 75);
+            this.boxStakingPrice.Location = new System.Drawing.Point(240, 128);
             this.boxStakingPrice.Margin = new System.Windows.Forms.Padding(7);
             this.boxStakingPrice.Name = "boxStakingPrice";
-            this.boxStakingPrice.Size = new System.Drawing.Size(147, 34);
+            this.boxStakingPrice.Size = new System.Drawing.Size(124, 34);
             this.boxStakingPrice.TabIndex = 1;
             // 
             // boxFinalPrice
             // 
             this.boxFinalPrice.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.boxFinalPrice.Location = new System.Drawing.Point(216, 117);
+            this.boxFinalPrice.Location = new System.Drawing.Point(241, 171);
             this.boxFinalPrice.Margin = new System.Windows.Forms.Padding(7);
             this.boxFinalPrice.Name = "boxFinalPrice";
-            this.boxFinalPrice.Size = new System.Drawing.Size(147, 34);
+            this.boxFinalPrice.Size = new System.Drawing.Size(124, 34);
             this.boxFinalPrice.TabIndex = 2;
             // 
             // boxFoundationPrice
             // 
             this.boxFoundationPrice.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.boxFoundationPrice.Location = new System.Drawing.Point(216, 159);
+            this.boxFoundationPrice.Location = new System.Drawing.Point(241, 214);
             this.boxFoundationPrice.Margin = new System.Windows.Forms.Padding(7);
             this.boxFoundationPrice.Name = "boxFoundationPrice";
-            this.boxFoundationPrice.Size = new System.Drawing.Size(147, 34);
+            this.boxFoundationPrice.Size = new System.Drawing.Size(124, 34);
             this.boxFoundationPrice.TabIndex = 3;
             // 
             // lblTypePrice
             // 
             this.lblTypePrice.AutoSize = true;
             this.lblTypePrice.Font = new System.Drawing.Font("Times New Roman", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTypePrice.Location = new System.Drawing.Point(2, 38);
+            this.lblTypePrice.Location = new System.Drawing.Point(4, 85);
             this.lblTypePrice.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.lblTypePrice.Name = "lblTypePrice";
             this.lblTypePrice.Size = new System.Drawing.Size(198, 29);
@@ -234,61 +234,52 @@
             // 
             this.lblStakingPrice.AutoSize = true;
             this.lblStakingPrice.Font = new System.Drawing.Font("Times New Roman", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStakingPrice.Location = new System.Drawing.Point(2, 80);
+            this.lblStakingPrice.Location = new System.Drawing.Point(4, 128);
             this.lblStakingPrice.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.lblStakingPrice.Name = "lblStakingPrice";
-            this.lblStakingPrice.Size = new System.Drawing.Size(165, 29);
+            this.lblStakingPrice.Size = new System.Drawing.Size(175, 29);
             this.lblStakingPrice.TabIndex = 42;
-            this.lblStakingPrice.Text = "Staking Price:";
+            this.lblStakingPrice.Text = "House Staking:";
             // 
             // lblFoundationPrice
             // 
             this.lblFoundationPrice.AutoSize = true;
             this.lblFoundationPrice.Font = new System.Drawing.Font("Times New Roman", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFoundationPrice.Location = new System.Drawing.Point(2, 122);
+            this.lblFoundationPrice.Location = new System.Drawing.Point(4, 171);
             this.lblFoundationPrice.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.lblFoundationPrice.Name = "lblFoundationPrice";
-            this.lblFoundationPrice.Size = new System.Drawing.Size(206, 29);
+            this.lblFoundationPrice.Size = new System.Drawing.Size(237, 29);
             this.lblFoundationPrice.TabIndex = 41;
-            this.lblFoundationPrice.Text = "Foundation Price:";
+            this.lblFoundationPrice.Text = "Foundation As Built:";
             // 
             // lblFinalPrice
             // 
             this.lblFinalPrice.AutoSize = true;
             this.lblFinalPrice.Font = new System.Drawing.Font("Times New Roman", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFinalPrice.Location = new System.Drawing.Point(2, 164);
+            this.lblFinalPrice.Location = new System.Drawing.Point(4, 214);
             this.lblFinalPrice.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.lblFinalPrice.Name = "lblFinalPrice";
-            this.lblFinalPrice.Size = new System.Drawing.Size(139, 29);
+            this.lblFinalPrice.Size = new System.Drawing.Size(170, 29);
             this.lblFinalPrice.TabIndex = 44;
-            this.lblFinalPrice.Text = "Final Price:";
+            this.lblFinalPrice.Text = "Final As Built:";
             // 
             // lblExistingPrice
             // 
             this.lblExistingPrice.AutoSize = true;
             this.lblExistingPrice.Font = new System.Drawing.Font("Times New Roman", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblExistingPrice.Location = new System.Drawing.Point(2, 206);
+            this.lblExistingPrice.Location = new System.Drawing.Point(4, 42);
             this.lblExistingPrice.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.lblExistingPrice.Name = "lblExistingPrice";
-            this.lblExistingPrice.Size = new System.Drawing.Size(173, 29);
+            this.lblExistingPrice.Size = new System.Drawing.Size(233, 29);
             this.lblExistingPrice.TabIndex = 46;
-            this.lblExistingPrice.Text = "Existing Price:";
-            // 
-            // boxExistingPrice
-            // 
-            this.boxExistingPrice.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.boxExistingPrice.Location = new System.Drawing.Point(216, 201);
-            this.boxExistingPrice.Margin = new System.Windows.Forms.Padding(7);
-            this.boxExistingPrice.Name = "boxExistingPrice";
-            this.boxExistingPrice.Size = new System.Drawing.Size(147, 34);
-            this.boxExistingPrice.TabIndex = 4;
+            this.lblExistingPrice.Text = "Existing Conditions:";
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.boxExistingPrice);
             this.groupBox1.Controls.Add(this.boxTypePrice);
             this.groupBox1.Controls.Add(this.lblExistingPrice);
             this.groupBox1.Controls.Add(this.boxStakingPrice);
-            this.groupBox1.Controls.Add(this.boxExistingPrice);
             this.groupBox1.Controls.Add(this.boxFinalPrice);
             this.groupBox1.Controls.Add(this.lblFinalPrice);
             this.groupBox1.Controls.Add(this.boxFoundationPrice);
@@ -302,6 +293,15 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Itemized Pricing:";
+            // 
+            // boxExistingPrice
+            // 
+            this.boxExistingPrice.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.boxExistingPrice.Location = new System.Drawing.Point(241, 42);
+            this.boxExistingPrice.Margin = new System.Windows.Forms.Padding(7);
+            this.boxExistingPrice.Name = "boxExistingPrice";
+            this.boxExistingPrice.Size = new System.Drawing.Size(124, 34);
+            this.boxExistingPrice.TabIndex = 47;
             // 
             // VerifyConditions
             // 
@@ -353,7 +353,7 @@
         private System.Windows.Forms.Label lblFoundationPrice;
         private System.Windows.Forms.Label lblFinalPrice;
         private System.Windows.Forms.Label lblExistingPrice;
-        private System.Windows.Forms.TextBox boxExistingPrice;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.TextBox boxExistingPrice;
     }
 }
