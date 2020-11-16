@@ -331,8 +331,11 @@ namespace JobEnter
 
                     // Sets the staking price on the verify page to be the value 
                     // of the staking price on the staking page
-                    if (stakingPage1.STKPRice != "" || stakingPage1.STKPRice != null)
-                        verifyPage.setStakePrice(stakingPage1.STKPRice);
+                    Console.WriteLine("STK Price: " + stakingPage1.STKPRice);
+                    Console.WriteLine("!= '': " + stakingPage1.STKPRice != "");
+                    Console.WriteLine("Null: " + stakingPage1.STKPRice != null);
+                    if (stakingPage1.STKPRice != "")
+                    { verifyPage.setStakePrice(stakingPage1.STKPRice); }
 
                     // Do not show the stake price or CTF Letters if its an ALTA
                     if(jobType1.getSelectedButton() == "ALTA")
@@ -385,9 +388,17 @@ namespace JobEnter
                         String pdfPath = absoluteFilePath + ".pdf";
                         String templateName = getTemplateName(jobType1.getSelectedButton());
 
+                        // Update Itemized/Lump Pricing
+                        verifyPage.updatePrices();
+
                         Console.WriteLine("Folder Path: " + absoluteFolderPath);
                         Console.WriteLine("File Path: " + absoluteFilePath);
                         Console.WriteLine("Template Name: " + templateName);
+                        Console.WriteLine("Existing Price: " + verifyPage.ExistingPrice);
+                        Console.WriteLine("Addition Price: " + verifyPage.TypePrice);
+                        Console.WriteLine("House Price: " + verifyPage.StakePrice2);
+                        Console.WriteLine("Foundation Price: " + verifyPage.FoundationPrice);
+                        Console.WriteLine("Final Price: " + verifyPage.FinalPrice);
 
                         if (templateName == null)
                         {
@@ -898,26 +909,28 @@ namespace JobEnter
                         doc1.FindAndReplace("<existingPrice>", "");
                     }
                     else{
-                        doc1.FindAndReplace("<existingPrice>", verifyPage.existingPrice());
+                        verifyPage.FoundationPrice = "";
+                        verifyPage.FinalPrice = "";
+                        doc1.FindAndReplace("<existingPrice>", verifyPage.ExistingPrice);
                         doc1.FindAndReplace("<priceType>", "Please see below for itemized pricing for the services listed below");
                     }
 
                     switch (titleIn)
                     {
                         case "Addition":
-                            doc1.FindAndReplace("<additionHeader>", replaceWith + verifyPage.typePrice() + "^p");
+                            doc1.FindAndReplace("<additionHeader>", replaceWith + verifyPage.TypePrice + "^p");
                             doc1.FindAndReplace("<additionBody>", servicesIn);
                             break;
                         case "House Staking":
-                            doc1.FindAndReplace("<StakingHeader>", replaceWith + verifyPage.stakePrice2() + "^p");
+                            doc1.FindAndReplace("<StakingHeader>", replaceWith + verifyPage.StakePrice2 + "^p");
                             doc1.FindAndReplace("<StakingBody>", servicesIn);
                             break;
                         case "Foundation as built":
-                            doc1.FindAndReplace("<FoundationHeader>", replaceWith + verifyPage.foundationPrice() + "^p");
+                            doc1.FindAndReplace("<FoundationHeader>", replaceWith + verifyPage.FoundationPrice + "^p");
                             doc1.FindAndReplace("<FoundationBody>", servicesIn);
                             break;
                         case "Final as built":
-                            doc1.FindAndReplace("<FinalHeader>", replaceWith + verifyPage.finalPrice() + "^p");
+                            doc1.FindAndReplace("<FinalHeader>", replaceWith + verifyPage.FinalPrice + "^p");
                             doc1.FindAndReplace("<FinalBody>", servicesIn);
                             break;
                     }
@@ -931,26 +944,26 @@ namespace JobEnter
                     }
                     else
                     {
-                        doc1.FindAndReplace("<existingPrice>", verifyPage.existingPrice());
+                        doc1.FindAndReplace("<existingPrice>", verifyPage.ExistingPrice);
                         doc1.FindAndReplace("<priceType>", "Please see below for itemized pricing for the services listed below");
                     }
 
                     switch (titleIn)
                     {
                         case "New Homes":
-                            doc1.FindAndReplace("<NewHomeHeader>", replaceWith + verifyPage.typePrice() + "^p");
+                            doc1.FindAndReplace("<NewHomeHeader>", replaceWith + verifyPage.TypePrice + "^p");
                             doc1.FindAndReplace("<NewHomeBody>", servicesIn);
                             break;
                         case "House Staking":
-                            doc1.FindAndReplace("<StakingHeader>", replaceWith + verifyPage.stakePrice2() + "^p");
+                            doc1.FindAndReplace("<StakingHeader>", replaceWith + verifyPage.StakePrice2 + "^p");
                             doc1.FindAndReplace("<StakingBody>", servicesIn);
                             break;
                         case "Foundation as built":
-                            doc1.FindAndReplace("<FoundationHeader>", replaceWith + verifyPage.foundationPrice() + "^p");
+                            doc1.FindAndReplace("<FoundationHeader>", replaceWith + verifyPage.FoundationPrice + "^p");
                             doc1.FindAndReplace("<FoundationBody>", servicesIn);
                             break;
                         case "Final as built":
-                            doc1.FindAndReplace("<FinalHeader>", replaceWith + verifyPage.finalPrice() + "^p");
+                            doc1.FindAndReplace("<FinalHeader>", replaceWith + verifyPage.FinalPrice + "^p");
                             doc1.FindAndReplace("<FinalBody>", servicesIn);
                             break;
                     }

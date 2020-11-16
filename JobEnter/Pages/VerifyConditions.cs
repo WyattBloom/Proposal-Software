@@ -224,44 +224,91 @@ namespace JobEnter
             set { boxDays.Text = value; }
         }
 
-        public String existingPrice()
+        string existingPrice = "";
+        public String ExistingPrice
         {
+            get {
+                return existingPrice;
+            }
+            set {
+                existingPrice = value;
+            }
+        }
+
+        string stakePrice2 = "";
+        public String StakePrice2
+        {
+            get {
+                return stakePrice2;
+            }
+            set {
+                stakePrice2 = value;
+            }
+        }
+
+        string typePrice = "";
+        public String TypePrice
+        {
+            get{
+                return typePrice;
+            }
+            set{
+                typePrice = value;
+            }
+        }
+
+        string foundationPrice = "";
+
+        public String FoundationPrice
+        {
+            get{
+                return foundationPrice;
+            }
+            set{
+                foundationPrice = value;
+            }
+        }
+
+        string finalPrice = "";
+        public String FinalPrice
+        {
+            get {
+                return finalPrice; }
+            set {
+                finalPrice = value;
+            }
+        }
+        public void updatePrices()
+        {
+            // Update Stake Price 2
+            if (boxStakingPrice.Text != "")
+                stakePrice2 = " ($" + boxStakingPrice.Text + "):";
+            else
+                stakePrice2 = ":";
+
+            // Update Existing Price
             if (boxExistingPrice.Text != "")
-                return "$" + boxExistingPrice.Text;
+                existingPrice = "$" + boxExistingPrice.Text;
             else
-                return "";
-        }
+                existingPrice = "";
 
-        public String stakePrice2()
-        {
-            if(boxStakingPrice.Text != "")
-                return " ($" + boxStakingPrice.Text + "):";
+            // Update Price Type
+            if (boxTypePrice.Text != "")
+                typePrice = " ($" + boxTypePrice.Text + "):";
             else
-                return ":";
-        }
+                typePrice = ":";
 
-        public String typePrice()
-        {
-            if(boxTypePrice.Text != "")
-                return " ($" + boxTypePrice.Text + "):";
+            // Update Final Price
+            if (boxFinalPrice.Text != "")
+                finalPrice = " ($" + boxFinalPrice.Text + "):";
             else
-                return ":";
-        }
+                finalPrice = ":";
 
-        public String foundationPrice()
-        {
+            // Update Foundation Price
             if (boxFoundationPrice.Text != "")
-                return " ($" + boxFoundationPrice.Text + "):";
+                foundationPrice = " ($" + boxFoundationPrice.Text + "):";
             else
-                return ":";
-        }
-
-        public String finalPrice()
-        {
-            if(boxFinalPrice.Text != "")
-                return " ($" + boxFinalPrice.Text + "):";
-            else
-                return ":";
+                foundationPrice = ":";
         }
 
         public List<String> getTextFromBox()

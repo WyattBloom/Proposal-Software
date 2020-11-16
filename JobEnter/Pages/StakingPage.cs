@@ -38,7 +38,7 @@ namespace JobEnter
 
         public void setAll()
         {
-            boxCorner.Text = "All";
+            boxCorner.Text = "All Corners";
         }
 
         public string Corner
